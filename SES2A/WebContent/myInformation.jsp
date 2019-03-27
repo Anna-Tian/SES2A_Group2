@@ -6,6 +6,25 @@
 	<meta charset="UTF-8">
 	<title>HELPS booking system</title>
 	<link rel="stylesheet" href="css/myInformation.css" />
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("input[id^='rdoDegree_']").click(function(){
+				var radio_id = this.id.split("_")[1];
+				$("p[id$='details']").hide();
+				$("#"+radio_id+"").show();
+			});
+			$("input[id^='ckb']").click(function(){
+				var name1 = $(this).attr("name");
+				var name2 = "txt"+name1.substr(3)+"_mark";
+				if(this.checked==true){
+					$("#"+name2+"").show();
+				}else{
+					$("#"+name2+"").hide();
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 
@@ -26,26 +45,7 @@
 			</div>
 		</div>
 		<!-- Content -->
-		<div id="content">				
-			<!--<noscript>
-		   <p style="color: red;">Either your browser does not support javascript or javascript has been turned off. The HELPS Booking System Admin area needs javascript to work. Please:</p>
-		   <p style="color: red;">
-		   	- Switch to another browser that does supports javascript OR<br/>
-		   	- Turn javsacript on
-		   </p>
-	   	</noscript>
-		<style type="text/css" media="screen">
-			#a-box {
-				margin:1% 0 0 0;
-				padding:1%;
-				padding-left:0;
-				width:80%;
-			}
-			#a-box *{
-				margin:0;
-				padding:0;
-			}
-		</style>-->
+		<div id="content">
 			<div id="a-box">
 				<h2>Student Registration</h2>
 				<div id="student_profile_instruction">
@@ -76,8 +76,8 @@
 					    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="X"  />X (indeterminate/unspecified/intersex)
 					</p>
 					<p>Degree*: 
-						<input type="Radio" name="rdoDegree" value="UG" onclick="javascript:clearSelect(document.forms[0].rdoUGDegreeDetails); clearRadio(document.forms[0].rdoPGDegreeDetails); showContainer('UGdetails');hideContainer('PGdetails');"  />Undergraduate
-						<input type="Radio" name="rdoDegree" value="PG" onclick="javascript:clearSelect(document.forms[0].rdoUGDegreeDetails); clearRadio(document.forms[0].rdoPGDegreeDetails);showContainer('PGdetails');hideContainer('UGdetails');"  />Postgraduate
+						<input type="Radio" name="rdoDegree" value="UG" id="rdoDegree_UGdetails"/>Undergraduate
+						<input type="Radio" name="rdoDegree" value="PG" id="rdoDegree_PGdetails"/>Postgraduate
 					</p>
 					<p id="UGdetails" style="display:none;">Year*: 
 						<select name="rdoUGDegreeDetails">
