@@ -1,0 +1,43 @@
+*{
+	margin: 0;
+}
+body {
+    background-color: #0099cc url(../img/background.png) no-repeat scroll left top;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 0.8em;
+}
+.divStyle{
+	width: 75%;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left: 2px #95e0fd solid;
+	border-right: 2px #95e0fd solid;
+}
+.divStyle div{
+	padding-left: 10px;
+	margin-bottom: 30px;
+}
+.divStyle h3{
+	background-color: #2ccaff;
+	color: white;
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.divStyle .td1{
+	font-weight: 600;
+	font-size: 12px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+}
+.divStyle .td2{
+	width: 900px;
+}
+h4{
+	margin-top: 10px;
+}
+.sessions th,.sessions td{
+	padding-right: 100px;
+	padding-bottom: 15px;
+}
+
