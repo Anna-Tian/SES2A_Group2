@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Change Email Template</title>
 	<link rel="stylesheet" href="css/emailTemplate.css" />
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
@@ -144,5 +144,8 @@
 			</div>
 		</div>
 	</div>
+	<footer>
+		<a>© HELPS Booking System</a>
+	</footer>
 </body>
 </html>
