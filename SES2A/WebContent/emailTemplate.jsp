@@ -53,7 +53,7 @@
 			</select>
 		</div>
 		<div class="changeTemplate">
-			<h5>Confirmation of booking(to lecturer)</h5>
+			<h4>Confirmation of booking(to lecturer)</h4>
 			<table>
 				<tr>
 					<th></th>
