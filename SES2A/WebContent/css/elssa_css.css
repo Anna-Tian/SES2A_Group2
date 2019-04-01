@@ -1,0 +1,107 @@
+body {
+padding: 0;
+margin: 0;
+background: #fff url(../images/container_bg.gif) top center repeat-y;
+min-width: 1024px;
+text-align: center;
+color: #000;
+font-family: verdana, arial, helvetica, sans-serif;
+}
+
+fieldset {
+margin: 0;
+padding: 0;
+border: none;
+}
+
+#elssa-logo {
+float: right;
+margin: 0;
+}
+
+#elssa-logo img {margin-bottom: 10px;}
+
+#container {
+clear: both;
+margin: 0 auto 0 auto;
+width: 1024px;
+text-align: left;
+background: #fff /* url(../images/header.jpg) top left no-repeat */;
+}
+
+#content {padding-top: 30px;}
+
+/* #content input, #content textarea {border: 1px solid #8c8c8c;} */
+
+#content form {
+background-color: #eee; 
+width:860px;
+border:solid 1px #dadada;
+}
+
+#content div.info-box {
+background-color: #eee; 
+width:850px;
+border:solid 1px #dadada;
+}
+
+#content form.workshop {
+background-color: #FFFFFF; 
+width:860px;
+border:none;
+}
+#content div.workshop-button-wrapper{
+	margin: 10px 0;
+}
+/*
+#navigation {margin-top: -37px;}
+*html>body #navigation {margin-top: -20px;}
+#navigation ul {margin-left: 500px; list-style: none;}
+#navigation ul li {float: left; margin: 0 8px 0 8px;}
+
+#navigation a:link, #navigation a:visited {
+text-transform: uppercase;
+text-decoration: none;
+font-size: 0.8em;
+color: #fff;
+}
+
+#navigation a:hover {color: #aa1f23;}
+*/
+
+#logonbox {
+height: 150px;
+margin:23px;
+}
+
+/* #logonbox input {border: 1px solid #8c8c8c;} */
+#logonbox form {border: none; padding: 0; background: none; width:100px;}
+
+#menu-global {margin: -10px 0 0 0; border: none; float: right; padding: 10px 10px 0 10px;}
+#menu-global a:link, #menu-global a:visited {color: #aa1f23; text-decoration: none; border-bottom:1px dotted #aa1f23;margin: 0 5px 0 5px; text-transform: uppercase;}
+#menu-global a:hover {color: #000; border-bottom-style:solid;}
+
+.calendarborder {border: 1px solid #aa1f23; float: left; padding: 10px 10px 0 10px; margin: 0 20px 0 0; background-color:#f3f3f3;}
+.calendarborder a:link, .calendarborder a:visited {color: #aa1f23; text-decoration: none; font-weight: bold;}
+.calendarborder a:hover {color: #000;}
+.calendarborder img {margin-left: 5px;}
+
+.sessions {clear: both; margin: 20px 0 0 0; background-color:#f4f4f4;}
+.sessions td {text-align: left;}
+
+form.sessions table tbody tr th {
+background-color:#d1e8f0;
+}
+
+#content h2 {margin:0; border: none;}
+
+#footer {
+clear: both;
+width: 992px;
+background-color: #eee;
+border: 1px solid #8c8c8c;
+padding: 5px;
+margin: 10px;
+position: relative; 
+bottom: 0px;
+}
