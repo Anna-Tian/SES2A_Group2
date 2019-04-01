@@ -9,6 +9,14 @@
 	<link href="css/core.css" rel="stylesheet" type="text/css">
 	<link href="css/elssa_css.css" rel="stylesheet" type="text/css"> 
 	<link href="css/elssa_booking.css" rel="stylesheet" type="text/css"> 
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#bookingWorkshop").click(function(){
+				window.location.href="WR_Comfirmation.jsp";
+			});
+		});
+	</script>
 </head>
 <body>
 
@@ -72,9 +80,12 @@
 				
 			</form>
 			
+			
 		
 					</div>
-					
+					<p>
+					</p>
+					<input id="bookingWorkshop" type="button" value="Book this workshop"></input>
 
 <!-- Footer -->
 				<div id="footer-wrapper">
