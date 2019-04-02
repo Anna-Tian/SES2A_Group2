@@ -59,10 +59,10 @@
 					<th>
 						<input type="checkbox">
 					</th>
-					<th style="width: 55%;">
+					<th style="width: 60%;">
 						<input placeholder="Improve your writing" readonly="readonly">
 					</th>
-					<th style="width: 25%;">
+					<th style="width: 30%;">
 						<input placeholder="Writing 2019">
 					</th>
 					<th>
