@@ -1,0 +1,113 @@
+body {
+	background-color: #0099cc url(../img/background.png) no-repeat scroll
+		left top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+header nav {
+	text-align: center;
+	margin: 4px;
+}
+
+header nav a {
+	padding: 5px;
+	background-color: #5ebef0;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: #fff;
+	text-decoration: none;
+}
+
+header nav a:hover {
+	padding: 5px;
+	background-color: #fff;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: black;
+	text-decoration: none;
+	border: 1px #5ebef0 solid;
+}
+
+.wrapper {
+	width: 75%;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 2px #95e0fd solid;
+}
+
+.wrapper nav {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.wrapper nav a {
+	padding: 5px;
+	background-color: #5ebef0;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: #fff;
+	text-decoration: none;
+}
+
+.wrapper nav a:hover {
+	padding: 5px;
+	background-color: #fff;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: black;
+	text-decoration: none;
+	border: 1px #5ebef0 solid;
+}
+
+.wrapper .title {
+	float: left;
+}
+
+.wrapper #skillsInput {
+	width: 50%;
+}
+
+.wrapper table {
+	margin-top: 10px;
+}
+
+.wrapper table tr {
+	border-bottom: 1px #cacaca solid; //
+	background-color: #eff0f3;
+}
+
+.wrapper table input {
+	width: 95%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: black;
+	opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: black;
+}
+
+.wrapper table th a {
+	font-size: 0.8em;
+	font-weight: normal;
+}
+
+.wrapper .buttonArea {
+	text-align: center;
+	padding: 5px;
+}
+
+footer {
+	padding: 8px;
+	text-align: center;
+	font-size: 0.8em;
+	color: #595a5a;
+}
