@@ -66,7 +66,7 @@
 						<input placeholder="Writing 2019">
 					</th>
 					<th>
-						<a href="">Set Workshops</a>
+						<a href="">View</a>
 					</th>
 				</tr>
 				<tr style="background-color: #eff0f3;">
@@ -85,7 +85,7 @@
 						<input placeholder="U:PASSWrite 2019">
 					</th>
 					<th>
-						<a href="">Set Workshops</a>
+						<a href="">View</a>
 					</th>
 				</tr>
 				<tr>
@@ -104,7 +104,7 @@
 						<input placeholder="Grammar 2019">
 					</th>
 					<th>
-						<a href="">Set Workshops</a>
+						<a href="">View</a>
 					</th>
 				</tr>
 				<tr style="background-color: #eff0f3;">
@@ -123,7 +123,7 @@
 						<input placeholder="Speaking 2019">
 					</th>
 					<th style="width: 10%;">
-						<a href="">Set Workshops</a>
+						<a href="">View</a>
 					</th>
 				</tr>
 				<tr>
@@ -142,7 +142,7 @@
 						<input placeholder="U:PASS">
 					</th>
 					<th>
-						<a href="">Set Workshops</a>
+						<a href="">View</a>
 					</th>
 				</tr>
 			</tbody>
