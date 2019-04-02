@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			{
+			/*{
 				var sessions1 = "${sessions_a }";
 				var sessions2 = "${sessions_b }";
 				if(sessions1==""){
@@ -27,7 +27,7 @@
 					$("#session3").hide();
 					$("#session4").show();
 				}
-			}
+			}*/
 		});
 	</script>
 </head>
