@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>HELPS booking system Workshop registration</title>
 
-<link href="css/core.css" rel="stylesheet" type="text/css">
-<link href="css/elssa_css.css" rel="stylesheet" type="text/css">
-<link href="css/elssa_booking.css" rel="stylesheet" type="text/css">
+<link href="css/core_WR.css" rel="stylesheet" type="text/css">
+<link href="css/elssa_css_WR.css" rel="stylesheet" type="text/css">
+<link href="css/elssa_booking_WR.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -23,7 +23,7 @@
 	<div id="global-utility-bar">
 		<!-- UTS Logo -->
 		<div id="uts-logo">
-			<a href="https://xxx"><img src="images/utslogo.gif"
+			<a href="https://xxx"><img src="images/utslogo_WR.gif"
 				alt="University of Technology, Sydney homepage" width="132"
 				height="30"></a>
 		</div>
@@ -87,13 +87,13 @@
 							<strong>Places available</strong>: x
 						</div>
 					</div>
+				</div>
 			</form>
 
-
+			<p></p>
+			<input id="bookingWorkshop" type="button" value="Book this workshop"></input>
 
 		</div>
-		<p></p>
-		<input id="bookingWorkshop" type="button" value="Book this workshop"></input>
 
 		<!-- Footer -->
 		<div id="footer-wrapper">
@@ -109,9 +109,9 @@
 			<div id="footer-nav"></div>
 			<div id="global-footer">
 				<div id="footer-img">
-					<a href="https://xxx"> <img src="images/uts_logo_footer.gif"
-						alt="UTS homepage" width="130" height="29"></a> <br>
-					<a href="https://xxx">UTS is a member of the<br>Australian
+					<a href="https://xxx"> <img src="images/uts_logo_footer_WR.gif"
+						alt="UTS homepage" width="130" height="29"></a> <br> <a
+						href="https://xxx">UTS is a member of the<br>Australian
 						Technology Network of Universities
 					</a>
 				</div>
@@ -119,10 +119,10 @@
 				<div id="footer-text">
 					<div class="primary-links">
 						<a href="https://xxx">Staff directory</a> <img
-							src="images/separator.gif" alt="" width="4" height="6"> <a
+							src="images/separator_WR.gif" alt="" width="4" height="6"> <a
 							href="https://xxx">Campus maps</a> <img
-							src="images/separator.gif" alt="" width="4" height="6"> <a
-							href="https://xxx">Newsroom</a> <img src="images/separator.gif"
+							src="images/separator_WR.gif" alt="" width="4" height="6"> <a
+							href="https://xxx">Newsroom</a> <img src="images/separator_WR.gif"
 							alt="" width="4" height="6"> <a href="https://xxx">What's
 							on</a>
 					</div>
