@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.StudentProfile" table="studentProfile">
+		<id name="profileId">
+			<generator class="native"></generator>
+		</id>
+		<property name="preferredFirstName"></property>
+		<property name="bestContactNum"></property>
+		<property name="gender"></property>
+		<property name="degree"></property>
+		<property name="year"></property>
+		<property name="type"></property>
+		<property name="status"></property>
+		<property name="firstLanguage"></property>
+		<property name="countryOfOrigin"></property>
+		<property name="eduBgMark"></property>
+		<property name="eduBg"></property>
+		<many-to-one name="student" unique="true" column="studentId" class="com.bean.Student" lazy="false"></many-to-one>
+		<many-to-one name="message" column="messageId" class="com.bean.Message" lazy="false"></many-to-one>
+		<set name="reports" table="t_report_studentProfile" lazy="false">
+			<key column="profileId"></key>
+			<many-to-many class="com.bean.Report" column="reportId"/>
+		</set>
+	</class>
+</hibernate-mapping>

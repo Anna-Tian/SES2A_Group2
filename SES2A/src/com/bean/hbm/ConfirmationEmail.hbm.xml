@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.ConfirmationEmail" table="confirmationEmail">
+		<id name="confirmationId">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="isSessConfSent"></property>
+		<property name="SessConfDateTime"></property>
+		<property name="isWkshConfSent"></property>
+		<property name="WkshConfDateTime"></property>
+		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
+		<many-to-one name="session" column="sessionId" class="com.bean.Session"></many-to-one>
+		<many-to-one name="workShop" column="workShopId" class="com.bean.WorkShop"></many-to-one>
+		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
+		<many-to-one name="reminderEmail" unique="true" column="reminderEmailId" class="com.bean.ReminderEmail"></many-to-one>
+	</class>
+</hibernate-mapping>

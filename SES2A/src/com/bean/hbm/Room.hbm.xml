@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Room" table="room">
+		<id name="roomId">
+			<generator class="native"></generator>
+		</id>
+		<property name="roomLocation"></property>
+		<set name="workShops">
+			<key column="roomId"></key>
+			<one-to-many class="com.bean.WorkShop"/>
+		</set>
+		<set name="sessions">
+			<key column="roomId"></key>
+			<one-to-many class="com.bean.Session"/>
+		</set>
+	</class>
+</hibernate-mapping>
