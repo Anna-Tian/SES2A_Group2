@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Student;
+import com.bean.StudentProfile;
 import com.dao.TestDaoImpl;
 
 /**
@@ -43,8 +46,15 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Student student = testDaoImpl.getCurrentStudent();
 		request.getSession().setAttribute("student", student);
-		request.getSession().setAttribute("studentProfile", student.getStudentProfile());
-		System.out.println(student.getStudentProfile());
+		StudentProfile studentProfile = student.getStudentProfile();
+		request.getSession().setAttribute("studentProfile", studentProfile);
+		if(studentProfile!=null) {
+			String[] eduBg = studentProfile.getEduBg().substring(1,studentProfile.getEduBg().length()-1).split(", ");
+			String[] eduBgMark = studentProfile.getEduBgMark().substring(1,studentProfile.getEduBgMark().length()-1).split(", ");
+			request.getSession().setAttribute("eduBg", eduBg);
+			request.getSession().setAttribute("eduBgMark", eduBgMark);
+			System.out.println(Arrays.toString(eduBgMark));
+		}
 		response.sendRedirect("myInformation.jsp");
 	}
 

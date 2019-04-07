@@ -1,11 +1,6 @@
 <%@page import="com.bean.StudentProfile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	StudentProfile studentProfile = (StudentProfile)session.getAttribute("studentProfile");
-	String[] eduBg = studentProfile.getEduBg().substring(1,studentProfile.getEduBg().length()-1).split(", ");
-	String[] eduBgMark = studentProfile.getEduBgMark().substring(1,studentProfile.getEduBg().length()-1).split(", ");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,20 +35,26 @@
 			$("[value='"+language+"']").prop("selected",true);
 			$("[value='"+country+"']").prop("selected",true);
 			
-			<%for(int i=0;i<eduBg.length;i++){	
-				String name1 = eduBg[i].substring(3);
-				pageContext.setAttribute("name1",name1);
-				String val1 = eduBgMark[i];
-				pageContext.setAttribute("val1",val1);%>
-				$("[value='<%=eduBg[i]%>']").prop("checked",true);
-				var name2 = "${name1}";
-				var name = "txt"+name2+"_mark";
-				var name3 = "txt_"+name2+"_mark";
-				var value = "${val1}";
-				$("#"+name+"").val(value);
-				$("#"+name+"").show();
-				$("#"+name3+"").show();
-			<%}%>
+			
+			<%
+			String[] eduBg = (String[])session.getAttribute("eduBg");
+			String[] eduBgMark = (String[])session.getAttribute("eduBgMark");
+			if(eduBg!=null&&eduBgMark!=null){
+				for(int i=0;i<eduBg.length;i++){	
+					String name1 = eduBg[i].substring(3);
+					pageContext.setAttribute("name1",name1);
+					String val1 = eduBgMark[i];
+					pageContext.setAttribute("val1",val1);%>
+					$("[value='<%=eduBg[i]%>']").prop("checked",true);
+					var name2 = "${name1}";
+					var name = "txt"+name2+"_mark";
+					var name3 = "txt_"+name2+"_mark";
+					var value = "${val1}";
+					$("#"+name+"").val(value);
+					$("#"+name+"").show();
+					$("#"+name3+"").show();
+				<%}
+			}%>
 			
 			
 			
@@ -554,7 +555,7 @@
 							</tr>
 							<tr>
 								<td><input type="Checkbox" id="ckbIELTS" name="ckb" value="ckbIELTS" />IELTS</td>
-								<td id="txt_IELTS_mark"  style="display:none;">Mark <input type="Text" id="txtIELTS_mark" name="txt_mark" value="666" size="5"/></td>
+								<td id="txt_IELTS_mark"  style="display:none;">Mark <input type="Text" id="txtIELTS_mark" name="txt_mark" value="" size="5"/></td>
 							</tr>
 							<tr>
 								<td><input type="Checkbox" id="ckbTOEFL" name="ckb" value="ckbTOEFL" />TOEFL</td>

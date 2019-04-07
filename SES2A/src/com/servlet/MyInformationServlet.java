@@ -2,6 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,7 +53,8 @@ public class MyInformationServlet extends HttpServlet {
 		String firstLanguage = request.getParameter("selLang");
 		String countryOfOrigin = request.getParameter("selCountry");
 		String eduBg = Arrays.toString(request.getParameterValues("ckb"));
-		String eduBgMark = Arrays.toString(request.getParameterValues("txt_mark"));
+		String[] eduBgMarks = request.getParameterValues("txt_mark");
+		String eduBgMark = eduBgMarkTrim(eduBgMarks);
 		String txtBackground = request.getParameter("txtBackground");
 		
 		Student student = (Student) request.getSession().getAttribute("student");
@@ -64,7 +66,24 @@ public class MyInformationServlet extends HttpServlet {
 			studentProfile.setProfileId(student.getStudentProfile().getProfileId());
 			flag = studentProfileDao.saveStudentProfile(studentProfile);
 		}
-		System.out.println(flag);
+		if(flag) {
+			response.sendRedirect("/SES2A/LoginServlet");
+		}
+	}
+	
+	public String eduBgMarkTrim(String[] eduBgMarks) {
+		StringBuffer sb = new StringBuffer();
+	       for(int i=0; i<eduBgMarks.length; i++) {
+	           if("".equals(eduBgMarks[i])) {
+	               continue;
+	           }
+	           sb.append(eduBgMarks[i]);
+	           if(i != eduBgMarks.length - 1) {
+	               sb.append(";");
+	           }
+	       }
+       eduBgMarks = sb.toString().split(";");
+       return Arrays.toString(eduBgMarks);
 	}
 
 	/**
