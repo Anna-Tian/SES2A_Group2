@@ -32,9 +32,6 @@
 					localStorage.setItem("selectedOption", selectedOptionValue);
 					window.location = "MessageEditTab.jsp";
 				}
-				else{
-					document.getElementById("messageTab").innerHTML = "";
-				}
 			}
 		</script>
 		
