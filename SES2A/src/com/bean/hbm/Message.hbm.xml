@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Message" table="message">
+		<id name="messageId" column="messageId">
+			<generator class="native"></generator>
+		</id>
+		<property name="messageLocation"></property>
+		<property name="messageDetailed"></property>
+		<set name="studentProfiles">
+			<key column="messageId"></key>
+			<one-to-many class="com.bean.StudentProfile"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Admin" table="admin">
+		<id name="adminId" column="adminId">
+			<generator class="native"></generator>
+		</id>
+		<property name="firstName"></property>
+		<property name="lastName"></property>
+		<property name="password"></property>
+		<property name="email"></property>
+		<set name="skillSets">
+			<key column="adminId"></key>
+			<one-to-many class="com.bean.SkillSet"/>
+		</set>
+		<set name="comments">
+			<key column="adminId"></key>
+			<one-to-many class="com.bean.Comment"/>
+		</set>
+		<set name="confirmationEmails">
+			<key column="adminId"></key>
+			<one-to-many class="com.bean.ConfirmationEmail"/>
+		</set>
+		<set name="reports">
+			<key column="adminId"></key>
+			<one-to-many class="com.bean.Report"/>
+		</set>
+		<set name="studentProfiles" table="t_admin_studentProfile">
+			<key column="adminId"></key>
+			<many-to-many class="com.bean.StudentProfile" column="profileId"/>
+		</set>
+		<set name="waitingLists" table="t_admin_waitingList">
+			<key column="adminId"></key>
+			<many-to-many class="com.bean.WaitingList" column="waitingListId"/>
+		</set>
+		<set name="workShops">
+			<key column="adminId"></key>
+			<one-to-many class="com.bean.WorkShop"/>
+		</set>
+		<set name="sessions">
+			<key column="adminId"></key>
+			<one-to-many class="com.bean.Session"/>
+		</set>
+	</class>
+</hibernate-mapping>
