@@ -11,10 +11,11 @@
 	
 		<script>
 
-			/* initiate the page */
+			
 			$(function(){
-				var txtEditor = CKEDITOR.replace( 'textEditor');
 
+				/* initiate the page */
+				var txtEditor = CKEDITOR.replace( 'textEditor');
 				txtEditor.on('change', function(){
 					$("#cancelButton").show();
 					$("#saveButton").show();
@@ -22,7 +23,9 @@
 
 				var choiceValue = localStorage.getItem("selectedOption");
 				document.getElementById("messageTabSelectList").options[choiceValue].selected = 'selected';
+				
 
+				/*handle select list event*/
 				$("#messageTabSelectList").change(function(){
 					var selectedOptionValue = this.value;
 
@@ -40,32 +43,39 @@
 					}	
 				});
 
+				/*handle preview button click*/
 				$("#previewButton").click(function(){
 					//open preview window
 					
 				});
 
+				/*handle publish button click*/
 				$("#publishButton").click(function(){
 					//save changes made to the message
 					
 				});
 
+				/*handle cancel button click*/
 				$("#cancelButton").click(function(){
 					//cancel changes and hide buttons
 					$("#previewButton").hide();
 					$("#publishButton").hide();
 				});
 
+				/*handle save button click*/
 				$("#saveButton").click(function(){
 					//save changes and enable preview and publish button
 					$("#previewButton").show();
 					$("#publishButton").show();
+					$("#updateMessage").show();
 				});
 			});
 		</script>
 	</head>
 	
 	<body>
+		<p id="updateMessage">Updated the message</p>
+		
 		<div id="div1">
 			<select id="messageTabSelectList">
 				<option value="0"></option>

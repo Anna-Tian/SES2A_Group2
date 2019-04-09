@@ -12,3 +12,10 @@ div {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+
+#updateMessage {
+	display: none;
+	color: green;
+	text-align: left;
+	font-weight: bold;
+}
