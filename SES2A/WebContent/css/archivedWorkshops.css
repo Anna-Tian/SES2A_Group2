@@ -19,7 +19,7 @@ header nav a {
 	text-decoration: none;
 }
 
-header nav a:hover {
+header nav a.active, header nav a:hover {
 	padding: 5px;
 	background-color: #fff;
 	font-weight: 600;
@@ -51,7 +51,7 @@ header nav a:hover {
 	text-decoration: none;
 }
 
-.wrapper nav a:hover {
+.wrapper nav a.active, .wrapper nav a:hover {
 	padding: 5px;
 	background-color: #fff;
 	font-weight: 600;

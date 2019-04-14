@@ -18,7 +18,7 @@
 	<header>
 		<nav>
 			<a href="//">Sessions</a> 
-			<a href="//">Workshops</a>
+			<a href="//" class="active">Workshops</a>
 			<a href="//">Advisors</a>
 			<a href="//">Students</a> 
 			<a href="//">Waiting List</a>
@@ -33,7 +33,7 @@
 	<div class="wrapper">
 		<nav>
 			<a href="//">Current</a> 
-			<a href="//">Archived</a>
+			<a href="#" class="active">Archived</a>
 		</nav>
 		<div></div>
 		<div class="title">Skill-set:&nbsp;</div>

@@ -19,7 +19,7 @@ header nav a {
 	text-decoration: none;
 }
 
-header nav a:hover {
+header nav a.active, header nav a:hover {
 	padding: 5px;
 	background-color: #fff;
 	font-weight: 600;
