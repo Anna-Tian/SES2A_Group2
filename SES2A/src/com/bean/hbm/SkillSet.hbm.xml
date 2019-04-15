@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.SkillSet" table="skillSet">
+		<id name="skillSetId">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="shortName"></property>
+		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
+		<set name="workShops">
+			<key column="skillSetId"></key>
+			<one-to-many class="com.bean.WorkShop"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/uts_help</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">rootroot</property>
+		
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<mapping resource="com/bean/hbm/Admin.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Attendance.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Comment.hbm.xml"/>
+		<mapping resource="com/bean/hbm/ConfirmationEmail.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Message.hbm.xml"/>
+		<mapping resource="com/bean/hbm/ReminderEmail.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Report.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Room.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Session.hbm.xml"/>
+		<mapping resource="com/bean/hbm/SkillSet.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Student.hbm.xml"/>
+		<mapping resource="com/bean/hbm/StudentProfile.hbm.xml"/>
+		<mapping resource="com/bean/hbm/WaitingList.hbm.xml"/>
+		<mapping resource="com/bean/hbm/WorkShop.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

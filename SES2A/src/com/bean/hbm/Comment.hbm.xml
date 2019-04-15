@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Comment" table="comment">
+		<id name="commentId">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="description"></property>
+		<property name="date"></property>
+		<property name="time"></property>
+		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
+		<many-to-one name="session" column="sessionId" class="com.bean.Session"></many-to-one>
+		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
+	</class>
+</hibernate-mapping>

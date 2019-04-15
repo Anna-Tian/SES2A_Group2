@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.WaitingList" table="waitingList">
+		<id name="waitingListId">
+			<generator class="native"></generator>
+		</id>
+		<property name="waitingDateTime"></property>
+		<property name="waitingStatus"></property>
+		<property name="firstName"></property>
+		<property name="lastName"></property>
+		<many-to-one name="session" column="sessionId" class="com.bean.Session" not-null="false"></many-to-one>
+		<set name="admins" table="t_admin_waitingList">
+			<key column="waitingListId"></key>
+			<many-to-many class="com.bean.Admin" column="adminId"/>
+		</set>
+		<set name="reports" table="t_report_waitingList">
+			<key column="waitingListId"></key>
+			<many-to-many class="com.bean.Report" column="reportId"/>
+		</set>
+		<set name="students" table="t_student_waitingList">
+			<key column="waitingListId"></key>
+			<many-to-many class="com.bean.Student" column="studentId"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,6 +1,4 @@
 body {
-	background-color: #0099cc url(../img/background.png) no-repeat scroll
-		left top;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 0.8em;
 }
@@ -19,7 +17,7 @@ header nav a {
 	text-decoration: none;
 }
 
-header nav a.active, header nav a:hover {
+header nav a:hover {
 	padding: 5px;
 	background-color: #fff;
 	font-weight: 600;
@@ -51,7 +49,7 @@ header nav a.active, header nav a:hover {
 	text-decoration: none;
 }
 
-.wrapper nav a.active, .wrapper nav a:hover {
+.wrapper nav a:hover {
 	padding: 5px;
 	background-color: #fff;
 	font-weight: 600;

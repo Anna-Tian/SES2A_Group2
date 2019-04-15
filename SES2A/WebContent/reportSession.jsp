@@ -18,7 +18,22 @@
 </script>
 </head>
 <body>
-	<div class="header">
+<header>
+		<nav>
+			<a href="//">Sessions</a> 
+			<a href="//">Workshops</a>
+			<a href="//">Advisors</a>
+			<a href="//">Students</a> 
+			<a href="//">Waiting List</a>
+			<a href="//">Reports</a>
+			<a href="//">Template</a>
+			<a href="//">Email</a>
+			<a href="//">Room</a>
+			<a href="//">Message</a>
+			<a href="//">Exit</a>
+		</nav>
+	</header>
+	<div class="title">
 		<nav>
 			<a href="http://localhost:8080/SES2A/reportSession.jsp">Session</a> |
 			<a href="http://localhost:8080/SES2A/reportWorkshop.jsp">Workshop</a>
@@ -51,8 +66,9 @@
 				name="repType" value="" />&nbsp;Students in the waiting list
 		</p>
 		<br /> <span class="step">- Step 3:</span> <span>Press "Submit"
-			button</span> <br /> <input type="Submit" name="btnSessionsub"
+			button</span> <br />  <input type="Submit" name="btnSessionsub"
 			value="Submit" id="btnSessionsub" />
+			<br/><br/>
 	</div>
 
 	<!-- <script type="text/javascript">
@@ -71,6 +87,10 @@
 			elem : '#datetimepicker2'
 		});
 	</script>
+	
+		<footer>
+		<a>© HELPS Booking System</a>
+	</footer>
 
 </body>
 </html>

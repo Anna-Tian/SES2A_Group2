@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.WorkShop" table="workShop">
+		<id name="workShopId">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="startDate"></property>
+		<property name="endDate"></property>
+		<property name="days"></property>
+		<property name="maximumPlace"></property>
+		<property name="placeAvailable"></property>
+		<property name="noOfSessions"></property>
+		<property name="targetGroup"></property>
+		<property name="description"></property>
+		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
+		<many-to-one name="room" column="roomId" class="com.bean.Room"></many-to-one>
+		<many-to-one name="skillSet" column="skillSetId" class="com.bean.SkillSet"></many-to-one>
+		<set name="confirmationEmails">
+			<key column="workShopId"></key>
+			<one-to-many class="com.bean.ConfirmationEmail"/>
+		</set>
+		<set name="attendances">
+			<key column="workShopId"></key>
+			<one-to-many class="com.bean.Attendance"/>
+		</set>
+		<set name="reports" table="t_report_workShop">
+			<key column="workShopId"></key>
+			<many-to-many class="com.bean.Report" column="reportId"/>
+		</set>
+		<set name="students" table="t_student_workShop">
+			<key column="workShopId"></key>
+			<many-to-many class="com.bean.Student" column="studentId"/>
+		</set>
+	</class>
+</hibernate-mapping>

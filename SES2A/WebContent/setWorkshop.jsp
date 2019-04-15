@@ -3,22 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Archived Workshops</title>
-	<link rel="stylesheet" href="css/archivedWorkshops.css" />
-		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				
-				
-			});
-		</script>
+<meta charset="UTF-8">
+<title>Set Workshops</title>
+<link rel="stylesheet" href="css/setWorkshops.css" />
+
 </head>
 <body>
 	<header>
 		<nav>
 			<a href="//">Sessions</a> 
-			<a href="//" class="active">Workshops</a>
+			<a href="//">Workshops</a>
 			<a href="//">Advisors</a>
 			<a href="//">Students</a> 
 			<a href="//">Waiting List</a>
@@ -33,7 +27,7 @@
 	<div class="wrapper">
 		<nav>
 			<a href="//">Current</a> 
-			<a href="#" class="active">Archived</a>
+			<a href="//">Archived</a>
 		</nav>
 		<div></div>
 		<div class="title">Skill-set:&nbsp;</div>
@@ -59,14 +53,14 @@
 					<th>
 						<input type="checkbox">
 					</th>
-					<th style="width: 60%;">
+					<th style="width: 30%;">
 						<input placeholder="Improve your writing" readonly="readonly">
 					</th>
 					<th style="width: 30%;">
 						<input placeholder="Writing 2019">
 					</th>
 					<th>
-						<a href="">View</a>
+						<a href="">SetWorkshops</a>
 					</th>
 				</tr>
 				<tr style="background-color: #eff0f3;">
@@ -85,7 +79,7 @@
 						<input placeholder="U:PASSWrite 2019">
 					</th>
 					<th>
-						<a href="">View</a>
+						<a href="">SetWorkshops</a>
 					</th>
 				</tr>
 				<tr>
@@ -104,7 +98,7 @@
 						<input placeholder="Grammar 2019">
 					</th>
 					<th>
-						<a href="">View</a>
+						<a href="">SetWorkshops</a>
 					</th>
 				</tr>
 				<tr style="background-color: #eff0f3;">
@@ -123,7 +117,7 @@
 						<input placeholder="Speaking 2019">
 					</th>
 					<th style="width: 10%;">
-						<a href="">View</a>
+						<a href="">SetWorkshops</a>
 					</th>
 				</tr>
 				<tr>
@@ -142,7 +136,7 @@
 						<input placeholder="U:PASS">
 					</th>
 					<th>
-						<a href="">View</a>
+						<a href="">SetWorkshops</a>
 					</th>
 				</tr>
 			</tbody>
@@ -155,5 +149,6 @@
 	<footer>
 		<a>© HELPS Booking System</a>
 	</footer>
+
 </body>
 </html>

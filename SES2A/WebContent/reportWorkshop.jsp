@@ -10,15 +10,46 @@
 	<script type="text/javascript" src="js/laydate/laydate.js" ></script>
 	<script type="text/javascript">
 		$(function(){
+			$("input[id^='details']").click(function(){
+				var skill = document.getElementById('skillDetails');
+				$(skill).show();
+				$(includeRep).show();
+			});
+			$('#skills').click(function(){
+				var selectedValue=$(this).val();
+				$(topics).show();
+			});
+			$('#topics').click(function(){
+				var selectedValue=$(this).val();
+				$(sessionTime).show();
+			});
+		
 			
 		});
 	</script>
 </head>
 <body>
-<div class="header">
-<a href="http://localhost:8080/SES2A/reportSession.jsp">Session</a>
+<header>
+		<nav>
+			<a href="//">Sessions</a> 
+			<a href="//">Workshops</a>
+			<a href="//">Advisors</a>
+			<a href="//">Students</a> 
+			<a href="//">Waiting List</a>
+			<a href="//">Reports</a>
+			<a href="//">Template</a>
+			<a href="//">Email</a>
+			<a href="//">Room</a>
+			<a href="//">Message</a>
+			<a href="//">Exit</a>
+		</nav>
+	</header>
+<div class="title">
+<nav>
+<a href="http://localhost:8080/SES2A/reportSession.jsp">Session</a> |
 <a href="http://localhost:8080/SES2A/reportWorkshop.jsp">Workshop</a>
-<br/>
+</nav>
+
 <h3>Workshop Reports</h3>
 
 <br/>
@@ -33,12 +64,15 @@
 <span>Select a report</span>
 <br/>
 <br/>
-&nbsp;&nbsp;&nbsp;<input type="Radio" name="repType" value="" id="details"/>&nbsp;Workshop skill-sets details
-<br/>
-<p id="skillDetails" style="display:none;">Workshop skill-sets
-<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="Radio" name="repType" value="" id="details"/>Workshop skill-sets details
 
-<select >
+
+
+<p id="skillDetails" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;Workshop skill-sets
+
+
+<select  id="skills">
+<option value=""></option>
 <option value="">Improve your writing</option>
 <option value="">Improve your grammar</option>
 <option value="">Improve your speaking</option>
@@ -50,19 +84,44 @@
 <option value="">Summer Special Workshops 2018-19</option>
 
 </select>
-<br/>
-<br/>
+</p>
+
+<p class="topics" id="topics" style="display:none" >&nbsp;&nbsp;&nbsp;&nbsp;Workshop Topics
+
+
+<select >
+<option value="none"></option>
+<option value="session">Starting your session</option>
+<option value="writing">What is Academic writing</option>
+</select>
+</p>
+
+<p class="sessionTime" id="sessionTime" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;Session
+<select >
+<option value="none"></option>
+<option value="date">Date:19/03 Time:14:00-15:00</option>
+
+</select>
+</p>
+
+<span class="includeRep" id="includeRep" style="display:none; ">
 &nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Booking
 &nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Waiting
 &nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Include student profiles
-<br/>
-<br/>
-</p>
-&nbsp;&nbsp;&nbsp;<input type="Radio" name="repType" value="" />&nbsp;Workshop skill-sets summary
+</span>
+
+
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="Radio" name="repType" value=""/>Workshop skill-sets summary
 <br/>
 <br/>
 <input type="Submit" name="btnWorksub" value="Submit" id="btnWorksub" />
+<br>
 </div>
+<footer>
+		<a>© HELPS Booking System</a>
+	</footer>
+
 <script>
 
 			laydate.render({
