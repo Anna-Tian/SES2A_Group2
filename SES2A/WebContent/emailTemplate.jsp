@@ -17,15 +17,15 @@
 	<header>
 		<nav>
 			<a href="//">Sessions</a> 
-			<a href="//">Workshops</a>
+			<a href="setWorkshop.jsp">Workshops</a>
 			<a href="//">Advisors</a>
 			<a href="//">Students</a> 
 			<a href="//">Waiting List</a>
-			<a href="//">Reports</a>
+			<a href="reportSession.jsp">Reports</a>
 			<a href="//">Template</a>
-			<a href="//">Email</a>
+			<a href="emailTemplate.jsp">Email</a>
 			<a href="//">Room</a>
-			<a href="//">Message</a>
+			<a href="MessageTab.jsp">Message</a>
 			<a href="//">Exit</a>
 		</nav>
 	</header>

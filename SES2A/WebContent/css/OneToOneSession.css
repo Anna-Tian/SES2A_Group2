@@ -1,20 +1,76 @@
 @charset "UTF-8";
 
 
-input[type=text]{
-	width: 10%;
+header nav {
+	text-align: center;
+	margin: 4px;
+}
+
+header nav a {
+	padding: 5px;
+	background-color: #5ebef0;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: #fff;
+	text-decoration: none;
+}
+
+header nav a:hover {
+	padding: 5px;
+	background-color: #fff;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: black;
+	text-decoration: none;
+	border: 1px #5ebef0 solid;
+}
+
+.wrapper {
+	width: 75%;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 2px #95e0fd solid;
+}
+
+.wrapper nav {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.wrapper nav a {
+	padding: 5px;
+	background-color: #5ebef0;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: #fff;
+	text-decoration: none;
+}
+
+.wrapper nav a:hover {
+	padding: 5px;
+	background-color: #fff;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: black;
+	text-decoration: none;
+	border: 1px #5ebef0 solid;
+}
+
+.wrapper input[type=text]{
+	
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 }
-select {
+.wrapper select {
 	width: 10%;
 }
-select:focus {
+.wrapper select:focus {
 	min-width: 100px;
 	width: auto;
 } 
 
-p {
+.wrapper p {
 	display: block;
 	margin-block-start: 10px;
 	margin-block-end: 10px;
@@ -22,7 +78,7 @@ p {
 	margin-inline-end: 0px;
 }
 
-p.header_name{
+.wrapper p.header_name{
 	display: block;
 	margin-block-start: 5px;
 	margin-block-end: 5px;
@@ -34,7 +90,7 @@ p.header_name{
 	color:white;
 }
 
-input[type=submit]{
+.wrapper input[type=submit]{
     text-align: center;
     cursor: default;
     color: buttontext;
@@ -42,11 +98,11 @@ input[type=submit]{
     background-color: #ffffff;
     box-sizing: border-box;
 }
-input[type=submit]:hover{
+.wrapper input[type=submit]:hover{
 	background-color: #33adff;
 }
 
-button {
+.wrapper button {
 	align-items: flex-start;
     text-align: center;
     cursor: default;
@@ -55,13 +111,13 @@ button {
     background-color: #ffffff;
     box-sizing: border-box;
 }
-button:hover {
+.wrapper button:hover {
 	background-color: #33adff;
 }
 
 
 /* Style the tab */
-.tab {
+.wrapper .tab {
 	overflow: hidden;
 	background-color: none;
 	box-sizing: border-box;
@@ -70,7 +126,7 @@ button:hover {
 }
 
 /* Style the buttons that are used to open the tab content */
-.tab button {
+.wrapper .tab button {
 	background-color: inherit;
 	float: left;
 	border: 1px solid #33adff;
@@ -80,39 +136,34 @@ button:hover {
 	transition: 0.3s;
 }
 
-.tab button:hover {
+.wrapper .tab button:hover {
 	background-color: #33d6ff;
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.wrapper .tab button.active {
 	background-color: #00ace6;
 	font-weight:bold;
 }
 
-.tabcontent {
-	display: none;
-	padding: 6px 12px;
-	border: 1px solid #ccc;
-	border-top: none;
-}
 
-.table_session_available{
+
+.wrapper .table_session_available{
 	padding: 1px 12px;
 	border-collapse: collapse;
 	box-sizing: border-box;
 	width: 100%;
 }
 
-.table_session_available tr:nth-child(even){
+.wrapper .table_session_available tr:nth-child(even){
 	background-color: #f2f2f2;
 }
 
-.table_session_available tr:hover {
+.wrapper .table_session_available tr:hover {
 	background-color: #ddd;
 }
 
-.table_session_available th{
+.wrapper .table_session_available th{
 	border: 1px solid #ddd;
 	padding: 8px;
 	padding-top: 10px;
@@ -123,18 +174,18 @@ button:hover {
 	font-size: 10pt;
 }
 
-.table_session_available td{
+.wrapper .table_session_available td{
 	border: 1px solid #ddd;
 	padding: 8px;
 }
 
-.attendance{
+.wrapper .attendance{
 	margin-top: 3em;
 	padding-bottom: 1em;
 	border-bottom: 2px solid #ccc;
 	
 }
-#tAddSessions th, td{
+.wrapper #tAddSessions th, td{
 	border-bottom: 1px solid #ccc;
 	padding: 8px;
 }

@@ -74,6 +74,7 @@
 	</head>
 	
 	<body>
+
 		<p id="updateMessage">Updated the message</p>
 		
 		<div id="div1">

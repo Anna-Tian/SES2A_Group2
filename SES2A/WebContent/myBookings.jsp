@@ -44,9 +44,9 @@
 		<div id="header">
 			<a href="http://www.ssu.uts.edu.au/helps/index.html" id="logo-elssa">HELPS</a>
 			<div id="navigation">
-				<a href="index.cfm?scope=profile">My Information</a>
-				<a href="index.cfm?scope=newsession">My bookings</a>
-				<a href="index.cfm?scope=workshop">Workshop registration</a>
+				<a href="myInformation.jsp">My Information</a>
+				<a href="myBookings.jsp">My bookings</a>
+				<a href="WR_Step1.jsp">Workshop registration</a>
 				<a href="index.cfm?scope=Program">Programs</a>
 				<a href="index.cfm?scope=help">FAQ</a>
 				<a href="index.cfm?scope=logout">Exit</a>

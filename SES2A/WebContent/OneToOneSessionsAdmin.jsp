@@ -21,7 +21,7 @@
 <body>
 	<header>
 		<nav>
-			<a href="//">Sessions</a> 
+			<a href="OneToOneSessions.jsp">Sessions</a> 
 			<a href="setWorkshop.jsp">Workshops</a>
 			<a href="//">Advisors</a>
 			<a href="//">Students</a> 
@@ -30,7 +30,7 @@
 			<a href="//">Template</a>
 			<a href="emailTemplate.jsp">Email</a>
 			<a href="//">Room</a>
-			<a href="MessageTab.jsp">Message</a>
+			<a href="//">Message</a>
 			<a href="//">Exit</a>
 		</nav>
 	</header>
@@ -42,20 +42,22 @@
 			<a href="OneToOneSessions.jsp">Book Sessions</a> 
 			<a href="OneToOneSessionsAdmin.jsp">Admin Sessions</a>
 		</nav>
-		
-		<div id="BookSessionsContent" class="tabcontent">
+
+		<div id="AdminSessionsContent" class="tabcontent">
 			<jsp:include page="FilterComponent.jsp"></jsp:include>
 			<p class="header_name" id="sessions_available_header" style="margin-top:3em">Sessions Available</p>
-			<table class="table_session_available" id="tStudentSessionAvailable">
-				<tr class="header" align="left" style="width:90%">
+			<table class="table_session_available" id="tAdminSessionAvailable">
+				<tr class="header" align="left">
 					<th style="width:2%;"><input type="checkbox" name="attendance" value="No"><br></th>
-					<th style="width:13%;">Date</th>
-					<th style="width:10%;">Start Time</th>
-					<th style="width:10%;">End Time</th>
+					<th style="width:9%;">Date</th>
+					<th style="width:7%;">Start Time</th>
+					<th style="width:7%;">End Time</th>
 					<th style="width:15%;">Room</th>
+					<th style="width:15%;">Advisor</th>
 					<th style="width:15%;">Type</th>
 					<th style="width:15%;">Booked by</th>
-					<th style="width:10%;">Waiting</th>
+					<th style="width:5%;">A/NA</th>
+					<th style="width:5%;">Waiting</th>
 				</tr>
 				
 				<tr class="filter_result">
@@ -67,22 +69,44 @@
 						<select name="roomDropbtn" style="width:100%">
 							<option value=""></option>
 							<%
-								try{
-									String Query="select * from room";
-									String host = "jdbc:mysql://localhost:3306/uts_help";
-									Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
-									Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-									Statement stm = conn.createStatement();
-									ResultSet rs = stm.executeQuery(Query);
-									while(rs.next()){
-										%>
-										<option value="<%=rs.getInt("roomId")%>"><%=rs.getString("roomLocation") %></option>
-										<%
-									}
-								} catch(Exception ex){
-									ex.printStackTrace();
+							try{
+								String Query="SELECT * FROM room";
+								String host = "jdbc:mysql://localhost:3306/uts_help";
+								Class.forName("com.mysql.jdbc.Driver").newInstance();
+								Connection conn=DriverManager.getConnection(host, "root", "rootroot");
+								Statement stm = conn.createStatement();
+								ResultSet rs = stm.executeQuery(Query);
+								while(rs.next()){
+									%>
+									<option value="<%=rs.getInt("roomId")%>"><%=rs.getString("roomLocation") %></option>
+									<%
 								}
-								%>
+							} catch(Exception ex){
+								ex.printStackTrace();
+							}
+							%>
+						</select>
+					</td>
+					<td>
+						<select name="advisorDropbtn" style="width:100%">
+							<option value=""></option>
+							<%
+							try{
+								String Query="SELECT * FROM admin";
+								String host = "jdbc:mysql://localhost:3306/uts_help";
+								Class.forName("com.mysql.jdbc.Driver").newInstance();
+								Connection conn=DriverManager.getConnection(host, "root", "rootroot");
+								Statement stm = conn.createStatement();
+								ResultSet rs = stm.executeQuery(Query);
+								while(rs.next()){
+									%>
+									<option value="<%=rs.getInt("adminId")%>"><%=rs.getString("firstName") %> <%=rs.getString("lastName") %></option>
+									<%
+								}
+							} catch(Exception ex){
+								ex.printStackTrace();
+							}
+							%>
 						</select>
 					</td>
 					<td>
@@ -92,11 +116,12 @@
 							<option value="Type2">Type2</option>
 						</select>
 					</td>
-					<td><a href="BookSpecificSession.jsp">Student Name</a></td>
-					<td><a href="AddToWaitingList.jsp">Add</a></td>
+					<td><a href="StudentBookingDetails.jsp">Student Name</a></td>
+					<td><a href="index.cfm?scope=Program">A/NA</a></td>
+					<td><a href="index.cfm?scope=Program">Add</a></td>
 				</tr>
 			</table>
-			<div class="edit_available_sessions" align="center" style="padding-top:5px">
+			<div class="edit_available_sessions" align="center">
 				<button onclick="updAvlbSess()" id="updateAblbSess">Update</button>
 				<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete</button>
 			</div>
@@ -118,6 +143,7 @@
 				<p>NA: Not Attended</p>
 			</div>
 		</div>
+	</div>
 
 <!-- 	
 	Switch to different tab content

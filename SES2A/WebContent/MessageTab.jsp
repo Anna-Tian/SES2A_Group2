@@ -4,10 +4,27 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" href="css/archivedWorkshops.css" />
 	<title>MESSAGE TAB</title>
 	</head>
 
 	<body>
+	<header>
+		<nav>
+			<a href="//">Sessions</a> 
+			<a href="//">Workshops</a>
+			<a href="//">Advisors</a>
+			<a href="//">Students</a> 
+			<a href="//">Waiting List</a>
+			<a href="reportSession.jsp">Reports</a>
+			<a href="//">Template</a>
+			<a href="emailTemplate.jsp">Email</a>
+			<a href="//">Room</a>
+			<a href="//">Message</a>
+			<a href="//">Exit</a>
+		</nav>
+	</header>
+	<div class="wrapper">
 		<select id="messageTabSelectList" onchange="onChangedSelectList()">
 			<option value="0"></option>
 			<option value="1">FAQ in student interface</option>
@@ -23,6 +40,7 @@
 			<option value="11">Logon page box on the right in student interface</option>
 			<option value="12">Program in student interface</option>
 		</select>
+	</div>
                 
 		<script>
 			function onChangedSelectList() {

@@ -16,9 +16,9 @@
 			<a href="//">Advisors</a>
 			<a href="//">Students</a> 
 			<a href="//">Waiting List</a>
-			<a href="//">Reports</a>
+			<a href="reportSession.jsp">Reports</a>
 			<a href="//">Template</a>
-			<a href="//">Email</a>
+			<a href="emailTemplate.jsp">Email</a>
 			<a href="//">Room</a>
 			<a href="//">Message</a>
 			<a href="//">Exit</a>
@@ -27,7 +27,7 @@
 	<div class="wrapper">
 		<nav>
 			<a href="//">Current</a> 
-			<a href="//">Archived</a>
+			<a href="archivedWorkshops.jsp">Archived</a>
 		</nav>
 		<div></div>
 		<div class="title">Skill-set:&nbsp;</div>
