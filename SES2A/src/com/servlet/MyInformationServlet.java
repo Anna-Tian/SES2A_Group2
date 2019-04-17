@@ -61,10 +61,10 @@ public class MyInformationServlet extends HttpServlet {
 		StudentProfile studentProfile = new StudentProfile(null, preferredFirstName, bestContactNum, gender, degree, year, type, status, firstLanguage, countryOfOrigin, eduBgMark, eduBg, student, null, null, null);
 		boolean flag = false;
 		if(student.getStudentProfile()==null) {
-			flag = studentProfileDao.saveStudentProfile(studentProfile);
+			flag = studentProfileDao.saveStudentProfile(student,studentProfile);
 		}else {
 			studentProfile.setProfileId(student.getStudentProfile().getProfileId());
-			flag = studentProfileDao.saveStudentProfile(studentProfile);
+			flag = studentProfileDao.saveStudentProfile(student,studentProfile);
 		}
 		if(flag) {
 			response.sendRedirect("/SES2A/LoginServlet");

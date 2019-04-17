@@ -11,16 +11,18 @@ import com.util.HibernateUtil;
 public class StudentProfileImpl implements StudentProfileDao {
 
 	@Override
-	public boolean saveStudentProfile(StudentProfile studentProfile){
+	public boolean saveStudentProfile(Student student,StudentProfile studentProfile){
 		Session session = null;
 		Transaction transaction = null;
 		boolean flag = false;
 		try {
 			session = HibernateUtil.getCurrentSession();
 			transaction = session.beginTransaction();
-			studentProfile.getStudent().setStudentProfile(studentProfile);
+			//studentProfile.getStudent().setStudentProfile(studentProfile);
+			student.setStudentProfile(studentProfile);
+			studentProfile.setStudent(student);
+			session.saveOrUpdate(student);
 			session.saveOrUpdate(studentProfile);
-			session.saveOrUpdate(studentProfile.getStudent());
 			transaction.commit();
 			flag = true;
 		} catch (Exception e) {
