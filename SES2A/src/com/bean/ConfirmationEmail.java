@@ -12,13 +12,14 @@ public class ConfirmationEmail {
 	private WorkShop workShop;//n:1
 	private Admin admin;//n:1
 	private ReminderEmail reminderEmail;//1:1
+	private String template;
 	public ConfirmationEmail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ConfirmationEmail(Integer confirmationId, Boolean isSessConfSent, String sessConfDateTime,
 			Boolean isWkshConfSent, String wkshConfDateTime, Student student, Session session, WorkShop workShop,
-			Admin admin, ReminderEmail reminderEmail) {
+			Admin admin, ReminderEmail reminderEmail, String template) {
 		super();
 		this.confirmationId = confirmationId;
 		this.isSessConfSent = isSessConfSent;
@@ -30,6 +31,7 @@ public class ConfirmationEmail {
 		this.workShop = workShop;
 		this.admin = admin;
 		this.reminderEmail = reminderEmail;
+		this.template = template;
 	}
 	public Integer getConfirmationId() {
 		return confirmationId;
@@ -91,6 +93,13 @@ public class ConfirmationEmail {
 	public void setReminderEmail(ReminderEmail reminderEmail) {
 		this.reminderEmail = reminderEmail;
 	}
+	public String getTemplate() {
+		return template;
+	}
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+	
 	
 	
 }
