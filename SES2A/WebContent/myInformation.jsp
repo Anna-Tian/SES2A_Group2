@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="com.bean.StudentProfile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -39,7 +40,8 @@
 			<%
 			String[] eduBg = (String[])session.getAttribute("eduBg");
 			String[] eduBgMark = (String[])session.getAttribute("eduBgMark");
-			if(eduBg!=null&&eduBgMark!=null){
+			System.out.println(Arrays.toString(eduBgMark));
+			if(eduBg!=null&&eduBgMark!=null&&!"ul".equals(eduBg[0])&&!"ul".equals(eduBgMark[0])){
 				for(int i=0;i<eduBg.length;i++){	
 					String name1 = eduBg[i].substring(3);
 					pageContext.setAttribute("name1",name1);
@@ -71,6 +73,7 @@
 					$("#"+name2+"").show();
 					$("#"+name3+"").show();
 				}else{
+					$("#"+name2+"").val("");
 					$("#"+name2+"").hide();
 					$("#"+name3+"").hide();
 				}

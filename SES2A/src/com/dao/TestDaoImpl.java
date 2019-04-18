@@ -35,4 +35,7 @@ public class TestDaoImpl {
 		transaction.commit();
 		return student;
 	}
+	public static void main(String[] args) {
+		(new TestDaoImpl()).save();
+	}
 }

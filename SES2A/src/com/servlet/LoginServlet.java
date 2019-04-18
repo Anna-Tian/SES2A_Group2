@@ -53,7 +53,6 @@ public class LoginServlet extends HttpServlet {
 			String[] eduBgMark = studentProfile.getEduBgMark().substring(1,studentProfile.getEduBgMark().length()-1).split(", ");
 			request.getSession().setAttribute("eduBg", eduBg);
 			request.getSession().setAttribute("eduBgMark", eduBgMark);
-			System.out.println(Arrays.toString(eduBgMark));
 		}
 		response.sendRedirect("myInformation.jsp");
 	}
