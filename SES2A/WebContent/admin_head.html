@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/adminMenu.css">
+</head>
+<body>
+<header>
+		<div class="logo"><img src="img/logo.png" style="height: 100%;"></div>
+		<nav class="active">
+			<ul>
+				<li class="sub-menu"><a href="#">Session</a>
+					<ul>
+						<div class="tri"></div>
+						<li><a href="#">Book Session</a></li>
+						<li><a href="#">Workshop Session</a></li>
+					</ul>
+				</li>
+				<li class="sub-menu"><a href="#">Workshop</a>>
+					<ul>
+						<div class="tri"></div>
+						<li><a href="#">Current Workshops</a></li>
+						<li><a href="http://localhost:8080/SES2A/archivedWorkshops.jsp">Archived Workshops</a></li>
+					</ul>
+				</li>
+				<li class="sub-menu"><a href="#">Reports</a>>
+					<ul>
+						<div class="tri"></div>
+						<li><a href="#">One-to-One Session</a></li>
+						<li><a href="#">Workshop Session</a></li>
+					</ul>
+				</li>
+				<li><a href="#" class="active">Email</a></li>
+				<li><a href="#">Message</a></li>
+				<li><a href="#">Exit</a></li>
+			</ul>
+		</nav>
+	</header>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('ul li').click(function(){
+				$(this).siblings().removeClass('active')
+				$(this).toggleClass('active')
+			})
+		})
+	</script>
+</body>
+</html>

@@ -6,48 +6,18 @@
 	<meta charset="UTF-8">
 	<title>Archived Workshops</title>
 	<link rel="stylesheet" href="css/archivedWorkshops.css" />
-	<link rel="stylesheet" href="css/adminMenu.css">
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-				
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
 		});
 	</script>
 </head>
 <body>
-	<header>
-		<div class="logo"><img src="img/logo.png" style="height: 100%;"></div>
-		<nav class="active">
-			<ul>
-				<li class="sub-menu"><a href="#">Session</a>
-					<ul>
-						<div class="tri"></div>
-						<li><a href="#">Book Session</a></li>
-						<li><a href="#">Workshop Session</a></li>
-					</ul>
-				</li>
-				<li class="sub-menu"><a href="#" class="active">Workshop</a>
-					<ul>
-						<div class="tri"></div>
-						<li><a href="#">Current Workshops</a></li>
-						<li><a href="#" class="active">Archived Workshops</a></li>
-					</ul>
-				</li>
-				<li class="sub-menu"><a href="#">Reports</a>>
-					<ul>
-						<div class="tri"></div>
-						<li><a href="#">One-to-One Session</a></li>
-						<li><a href="#">Workshop Session</a></li>
-					</ul>
-				</li>
-				<li><a href="http://localhost:8080/SES2A/emailTemplate.jsp">Email</a></li>
-				<li><a href="#">Message</a></li>
-				<li><a href="#">Exit</a></li>
-			</ul>
-		</nav>		
-	</header>
+	<div class="head"></div>
 	<div class="wrapper">
-
+		<h2>Archived Workshops</h2>
 		<div></div>
 		<div class="title">Skill-set:&nbsp;</div>
 		<input id="skillsInput" type="text">
@@ -165,16 +135,6 @@
 			<button>Update</button>
 		</div>
 	</div>
-	<footer>
-		<div class="footer-text">© HELPS Booking System</div>
-	</footer>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('ul li').click(function(){
-				$(this).siblings().removeClass('active')
-				$(this).toggleClass('active')
-			})
-		})
-	</script>
+	<div class="footer"></div>
 </body>
 </html>
