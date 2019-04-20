@@ -6,12 +6,13 @@
 	<meta charset="UTF-8">
 	<title>Change Email Template</title>
 	<link rel="stylesheet" href="css/emailTemplate.css" />
-	<link rel="stylesheet" href="css/adminMenu.css">
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
 		});
+		
 	</script>
 	<style type="text/css">
 	.hide{
@@ -20,37 +21,7 @@
 	</style>
 </head>
 <body>
-	<header>
-		<div class="logo"><img src="img/logo.png" style="height: 100%;"></div>
-		<nav class="active">
-			<ul>
-				<li class="sub-menu"><a href="#">Session</a>
-					<ul>
-						<div class="tri"></div>
-						<li><a href="#">Book Session</a></li>
-						<li><a href="#">Workshop Session</a></li>
-					</ul>
-				</li>
-				<li class="sub-menu"><a href="#">Workshop</a>>
-					<ul>
-						<div class="tri"></div>
-						<li><a href="#">Current Workshops</a></li>
-						<li><a href="http://localhost:8080/SES2A/archivedWorkshops.jsp">Archived Workshops</a></li>
-					</ul>
-				</li>
-				<li class="sub-menu"><a href="#">Reports</a>>
-					<ul>
-						<div class="tri"></div>
-						<li><a href="#">One-to-One Session</a></li>
-						<li><a href="#">Workshop Session</a></li>
-					</ul>
-				</li>
-				<li><a href="#" class="active">Email</a></li>
-				<li><a href="#">Message</a></li>
-				<li><a href="#">Exit</a></li>
-			</ul>
-		</nav>
-	</header>
+	<div class="head"></div>
 	<div class="wrapper">
 			<nav>
 				<a href="/list/">List</a> |
@@ -166,17 +137,9 @@
 				</div>
 			</div>
 	</div>
-	<footer>
-		<div class="footer-text">© HELPS Booking System</div>
-	</footer>
+	<div class="footer"></div>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('ul li').click(function(){
-				$(this).siblings().removeClass('hover')
-				$(this).toggleClass('hover')
-				$(this).siblings().removeClass('active')
-				$(this).toggleClass('active')
-			})
 			
 			$('select').change(function(){
 				var value=$("select").find("option:selected").val();
