@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Student" table="student">
+		<id name="studentId">
+			<generator class="native"></generator>
+		</id>
+		<property name="firstName"></property>
+		<property name="lastName"></property>
+		<property name="password"></property>
+		<property name="faculty"></property>
+		<property name="course"></property>
+		<property name="email"></property>
+		<property name="phone"></property>
+		<property name="mobile"></property>
+		<property name="dob"></property>
+		
+		<many-to-one name="studentProfile" unique="true" column="profileId" class="com.bean.StudentProfile" not-null="false" lazy="false"></many-to-one>
+		<set name="waitingLists" table="t_student_waitingList" lazy="false">
+			<key column="studentId"></key>
+			<many-to-many class="com.bean.WaitingList" column="waitingListId"/>
+		</set>
+		<set name="confirmationEmails" lazy="false">
+			<key column="studentId"></key>
+			<one-to-many class="com.bean.ConfirmationEmail"/>
+		</set>
+		<set name="reminderEmails" lazy="false">
+			<key column="studentId"></key>
+			<one-to-many class="com.bean.ReminderEmail"/>
+		</set>
+		<set name="comments">
+			<key column="studentId"></key>
+			<one-to-many class="com.bean.Comment"/>
+		</set>
+		<set name="workShops" table="t_student_workShop">
+			<key column="studentId"></key>
+			<many-to-many class="com.bean.WorkShop" column="workShopId"/>
+		</set>
+		<set name="sessions">
+			<key column="studentId"></key>
+			<one-to-many class="com.bean.Session"/>
+		</set>
+		<set name="attendances">
+			<key column="studentId"></key>
+			<one-to-many class="com.bean.Attendance"/>
+		</set>
+	</class>
+</hibernate-mapping>

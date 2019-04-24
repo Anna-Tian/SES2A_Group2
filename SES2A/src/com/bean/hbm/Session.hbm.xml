@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Session" table="session">
+		<id name="sessionId">
+			<generator class="native"></generator>
+		</id>
+		<property name="date"></property>
+		<property name="startTime"></property>
+		<property name="endTime"></property>
+		<property name="type"></property>
+		<property name="advisorName"></property>
+		<property name="rule"></property>
+		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
+		<many-to-one name="room" column="roomId" class="com.bean.Room"></many-to-one>
+		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
+		<set name="attendances">
+			<key column="sessionId"></key>
+			<one-to-many class="com.bean.Attendance"/>
+		</set>
+		<set name="waitingLists">
+			<key column="sessionId"></key>
+			<one-to-many class="com.bean.WaitingList"/>
+		</set>
+		<set name="reports" table="t_report_session">
+			<key column="sessionId"></key>
+			<many-to-many class="com.bean.Report" column="reportId"/>
+		</set>
+		<set name="confirmationEmails">
+			<key column="sessionId"></key>
+			<one-to-many class="com.bean.ConfirmationEmail"/>
+		</set>
+		<set name="comments">
+			<key column="sessionId"></key>
+			<one-to-many class="com.bean.Comment"/>
+		</set>
+	</class>
+</hibernate-mapping>
