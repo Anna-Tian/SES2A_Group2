@@ -12,6 +12,8 @@ public class ConfirmationEmail {
 	private WorkShop workShop;//n:1
 	private Admin admin;//n:1
 	private ReminderEmail reminderEmail;//1:1
+	
+	
 	public ConfirmationEmail() {
 		super();
 		// TODO Auto-generated constructor stub
