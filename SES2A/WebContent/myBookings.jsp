@@ -132,7 +132,7 @@
 							<th>Time</th>
 							<th>Room</th>
 							<th>No. Of Session</th>
-							<th>Detail</th>
+							<th>Cancel</th>
 						</tr>
 						<c:forEach var="workShop" items="${upcoming }">
 						  	<tr align="left">
