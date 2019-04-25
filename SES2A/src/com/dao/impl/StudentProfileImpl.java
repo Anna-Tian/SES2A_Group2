@@ -33,4 +33,21 @@ public class StudentProfileImpl implements StudentProfileDao {
 		return flag;
 	}
 
+	@Override
+	public Student getCurrentStudent(Integer student_id) {
+		Session session = null;
+		Transaction transaction = null;
+		Student student = null;
+		try {
+			session = HibernateUtil.getCurrentSession();
+			transaction = session.beginTransaction();
+			student = session.get(Student.class, student_id);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+		}
+		return student;
+	}
+
 }

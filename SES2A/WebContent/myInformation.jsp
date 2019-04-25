@@ -80,9 +80,9 @@
 					$("#"+name3+"").hide();
 				}
 			});
-			$("#btnRegister").click(function(){
+			/* $("#btnRegister").click(function(){
 				$("#btnRegister").submit();
-			});
+			}); */
 		});
 	</script>
 </head>
@@ -607,7 +607,7 @@
 				</div>
 				
 				<div class="clear">
-					<input type="button" name="btnRegister" value="Register" id="btnRegister" />
+					<input type="submit" name="btnRegister" value="Register" id="btnRegister" />
 				</div>
 			</form>
 			

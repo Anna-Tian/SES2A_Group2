@@ -13,7 +13,7 @@
 					<ul>
 						<div class="tri"></div>
 						<li><a href="/SES2A/LoginServlet">Profile</a></li>
-						<li><a href="myBookings.jsp">MyBookings</a></li>
+						<li><a href="/SES2A/MyBookingsServlet">MyBookings</a></li>
 					</ul>
 				</li>
 				<li class="sub-menu"><a href="#">Workshop</a>>
@@ -40,10 +40,10 @@
 			$('.menu-toggle').click(function(){
 				$('nav').toggleClass('active')
 			})
-			$('ul li').click(function(){
+			/* $('ul li').click(function(){
 				$(this).siblings().removeClass('active')
 				$(this).toggleClass('active')
-			})
+			}) */
 		})
 	</script>
 </body>
