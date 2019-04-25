@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Attendance" table="attendance">
+		<id name="attendanceId">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="lastName"></property>
+		<property name="firstName"></property>
+		<property name="date"></property>
+		<property name="time"></property>
+		<property name="isPresent"></property>
+		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
+		<many-to-one name="session" column="sessionId" class="com.bean.Session"></many-to-one>
+		<many-to-one name="workShop" column="workShopId" class="com.bean.WorkShop"></many-to-one>
+		<set name="reports" table="t_attendance_report">
+			<key column="attendanceId"></key>
+			<many-to-many class="com.bean.Report" column="reportId"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,3 +1,5 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="com.bean.StudentProfile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,41 +11,100 @@
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			
+			$(".head").load("student_menu.html");
+			$(".foot").load("foot.html");
+			
+			var gender = "${studentProfile.gender}";
+			var degree = "${studentProfile.degree}";
+			var year = "${studentProfile.year}";
+			var type = "${studentProfile.type}";
+			var status = "${studentProfile.status}";
+			var language = "${studentProfile.firstLanguage}";
+			var country = "${studentProfile.countryOfOrigin}";
+			$("[value="+gender+"]").prop("checked",true);
+			$("[value="+degree+"]").prop("checked",true);
+			if(degree=="UG"){
+				var radio_id = $("[value="+degree+"]").attr("id").split("_")[1];
+				$("p[id$='details']").hide();
+				$("#"+radio_id+"").show();
+				$("[value='"+year+"']").prop("selected",true);
+			} else if(degree=="PG"){
+				var radio_id = $("[value="+degree+"]").attr("id").split("_")[1];
+				$("p[id$='details']").hide();
+				$("#"+radio_id+"").show();
+				$("[value='"+type+"']").prop("checked",true);
+			}
+			$("[value="+status+"]").prop("checked",true);
+			$("[value='"+language+"']").prop("selected",true);
+			$("[value='"+country+"']").prop("selected",true);
+			
+			
+			<%
+			String[] eduBg = (String[])session.getAttribute("eduBg");
+			String[] eduBgMark = (String[])session.getAttribute("eduBgMark");
+			if(eduBg!=null&&eduBgMark!=null&&!"ul".equals(eduBg[0])&&!"ul".equals(eduBgMark[0])){
+				for(int i=0;i<eduBg.length;i++){	
+					String name1 = eduBg[i].substring(3);
+					pageContext.setAttribute("name1",name1);
+					String val1 = eduBgMark[i];
+					pageContext.setAttribute("val1",val1);%>
+					$("[value='<%=eduBg[i]%>']").prop("checked",true);
+					var name2 = "${name1}";
+					var name = "txt"+name2+"_mark";
+					var name3 = "txt_"+name2+"_mark";
+					var value = "${val1}";
+					$("#"+name+"").val(value);
+					$("#"+name+"").show();
+					$("#"+name3+"").show();
+				<%}
+			}%>
+			
+			
+			
 			$("input[id^='rdoDegree_']").click(function(){
 				var radio_id = this.id.split("_")[1];
 				$("p[id$='details']").hide();
 				$("#"+radio_id+"").show();
 			});
 			$("input[id^='ckb']").click(function(){
-				var name1 = $(this).attr("name");
+				var name1 = $(this).attr("id");
 				var name2 = "txt"+name1.substr(3)+"_mark";
+				var name3 = "txt_"+name1.substr(3)+"_mark";
 				if(this.checked==true){
 					$("#"+name2+"").show();
+					$("#"+name3+"").show();
 				}else{
+					$("#"+name2+"").val("");
 					$("#"+name2+"").hide();
+					$("#"+name3+"").hide();
 				}
+			});
+			$("#btnRegister").click(function(){
+				$("#btnRegister").submit();
 			});
 		});
 	</script>
 </head>
 <body>
-
-	<div id="global-utility-bar">
-		<!-- UTS Logo -->
+	<div class="head"></div>
+	
+	<!-- <div id="global-utility-bar">
+		UTS Logo
 		<div id="uts-logo">
 			<a href="http://www.uts.edu.au"><img src="https://web-common.uts.edu.au/images/utslogo.gif" alt="University of Technology, Sydney homepage" width="132" height="30" /></a>
 		</div>
-	</div>
+	</div> -->
 	
 	<div id="main-container">
-		<div id="header">
+		<!-- <div id="header">
 			<a href="http://www.ssu.uts.edu.au/helps/index.html" id="logo-elssa">HELPS</a>
 			<div id="navigation">
 				<a href="index.cfm?scope=Program">Programs</a>
 				<a href="index.cfm?scope=help">FAQ</a>
 				<a href="index.cfm?scope=logout">Exit</a>
 			</div>
-		</div>
+		</div> -->
 		<!-- Content -->
 		<div id="content">
 			<div id="a-box">
@@ -55,21 +116,21 @@
 				</div>
 			</div>
 			
-			<form method="get" id="profile">
+			<form action="MyInformationServlet" method="post" id="profile">
 				<div class="profile-left">
 					<input type="Hidden" name="studentID" value="12990747">
 					<input type="Hidden" name="dob" value="19960502">
-					<p>Student Name: <strong>Zicheng Qu</strong></p>
-					<p>Preferred First Name: <input type="Text" name="preferred_name" value="" maxlength="50"/></p>
-					<p>Faculty: Engineering and Information Technology</p>
-					<p>Course: <strong>C09066</strong></p>
-					<p>Email: <strong>Zicheng.Qu@student.uts.edu.au</strong></p>
+					<p>Student Name: <strong>${sessionScope.student.firstName} ${sessionScope.student.lastName}</strong></p>
+					<p>Preferred First Name: <input type="Text" name="preferred_name" value="${sessionScope.studentProfile.preferredFirstName}" maxlength="50"/></p>
+					<p>Faculty: ${sessionScope.student.faculty}</p>
+					<p>Course: <strong>${sessionScope.student.course}</strong></p>
+					<p>Email: <strong>${sessionScope.student.email}</strong></p>
 					
-					<p>Home phone: N/A</p>
-					<p>Mobile: <strong>+61451078677</strong></p>
-					<p>Best contact no*: <input type="Text" name="alternativecontact" value="" maxlength="15" /></p>
+					<p>Home phone: ${sessionScope.student.phone}</p>
+					<p>Mobile: <strong>${sessionScope.student.mobile}</strong></p>
+					<p>Best contact no*: <input type="Text" name="alternativecontact" value="${sessionScope.studentProfile.bestContactNum}" maxlength="15" /></p>
 					
-					<p>DOB: <strong>02/ 05/ 1996</strong></p>
+					<p>DOB: <strong>${sessionScope.student.dob}</strong></p>
 					<p>Gender:&nbsp;
 					    &nbsp;<input type="Radio" name="rdoGender" value="M" />M (male)
 					    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="F"  />F (female)
@@ -427,7 +488,7 @@
 							<option value="Portugal"  >Portugal</option>
 							<option value="Puerto Rico"  >Puerto Rico</option>
 							<option value="Qatar"  >Qatar</option>
-							<option value="Réunion Island"  >Réunion Island</option>
+							<option value="RĂ©union Island"  >RĂ©union Island</option>
 							<option value="Romania"  >Romania</option>
 							<option value="Russian Federation"  >Russian Federation</option>
 							<option value="Rwanda"  >Rwanda</option>
@@ -498,36 +559,36 @@
 					<p>Educational Backgound:</p>
 						<table border="0">
 							<tr>
-								<td><input type="Checkbox" id="ckbHSC" name="ckbHSC" value="1" onclick="toggle('ckbHSC', 'txtHSC_mark')"  />HSC</td>
-								<td id="txtHSC_mark" style="display:none;">Mark <input type="Text"  name="txtHSC_mark" value="" size="5" /></td>
+								<td><input type="Checkbox" id="ckbHSC" name="ckb" value="ckbHSC" />HSC</td>
+								<td id="txt_HSC_mark" style="display:none;">Mark <input type="Text" id="txtHSC_mark"  name="txt_mark" value="" size="5" /></td>
 							</tr>
 							<tr>
-								<td><input type="Checkbox" id="ckbIELTS" name="ckbIELTS" value="1" onclick="toggle('ckbIELTS', 'txtIELTS_mark')"   />IELTS</td>
-								<td id="txtIELTS_mark"  style="display:none;">Mark <input type="Text" name="txtIELTS_mark" value="" size="5"/></td>
+								<td><input type="Checkbox" id="ckbIELTS" name="ckb" value="ckbIELTS" />IELTS</td>
+								<td id="txt_IELTS_mark"  style="display:none;">Mark <input type="Text" id="txtIELTS_mark" name="txt_mark" value="" size="5"/></td>
 							</tr>
 							<tr>
-								<td><input type="Checkbox" id="ckbTOEFL" name="ckbTOEFL" value="1" onclick="toggle('ckbTOEFL', 'txtTOEFL_mark')"   />TOEFL</td>
-								<td id="txtTOEFL_mark" style="display:none;">Mark <input type="Text" name="txtTOEFL_mark" value="" size="5" /></td>
+								<td><input type="Checkbox" id="ckbTOEFL" name="ckb" value="ckbTOEFL" />TOEFL</td>
+								<td id="txt_TOEFL_mark" style="display:none;">Mark <input type="Text" id="txtTOEFL_mark" name="txt_mark" value="" size="5" /></td>
 							</tr>
 							<tr>
-								<td><input type="Checkbox" id="ckbTAFE" name="ckbTAFE" value="1" onclick="toggle('ckbTAFE', 'txtTAFE_mark')"   />TAFE</td>
-								<td id="txtTAFE_mark" style="display:none;">Mark <input type="Text" name="txtTAFE_mark" value="" size="5" /></td>
+								<td><input type="Checkbox" id="ckbTAFE" name="ckb" value="ckbTAFE" />TAFE</td>
+								<td id="txt_TAFE_mark" style="display:none;">Mark <input type="Text" id="txtTAFE_mark" name="txt_mark" value="" size="5" /></td>
 							</tr>
 							<tr>
-								<td><input type="Checkbox" id="ckbCULT" name="ckbCULT" value="1" onclick="toggle('ckbCULT', 'txtCULT_mark')"  />CULT</td>
-								<td id="txtCULT_mark" style="display:none;">Mark <input type="Text" name="txtCULT_mark" value="" size="5" /></td>
+								<td><input type="Checkbox" id="ckbCULT" name="ckb" value="ckbCULT" />CULT</td>
+								<td id="txt_CULT_mark" style="display:none;">Mark <input type="Text" id="txtCULT_mark" name="txt_mark" value="" size="5" /></td>
 							</tr>
 							<tr>
-								<td><input type="Checkbox" id="ckbInsearchDEEP" name="ckbInsearchDEEP" value="1" onclick="toggle('ckbInsearchDEEP', 'txtInsearchDEEP_mark')"  />Insearch DEEP</td>
-								<td id="txtInsearchDEEP_mark" style="display:none;">Mark <input type="Text" name="txtInsearchDEEP_mark" value="" size="5" /></td>
+								<td><input type="Checkbox" id="ckbInsearchDEEP" name="ckb" value="ckbInsearchDEEP" />Insearch DEEP</td>
+								<td id="txt_InsearchDEEP_mark" style="display:none;">Mark <input type="Text" id="txtInsearchDEEP_mark" name="txt_mark" value="" size="5" /></td>
 							</tr>
 							<tr>
-								<td><input type="Checkbox" id="ckbInsearchDiploma" name="ckbInsearchDiploma" value="1" onclick="toggle('ckbInsearchDiploma', 'txtInsearchDiploma_mark')"   />Insearch Diploma</td>
-								<td id="txtInsearchDiploma_mark" style="display:none;">Mark <input type="Text" name="txtInsearchDiploma_mark" value="" size="5" /></td>
+								<td><input type="Checkbox" id="ckbInsearchDiploma" name="ckb" value="ckbInsearchDiploma" />Insearch Diploma</td>
+								<td id="txt_InsearchDiploma_mark" style="display:none;">Mark <input type="Text" id="txtInsearchDiploma_mark" name="txt_mark" value="" size="5" /></td>
 							</tr>
 							<tr>
-								<td><input type="Checkbox" id="ckbfoundationcourse" name="ckbfoundationcourse" value="1" onclick="toggle('ckbfoundationcourse', 'txtfoundationcourse_mark')"   />Foundation Course</td>
-								<td id="txtfoundationcourse_mark" style="display:none;">Mark <input type="Text" name="txtfoundationcourse_mark" value="" size="5" /></td>
+								<td><input type="Checkbox" id="ckbfoundationcourse" name="ckb" value="ckbfoundationcourse" />Foundation Course</td>
+								<td id="txt_foundationcourse_mark" style="display:none;">Mark <input type="Text" id="txtfoundationcourse_mark" name="txt_mark" value="" size="5" /></td>
 							</tr>
 						</table>	
 						<p>Other:<br/>
@@ -546,7 +607,7 @@
 				</div>
 				
 				<div class="clear">
-					<input type="Submit" name="btnRegister" value="Register" id="btnRegister" />
+					<input type="button" name="btnRegister" value="Register" id="btnRegister" />
 				</div>
 			</form>
 			
@@ -571,7 +632,7 @@
 		</div>
 
 		<!-- Footer -->
-		<div id="footer-wrapper">		
+		<!-- <div id="footer-wrapper">		
 			<div class="footer-navigation">
 				<a href="index.cfm?scope=Program">Programs</a>
 				<a href="index.cfm?scope=help">FAQ</a> 
@@ -609,9 +670,14 @@
 					<a href="http://www.uts.edu.au/">UTS homepage</a>
 				</div>
 			</div>
-		</div>
 			
+		</div> -->
+		
+		
+		
+		
+		
 	</div> <!-- end main-container -->
-
+	<div class="foot"></div>
 </body>
 </html>

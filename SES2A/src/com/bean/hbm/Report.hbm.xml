@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Report" table="report">
+		<id name="reportId">
+			<generator class="native"></generator>
+		</id>
+		<property name="title"></property>
+		<property name="description"></property>
+		<property name="fromDate"></property>
+		<property name="toDate"></property>
+		<property name="recordDate"></property>
+		<set name="workShops" table="t_report_workShop">
+			<key column="reportId"></key>
+			<many-to-many class="com.bean.WorkShop" column="workShopId"/>
+		</set>
+		<set name="sessions" table="t_report_session">
+			<key column="reportId"></key>
+			<many-to-many class="com.bean.Session" column="sessionId"/>
+		</set>
+		<set name="waitingLists" table="t_report_waitingList">
+			<key column="reportId"></key>
+			<many-to-many class="com.bean.WaitingList" column="waitingListId"/>
+		</set>
+		<set name="attendances" table="t_attendance_report">
+			<key column="reportId"></key>
+			<many-to-many class="com.bean.Attendance" column="attendanceId"/>
+		</set>
+		<set name="studentProfiles" table="t_report_studentProfile" lazy="false">
+			<key column="reportId"></key>
+			<many-to-many class="com.bean.StudentProfile" column="profileId"/>
+		</set>
+		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
+	</class>
+</hibernate-mapping>
