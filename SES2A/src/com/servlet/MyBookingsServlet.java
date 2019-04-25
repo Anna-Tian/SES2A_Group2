@@ -72,9 +72,13 @@ public class MyBookingsServlet extends HttpServlet {
 			upcomingPast(workShops);
 			if (past!=null&&past.size()>0) {
 				request.getSession().setAttribute("past",past);
+			}else if (past.size()==0) {
+				request.getSession().setAttribute("past",null);
 			}
 			if (upcoming!=null&&upcoming.size()>0) {
 				request.getSession().setAttribute("upcoming",upcoming);
+			}else if (upcoming.size()==0) {
+				request.getSession().setAttribute("upcoming",null);
 			}
 		}
 		
