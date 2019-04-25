@@ -12,6 +12,9 @@
 	<script type="text/javascript">
 		$(function(){
 			
+			$(".head").load("student_menu.html");
+			$(".foot").load("foot.html");
+			
 			var gender = "${studentProfile.gender}";
 			var degree = "${studentProfile.degree}";
 			var year = "${studentProfile.year}";
@@ -40,7 +43,6 @@
 			<%
 			String[] eduBg = (String[])session.getAttribute("eduBg");
 			String[] eduBgMark = (String[])session.getAttribute("eduBgMark");
-			System.out.println(Arrays.toString(eduBgMark));
 			if(eduBg!=null&&eduBgMark!=null&&!"ul".equals(eduBg[0])&&!"ul".equals(eduBgMark[0])){
 				for(int i=0;i<eduBg.length;i++){	
 					String name1 = eduBg[i].substring(3);
@@ -78,27 +80,31 @@
 					$("#"+name3+"").hide();
 				}
 			});
+			$("#btnRegister").click(function(){
+				$("#btnRegister").submit();
+			});
 		});
 	</script>
 </head>
 <body>
-
-	<div id="global-utility-bar">
-		<!-- UTS Logo -->
+	<div class="head"></div>
+	
+	<!-- <div id="global-utility-bar">
+		UTS Logo
 		<div id="uts-logo">
 			<a href="http://www.uts.edu.au"><img src="https://web-common.uts.edu.au/images/utslogo.gif" alt="University of Technology, Sydney homepage" width="132" height="30" /></a>
 		</div>
-	</div>
+	</div> -->
 	
 	<div id="main-container">
-		<div id="header">
+		<!-- <div id="header">
 			<a href="http://www.ssu.uts.edu.au/helps/index.html" id="logo-elssa">HELPS</a>
 			<div id="navigation">
 				<a href="index.cfm?scope=Program">Programs</a>
 				<a href="index.cfm?scope=help">FAQ</a>
 				<a href="index.cfm?scope=logout">Exit</a>
 			</div>
-		</div>
+		</div> -->
 		<!-- Content -->
 		<div id="content">
 			<div id="a-box">
@@ -601,7 +607,7 @@
 				</div>
 				
 				<div class="clear">
-					<input type="Submit" name="btnRegister" value="Register" id="btnRegister" />
+					<input type="button" name="btnRegister" value="Register" id="btnRegister" />
 				</div>
 			</form>
 			
@@ -626,7 +632,7 @@
 		</div>
 
 		<!-- Footer -->
-		<div id="footer-wrapper">		
+		<!-- <div id="footer-wrapper">		
 			<div class="footer-navigation">
 				<a href="index.cfm?scope=Program">Programs</a>
 				<a href="index.cfm?scope=help">FAQ</a> 
@@ -664,9 +670,14 @@
 					<a href="http://www.uts.edu.au/">UTS homepage</a>
 				</div>
 			</div>
-		</div>
 			
+		</div> -->
+		
+		
+		
+		
+		
 	</div> <!-- end main-container -->
-
+	<div class="foot"></div>
 </body>
 </html>
