@@ -70,10 +70,12 @@ header nav ul li a{
 	font-size: 17px;
 	padding-left: 45px;
 	padding-right: 25px;
+	padding-bottom: 25px;
 }
 header nav ul li ul li a{
 	font-size: 14px;
 	padding-left: 25px;
+	padding-bottom: 15px;
 }
 
 header nav ul li a:hover, header nav ul li a.active{
