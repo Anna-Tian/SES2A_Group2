@@ -118,10 +118,8 @@ public class MyBookingsServlet extends HttpServlet {
 		for(WorkShop workShop: workShops) {
 			if(workShop.getEndDate().getTime()<(new Date()).getTime()) {
 				past.add(workShop);
-				System.out.println("past");
 			}else{
 				upcoming.add(workShop);
-				System.out.println("upcoming");
 			}
 		}
 	}
