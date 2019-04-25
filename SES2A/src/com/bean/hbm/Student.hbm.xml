@@ -34,7 +34,7 @@
 			<key column="studentId"></key>
 			<one-to-many class="com.bean.Comment"/>
 		</set>
-		<set name="workShops" table="t_student_workShop">
+		<set name="workShops" table="t_student_workShop" lazy="false">
 			<key column="studentId"></key>
 			<many-to-many class="com.bean.WorkShop" column="workShopId"/>
 		</set>
