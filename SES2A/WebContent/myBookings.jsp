@@ -11,7 +11,10 @@
 	<script type="text/javascript">
 		$(function(){
 			{
-				var sessions1 = "${sessions_a }";
+				$(".head").load("student_menu.html");
+				$(".foot").load("foot.html");
+				
+				/* var sessions1 = "${sessions_a }";
 				var sessions2 = "${sessions_b }";
 				if(sessions1==""){
 					$("#session1").show();
@@ -26,22 +29,23 @@
 				}else{
 					$("#session3").hide();
 					$("#session4").show();
-				}
+				} */
 			}
 		});
 	</script>
 </head>
 <body>
-
-	<div id="global-utility-bar">
-		<!-- UTS Logo -->
+	<div class="head"></div>
+	
+	<!-- <div id="global-utility-bar">
+		UTS Logo
 		<div id="uts-logo">
 			<a href="http://www.uts.edu.au"><img src="https://web-common.uts.edu.au/images/utslogo.gif" alt="University of Technology, Sydney homepage" width="132" height="30" /></a>
 		</div>
-	</div>
+	</div> -->
 	
 	<div id="main-container">
-		<div id="header">
+		<!-- <div id="header">
 			<a href="http://www.ssu.uts.edu.au/helps/index.html" id="logo-elssa">HELPS</a>
 			<div id="navigation">
 				<a href="index.cfm?scope=profile">My Information</a>
@@ -51,7 +55,7 @@
 				<a href="index.cfm?scope=help">FAQ</a>
 				<a href="index.cfm?scope=logout">Exit</a>
 			</div>
-		</div>
+		</div> -->
 		<!-- Content -->
 		<div id="content">
 			<div>
@@ -118,7 +122,7 @@
 		</div>
 
 		<!-- Footer -->
-		<div id="footer-wrapper">		
+		<!-- <div id="footer-wrapper">		
 			<div class="footer-navigation">
 				<a href="index.cfm?scope=profile">My Information</a>
 				<a href="index.cfm?scope=newsession">My bookings</a>
@@ -159,9 +163,9 @@
 					<a href="http://www.uts.edu.au/">UTS homepage</a>
 				</div>
 			</div>
-		</div>
+		</div> -->
 			
 	</div> <!-- end main-container -->
-
+	<div class="foot"></div>
 </body>
 </html>

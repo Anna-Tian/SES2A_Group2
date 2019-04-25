@@ -2,7 +2,7 @@
 	margin: 0;
 	padding:0;
 }
-#global-utility-bar {
+/* #global-utility-bar {
     background: #B3B3B3 url(https://web-common.uts.edu.au/images/right_banner.gif) no-repeat scroll right center;
     border-bottom: 1px solid #000000;
     border-top: 1px solid #DDDDDD;
@@ -18,14 +18,14 @@
     border: medium none;
     margin: 0pt;
     position: absolute;
-}
+} */
 #main-container {
     margin: 0 0 0 10px;
     padding: 0;
     width: 920px;
-    float: left;
+    /* float: left; */
 }
-#header {
+/* #header {
     background: #fff url(../img/header_booking.jpg) no-repeat scroll left bottom;
     height: 138px;
     margin: 0;
@@ -64,7 +64,7 @@
     border-bottom: #e8e8e8 solid 1px;
     background-color: #ce3030;
     font-weight: 700;
-}
+} */
 div {
     display: block;
 }
@@ -77,9 +77,10 @@ div {
     line-height: 1.8em;
     font-size: 1em;
     margin: 0;
+    height: 420px;
 }
 body {
-    background: #0099cc url(../img/background.png) no-repeat scroll left top;
+    /* background: #0099cc url(../img/background.png) no-repeat scroll left top; */
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-size: 0.8em;
 }
@@ -90,10 +91,10 @@ body {
     padding-bottom: 5px;
 }
 a:link, a:visited {
-    color: #0078cc;
-    font-weight: bold;
+    /* color: #0078cc; 
+    font-weight: bold;*/
 }
-#footer-wrapper {
+/* #footer-wrapper {
     clear: both;
     padding: 0;
     margin: 0;
@@ -171,4 +172,4 @@ a:link, a:visited {
 	border-bottom: 1px dotted #a6a6a6;
 	font-weight: 600;
 	color: #a6a6a6;
-}
+} */
