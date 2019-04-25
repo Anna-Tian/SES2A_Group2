@@ -16,6 +16,7 @@
 		<property name="publishTime"></property>
 		<property name="updateTime"></property>
 		<property name="subject"></property>
+		
 		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
 		<many-to-one name="session" column="sessionId" class="com.bean.Session"></many-to-one>
 		<many-to-one name="workShop" column="workShopId" class="com.bean.WorkShop"></many-to-one>

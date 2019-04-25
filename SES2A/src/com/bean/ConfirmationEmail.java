@@ -1,5 +1,7 @@
 package com.bean;
 
+import oracle.net.aso.q;
+
 public class ConfirmationEmail {
 	private Integer confirmationId;
 	private Boolean isSessConfSent;
@@ -18,6 +20,7 @@ public class ConfirmationEmail {
 	private String publishTime;
 	private String updateTime;
 	private String subject;
+	
 	public ConfirmationEmail() {
 		super();
 		// TODO Auto-generated constructor stub
