@@ -13,32 +13,16 @@
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		//alert();
+		$('.head').load('admin_head.html');
+		$('.footer').load('admin_footer.html');
 	});
 </script>
 </head>
 <body>
-<header>
-		<nav>
-			<a href="//">Sessions</a> 
-			<a href="//">Workshops</a>
-			<a href="//">Advisors</a>
-			<a href="//">Students</a> 
-			<a href="//">Waiting List</a>
-			<a href="//">Reports</a>
-			<a href="//">Template</a>
-			<a href="//">Email</a>
-			<a href="//">Room</a>
-			<a href="//">Message</a>
-			<a href="//">Exit</a>
-		</nav>
-	</header>
+<div class="head"></div>
 	<div class="title">
-		<nav>
-			<a href="http://localhost:8080/SES2A/reportSession.jsp">Session</a> |
-			<a href="http://localhost:8080/SES2A/reportWorkshop.jsp">Workshop</a>
-		</nav>
-		<h3>Reports</h3>
+		
+		<h2>Reports</h2>
 
 		<br /> <span class="step">- Step 1:</span> <span>Select a
 			period from</span> <input type="text" name="datetimepicker1"
@@ -66,9 +50,12 @@
 				name="repType" value="" />&nbsp;Students in the waiting list
 		</p>
 		<br /> <span class="step">- Step 3:</span> <span>Press "Submit"
-			button</span> <br />  <input type="Submit" name="btnSessionsub"
+			button</span> <br />  
+			<div class="submitSession">
+			<input type="Submit" name="btnSessionsub"
 			value="Submit" id="btnSessionsub" />
 			<br/><br/>
+			</div>
 	</div>
 
 	<!-- <script type="text/javascript">
@@ -88,9 +75,7 @@
 		});
 	</script>
 	
-		<footer>
-		<a>© HELPS Booking System</a>
-	</footer>
+	<div class="footer"></div>
 
 </body>
 </html>

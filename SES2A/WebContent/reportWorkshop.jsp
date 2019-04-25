@@ -10,6 +10,8 @@
 	<script type="text/javascript" src="js/laydate/laydate.js" ></script>
 	<script type="text/javascript">
 		$(function(){
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
 			$("input[id^='details']").click(function(){
 				var skill = document.getElementById('skillDetails');
 				$(skill).show();
@@ -29,28 +31,12 @@
 	</script>
 </head>
 <body>
-<header>
-		<nav>
-			<a href="//">Sessions</a> 
-			<a href="//">Workshops</a>
-			<a href="//">Advisors</a>
-			<a href="//">Students</a> 
-			<a href="//">Waiting List</a>
-			<a href="//">Reports</a>
-			<a href="//">Template</a>
-			<a href="//">Email</a>
-			<a href="//">Room</a>
-			<a href="//">Message</a>
-			<a href="//">Exit</a>
-		</nav>
+<div class="head"></div>
 	</header>
 <div class="title">
-<nav>
-<a href="http://localhost:8080/SES2A/reportSession.jsp">Session</a> |
-<a href="http://localhost:8080/SES2A/reportWorkshop.jsp">Workshop</a>
-</nav>
 
-<h3>Workshop Reports</h3>
+
+<h2>Workshop Reports</h2>
 
 <br/>
 <span class="step">- Step 1:</span>
@@ -115,11 +101,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<input type="Radio" name="repType" value=""/>Workshop skill-sets summary
 <br/>
 <br/>
+<div class="submitWS">
 <input type="Submit" name="btnWorksub" value="Submit" id="btnWorksub" />
 <br>
 </div>
+</div>
 <footer>
-		<a>© HELPS Booking System</a>
+<div class="footer"></div>
 	</footer>
 
 <script>
