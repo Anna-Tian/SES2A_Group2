@@ -20,6 +20,7 @@ public class ConfirmationEmail {
 	private String publishTime;
 	private String updateTime;
 	private String subject;
+	
 	public ConfirmationEmail() {
 		super();
 		// TODO Auto-generated constructor stub
