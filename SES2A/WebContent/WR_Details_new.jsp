@@ -50,39 +50,35 @@
 			<h2>The topic</h2>
 			<form method="post" class="workshop">
 				<input type="hidden" name="workshopID" value="10409">
-				<div class="info-box">
+				
 					<div>
 						<strong>Title</strong>: ${workShop.name }
 					</div>
 					<div>
-						<strong>Room</strong>: xxx
-						<div>
-						<div>
-							<strong>Date</strong>: xxx
+						<strong>Room</strong>:	
 						</div>
 						<div>
-							<strong>Time</strong>: xxx
+							<strong>Date</strong>: ${workShop.startDate } - ${workShop.endDate }
 						</div>
-
 						<div>
-							<strong>Target Group</strong>: xxx
+							<strong>Time</strong>: ${workShop.days }
 						</div>
 
 						<div>
-							<strong>What it covers</strong>: xxx
+							<strong>Target Group</strong>: ${workShop.targetGroup }
 						</div>
 
 						<div>
-							<strong>Places available</strong>: x
+							<strong>What it covers</strong>: ${workShop.description }
 						</div>
-					</div>
-				</div>
+
+						<div>
+							<strong>Places available</strong>: ${workShop.placeAvailable }
+						</div>
 			</form>
 
 			<p></p>
 			<input id="bookingWorkshop" type="button" value="Book this workshop"></input>
-
-		</div>
 	<footer>
 		
 	</footer>

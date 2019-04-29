@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -33,19 +34,12 @@ public class DetailsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println(11111);
-		List<WorkShop> list = (new WorkshopRegistrationDao()).test1();
-		
-		System.out.println("qqqqqq: "+request.getParameter("session1"));
-		Integer workShop_id = Integer.parseInt(request.getParameter("session1"));
-		System.out.println("qqq: "+workShop_id);
+		Integer workShop_id = Integer.parseInt(request.getParameter("wid"));
 		WorkShop workShop = workshopRegistrationDao.findWorkshopById(workShop_id);
-		System.out.println("qqq: "+workShop);
 		request.getSession().setAttribute("workShop",workShop);
 		
-		
-		response.sendRedirect("WR_Details_new.jsp");
+		System.out.println("0000000000000");
+		//response.sendRedirect("WR_Details_new.jsp");
 	}
 
 	/**

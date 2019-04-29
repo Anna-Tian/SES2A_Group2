@@ -94,9 +94,13 @@
 			</div>
 			<div>
 				<ul>
-
-					<li><a href="/SES2A/Step2Servlet">Example</a></li>
+					<c:forEach var="sessions2" items="${www }">
+						  	<ul>
+							  	<li><a href="/SES2A/Step2Servlet?value01=test">${sessions2.targetGroup }</a></li>
+							  	
+						 	</ul>
 					
+					  </c:forEach>
 				</ul>
 				
 			</div>

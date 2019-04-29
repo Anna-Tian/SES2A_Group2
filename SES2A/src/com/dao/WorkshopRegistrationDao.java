@@ -13,31 +13,20 @@ import com.bean.WorkShop;
 import com.util.HibernateUtil;
 
 public class WorkshopRegistrationDao {
-	public List<WorkShop> test1() {
+	public List<WorkShop> test1(String targetGroup) {
 	    Session session = null;
 	    Transaction tx = null;
 	    List<WorkShop> list = null;
-	    System.out.println("111111");
 	    try {
 	    	session = HibernateUtil.getCurrentSession();
-	    	System.out.println("999999");
 	    	tx = session.beginTransaction();
-	    	System.err.println("777777");
-	    	Query query = session.createQuery("from WorkShop");
-	    	System.out.println("888888");
+	    	Query query = session.createQuery("from WorkShop where targetGroup=?");
+	    	query.setParameter(0,targetGroup);
 	    	list = query.list();
-	    	System.out.println("222222");
-	    	for (WorkShop workShop : list) {
-	    		System.out.println("333333");
-	    		System.out.println(workShop);
-	    	}
-	    	System.out.println("444444");
 	    	tx.commit();
 	    }catch(Exception e) {
 	    	tx.rollback();
-	    	System.out.println("555555");
 	    }
-	    System.out.println("666666");
 	    return list;
 	}
 	
@@ -60,24 +49,20 @@ public class WorkshopRegistrationDao {
 	}
 	
 
-		public Set<String> step1() {
-		    Session session = null;
+		public List<WorkShop> step1() {
+			Session session = null;
 		    Transaction tx = null;
 		    List<WorkShop> list = null;
-		    Set<String> workshopNames = new HashSet<String>();
 		    try {
 		    	session = HibernateUtil.getCurrentSession();
 		    	tx = session.beginTransaction();
 		    	Query query = session.createQuery("from WorkShop");
 		    	list = query.list();
-		    	for (WorkShop workShop : list) {
-		    		workshopNames.add(workShop.getTargetGroup());
-		    	}
 		    	tx.commit();
 		    }catch(Exception e) {
 		    	tx.rollback();
 		    }
-		    return workshopNames;
+		    return list;
 		}
 	
 	public void test2() {
@@ -95,7 +80,7 @@ public class WorkshopRegistrationDao {
 	    }
 	}
 	public static void main(String[] args) {
-		(new WorkshopRegistrationDao()).test1();
+		(new WorkshopRegistrationDao()).test1("test");
 		System.out.println("success");
 	}
 

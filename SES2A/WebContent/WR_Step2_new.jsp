@@ -8,6 +8,25 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/student_footer.css" />
 <link rel="stylesheet" type="text/css" href="css/student_menu.css">
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("[id^='del_']").click(function(){
+			
+			var id = this.id.split("_")[1];
+			//alert(id);
+			$.ajax({
+			      url:"DetailsServlet",
+			      type:"post",
+			      data:"wid="+id,
+			      dataType:"text",
+			      success:function(data){
+			       	window.location.href="WR_Details_new.jsp";
+			      }
+			     });
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -113,7 +132,8 @@
 							  	<td>${sessions1.days }</td>
 							  	<td>${sessions1.name }</td>
 							  	<td>${sessions1.name }</td>
-							  	<td><a href="/SES2A/DetailsServlet?session1=1">Detail</a></td>
+							
+							  	<td><input value="Detail" type="button" id="del_${sessions1.workShopId }"></td>
 						 	</tr>
 					
 					  </c:forEach>
