@@ -8,7 +8,7 @@
 			<generator class="native"></generator>
 		</id>
 		<property name="roomLocation"></property>
-		<set name="workShops">
+		<set name="workShops" lazy="false">
 			<key column="roomId"></key>
 			<one-to-many class="com.bean.WorkShop"/>
 		</set>
