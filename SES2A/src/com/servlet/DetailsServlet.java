@@ -37,8 +37,6 @@ public class DetailsServlet extends HttpServlet {
 		Integer workShop_id = Integer.parseInt(request.getParameter("wid"));
 		WorkShop workShop = workshopRegistrationDao.findWorkshopById(workShop_id);
 		request.getSession().setAttribute("workShop",workShop);
-		
-		System.out.println("0000000000000");
 		//response.sendRedirect("WR_Details_new.jsp");
 	}
 

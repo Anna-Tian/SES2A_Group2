@@ -33,7 +33,7 @@ public class Step2Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String value01 = request.getParameter("value01");
+		String value01 = request.getParameter("targetGroup");
 		List<WorkShop> list = (new WorkshopRegistrationDao()).test1(value01);
 		request.getSession().setAttribute("qqq",list);
 		response.sendRedirect("WR_Step2_new.jsp");

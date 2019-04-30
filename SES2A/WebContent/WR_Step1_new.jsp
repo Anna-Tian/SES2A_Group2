@@ -8,6 +8,25 @@
 <title>HELPS booking system</title>
 <link rel="stylesheet" href="css/student_footer.css" />
 <link rel="stylesheet" type="text/css" href="css/student_menu.css">
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("[id^='del_']").click(function(){
+			
+			var id = this.id.split("_")[1];
+			//alert(id);
+			$.ajax({
+			      url:"Step2Servlet",
+			      type:"post",
+			      data:"targetGroup="+id,
+			      dataType:"text",
+			      success:function(data){
+			       	window.location.href="WR_Step2_new.jsp";
+			      }
+			     });
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -96,7 +115,7 @@
 				<ul>
 					<c:forEach var="sessions2" items="${www }">
 						  	<ul>
-							  	<li><a href="/SES2A/Step2Servlet?value01=test">${sessions2.targetGroup }</a></li>
+							  	<li><a id="del_${sessions2 }">${sessions2 }</a></li>
 							  	
 						 	</ul>
 					

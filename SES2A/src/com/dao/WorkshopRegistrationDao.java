@@ -49,21 +49,33 @@ public class WorkshopRegistrationDao {
 	}
 	
 
-		public List<WorkShop> step1() {
+		public List<String> step1() {
 			Session session = null;
 		    Transaction tx = null;
-		    List<WorkShop> list = null;
+		    List<String> list = null;
 		    try {
 		    	session = HibernateUtil.getCurrentSession();
 		    	tx = session.beginTransaction();
 		    	Query query = session.createQuery("from WorkShop");
-		    	list = query.list();
+		    	List<String> list1 = new ArrayList<String>();
+		    	List<WorkShop> list2 = query.list();
+		    	for (WorkShop workShop : list2) {
+					list1.add(workShop.getTargetGroup());
+				}
+		    	list = removeDuplicate(list1);
 		    	tx.commit();
 		    }catch(Exception e) {
 		    	tx.rollback();
 		    }
 		    return list;
 		}
+		
+		public List<String> removeDuplicate(List<String> list) {   
+		    HashSet<String> h = new HashSet<String>(list);   
+		    list.clear();   
+		    list.addAll(h);   
+		    return list;   
+		}   
 	
 	public void test2() {
 	    Session session = null;

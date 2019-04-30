@@ -17,12 +17,12 @@ public class test {
 		Transaction transaction = session.beginTransaction();
 		WorkShop workshop = new WorkShop();
 		
-		workshop.setName("Jiachen");
+		workshop.setName("JiachenLiu");
 		workshop.setStartDate(new Date());
 		workshop.setEndDate(new Date());
-		workshop.setDays("July 1st");
-		workshop.setPlaceAvailable("5");
-		workshop.setTargetGroup("test01");
+		workshop.setDays("July 999st");
+		workshop.setPlaceAvailable("10");
+		workshop.setTargetGroup("test02");
 		workshop.setDescription("kdjsakjdskas");
 		
 		
