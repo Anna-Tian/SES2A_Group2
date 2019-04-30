@@ -55,7 +55,7 @@
 						<strong>Title</strong>: ${workShop.name }
 					</div>
 					<div>
-						<strong>Room</strong>:	
+						<strong>Room</strong>:	${room.roomLocation }
 						</div>
 						<div>
 							<strong>Date</strong>: ${workShop.startDate } - ${workShop.endDate }

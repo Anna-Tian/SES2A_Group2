@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.Room;
 import com.bean.WorkShop;
 import com.dao.WorkshopRegistrationDao;
 
@@ -37,6 +38,9 @@ public class DetailsServlet extends HttpServlet {
 		Integer workShop_id = Integer.parseInt(request.getParameter("wid"));
 		WorkShop workShop = workshopRegistrationDao.findWorkshopById(workShop_id);
 		request.getSession().setAttribute("workShop",workShop);
+		Room room = workShop.getRoom();
+		System.out.println(room.getRoomLocation());
+		request.getSession().setAttribute("room",room);
 		//response.sendRedirect("WR_Details_new.jsp");
 	}
 
