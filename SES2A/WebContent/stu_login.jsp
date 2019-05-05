@@ -1,3 +1,4 @@
+<%@ page import="com.dao.MessageDatabase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,6 +24,15 @@
 	}
 }
 </style>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script>
+$(function(){
+	var mess = "<%=MessageDatabase.getCurrentMessage(10).getMessageDetailed()%>";
+	$("#student_logon_annoucement").html(mess);
+	var mess2 = "<%=MessageDatabase.getCurrentMessage(11).getMessageDetailed()%>";
+	$(".content-right").html(mess2);
+});
+</script>
 </head>
 <body data-gr-c-s-loaded="true">
 
