@@ -145,7 +145,7 @@
 							  	<td>${workShop.noOfSessions }</td>
 							  	<td><input class="btn btn-primary btn-sm" type="button" value="Cancel" id="del_${workShop.workShopId}"/></td>
 						 	</tr>
-					  </c:forEach>		
+					 	</c:forEach>
 					</table>
 				</div>
 				

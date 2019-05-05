@@ -20,6 +20,7 @@ import com.dao.StudentProfileDao;
 import com.dao.TestDaoImpl;
 import com.dao.impl.StudentBookingsImpl;
 import com.dao.impl.StudentProfileImpl;
+import com.util.MailUtils;
 
 /**
  * Servlet implementation class MyBookingsServlet
@@ -86,6 +87,13 @@ public class MyBookingsServlet extends HttpServlet {
 			writer.print("truee");
 		}else {
 			writer.print("falsee");
+		}
+		try {
+			String toEmail = student.getStudentId()+"@student.uts.edu.au";
+			MailUtils.sendMail(toEmail, "Cancel Successfully!");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		response.sendRedirect("myBookings.jsp");
 	}

@@ -22,6 +22,7 @@ public class TestDaoImpl {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		Student student = new Student();
+		student.setStudentId(12990747);
 		student.setFirstName("Zicheng");
 		student.setLastName("Qu");
 		student.setPassword("123456");
@@ -67,7 +68,7 @@ public class TestDaoImpl {
 	public Student getCurrentStudent() {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
-		Student student = session.get(Student.class, 1);
+		Student student = session.get(Student.class, 12990747);
 		transaction.commit();
 		return student;
 	}
@@ -79,7 +80,7 @@ public class TestDaoImpl {
 		return workShop;
 	}
 	public static void main(String[] args) throws ParseException {
-		(new TestDaoImpl()).saveWorkShop();
+		(new TestDaoImpl()).saveStudent();
 		System.out.println("TestDaoImpl Success");
 	}
 }
