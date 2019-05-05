@@ -25,7 +25,7 @@
 						var editor = evt.editor;
 						editor.config.allowedContent = true;
 						}
-					} */
+					}*/ 
 				});
 				
 				
