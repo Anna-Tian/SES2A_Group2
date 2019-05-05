@@ -19,15 +19,15 @@
 				CKEDITOR.config.allowedContent = true;
 				var choiceValue = localStorage.getItem("selectedOption");
 				document.getElementById("messageTabSelectList").options[choiceValue].selected = "selected";
-				var txtEditor = CKEDITOR.replace( 'textEditor', {
+				var txtEditor = CKEDITOR.replace( 'textEditor');
 					/* on: {
 						instanceReady: function(evt){
 						var editor = evt.editor;
 						editor.config.allowedContent = true;
 						}
-					}*/ 
-				});
+					}*/
 				
+				CKEDITOR.config.allowedContent = true;
 				
 				var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageDetailed()%>";
 				var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageDetailed()%>";

@@ -135,14 +135,14 @@ public final class InitiateDatabase {
 		Message message11 = MessageDatabase.getCurrentMessage(11);
 		message11.setMessageLocation("stu_login.jsp");
 		message11.setMessageDetailed("<ul>"+
-						"<li>HELPS "+
-								"home and contact details</li>"+
-						"<li>IT "+
+						"<li><a href=\\\"http://www.ssu.uts.edu.au/helps/about.html\\\">HELPS "+
+								"home and contact details</a></li>"+
+						"<li><a href=\\\"https://servicedesk.uts.edu.au/CAisd/pdmweb.exe\\\">IT "+
 								"Help desk if you have login issues</a></li>"+
-						"<li>Like us "+
+						"<li><a href=\\\"https://www.facebook.com/UTSHELPS\\\">Like us "+
 								"on <strong>Facebook</strong> to keep up with "+
 								"what's&nbsp;happening&nbsp;at HELPS"+
-						"</li></ul>"+ 
+						"</a></li></ul>"+ 
 						"<p>&nbsp;</p>");
 		/*message11.setMessageDetailed("<ul>"+
 				"<li><a href=\"http://www.ssu.uts.edu.au/helps/about.html\">HELPS"+
