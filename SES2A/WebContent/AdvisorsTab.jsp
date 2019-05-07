@@ -183,9 +183,9 @@ function addAdvisors() {
                 // Add new Employee object
                 Advisor Ad = new Advisor();
                 Ad.setStaffNumber(document.getElementById('staffnumberadd'+i).value);
-//                 Ad.setFirstName("demo");
-//                 Ad.setLastName("user");
-//                 Ad.setEmail();
+                Ad.setFirstName(document.getElementById('firstnameadd'+i).value;);
+                Ad.setLastName(document.getElementById('lastnameadd'+i).value);
+                Ad.setEmail(document.getElementById('emailadd'+i).value);
          
                 session.save(emp);
          
