@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="com.dao.FromDbToExcelTest01"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +33,11 @@
 </head>
 <body>
 <div class="head"></div>
-	</header>
+	
 <div class="title">
 
 
-<h2>Workshop Reports</h2>
+<h2 name="section">Workshop</h2>
 
 <br/>
 <span class="step">- Step 1:</span>
@@ -57,7 +58,7 @@
 <p id="skillDetails" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;Workshop skill-sets
 
 
-<select  id="skills">
+<select  name="skillSets" id="skills">
 <option value=""></option>
 <option value="">Improve your writing</option>
 <option value="">Improve your grammar</option>
@@ -71,6 +72,7 @@
 
 </select>
 </p>
+
 
 <p class="topics" id="topics" style="display:none" >&nbsp;&nbsp;&nbsp;&nbsp;Workshop Topics
 
@@ -102,7 +104,7 @@
 <br/>
 <br/>
 <div class="submitWS">
-<input type="Submit" name="btnWorksub" value="Submit" id="btnWorksub" />
+<input type="Submit" name="btnWorksub" value="Submit" id="btnWorksub" onclick="Submit()" />
 <br>
 </div>
 </div>
@@ -118,6 +120,13 @@
 			laydate.render({
 			  	elem: '#datetimepicker2' 
 			});
+			$("#btnSessionsub").click(function(){
+				
+				<%
+				FromDbToExcelTest01.download("report");
+				%>
+			})
+			
 		</script>
 
 </body>
