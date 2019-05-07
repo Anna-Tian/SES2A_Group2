@@ -23,16 +23,19 @@ public final class InitiateDatabase {
 		transaction.commit();*/
 		
 		Message message1 = MessageDatabase.getCurrentMessage(1);
-		message1.setMessageLocation("message1.jsp");
-		message1.setMessageDetailed("message1");
+		message1.setMessageLocation("probably FAQs.jsp");
+		message1.setMessageDetailed("not yet created");
+		message1.setMessageTempDetailed(message1.getMessageDetailed());
 		MessageDatabase.updateMessage(message1);
 		Message message2 = MessageDatabase.getCurrentMessage(2);
 		message2.setMessageLocation("message2.jsp");
 		message2.setMessageDetailed("message2");
+		message2.setMessageTempDetailed(message2.getMessageDetailed());
 		MessageDatabase.updateMessage(message2);
 		Message message3 = MessageDatabase.getCurrentMessage(3);
 		message3.setMessageLocation("stu_login.jsp");
 		message3.setMessageDetailed("message3");
+		message3.setMessageTempDetailed(message3.getMessageDetailed());
 		MessageDatabase.updateMessage(message3);
 		Message message4 = MessageDatabase.getCurrentMessage(4);
 		message4.setMessageLocation("WR_Step1.jsp");
@@ -87,12 +90,14 @@ public final class InitiateDatabase {
 						"skill-set that you want to improve.</strong>"+
 				"</p>"+
 				"<p>&nbsp;</p>");
+		message4.setMessageTempDetailed(message4.getMessageDetailed());
 		MessageDatabase.updateMessage(message4);
 		Message message5 = MessageDatabase.getCurrentMessage(5);
 		message5.setMessageLocation("my_information.jsp");
 		message5.setMessageDetailed("<p>This page displays your profile. Please update it whenever necessary (especially your contact details).</p>"+
 					"<p>Questions marked with an asterisk (*) are compulsory.</p>"+
 					"<p>&nbsp;</p>");
+		message5.setMessageTempDetailed(message5.getMessageDetailed());
 		MessageDatabase.updateMessage(message5);
 		Message message6 = MessageDatabase.getCurrentMessage(6);
 		message6.setMessageLocation("my_information.jsp");
@@ -110,18 +115,22 @@ public final class InitiateDatabase {
 					"<li>"+
 						"will not be disclosed unless required or permitted by law.</li>"+
 				"</ul>");
+		message6.setMessageTempDetailed(message6.getMessageDetailed());
 		MessageDatabase.updateMessage(message6);
 		Message message7 = MessageDatabase.getCurrentMessage(7);
-		message7.setMessageLocation("stu_login.jsp");
-		message7.setMessageDetailed("message7");
+		message7.setMessageLocation("blank");
+		message7.setMessageDetailed("to be deleted");
+		message7.setMessageTempDetailed(message7.getMessageDetailed());
 		MessageDatabase.updateMessage(message7);
 		Message message8 = MessageDatabase.getCurrentMessage(8);
 		message8.setMessageLocation("stu_login.jsp");
 		message8.setMessageDetailed("message8");
+		message8.setMessageTempDetailed(message8.getMessageDetailed());
 		MessageDatabase.updateMessage(message8);
 		Message message9 = MessageDatabase.getCurrentMessage(9);
-		message9.setMessageLocation("stu_login.jsp");
-		message9.setMessageDetailed("message9");
+		message9.setMessageLocation("blank");
+		message9.setMessageDetailed("to be deleted");
+		message9.setMessageTempDetailed(message9.getMessageDetailed());
 		MessageDatabase.updateMessage(message9);
 		Message message10 = MessageDatabase.getCurrentMessage(10);
 		message10.setMessageLocation("stu_login.jsp");
@@ -131,6 +140,7 @@ public final class InitiateDatabase {
 					"<p>Registration is now open for 2019 Autumn workshops!&nbsp;</p>"+
 					"<p>At this stage, we only open registration for March and April"+
 						" workshops. For the remaining workshops, registration will be open in week 5.&nbsp;</p>");
+		message10.setMessageTempDetailed(message10.getMessageDetailed());
 		MessageDatabase.updateMessage(message10);
 		Message message11 = MessageDatabase.getCurrentMessage(11);
 		message11.setMessageLocation("stu_login.jsp");
@@ -144,20 +154,12 @@ public final class InitiateDatabase {
 								"what's&nbsp;happening&nbsp;at HELPS"+
 						"</a></li></ul>"+ 
 						"<p>&nbsp;</p>");
-		/*message11.setMessageDetailed("<ul>"+
-				"<li><a href=\"http://www.ssu.uts.edu.au/helps/about.html\">HELPS"+
-						"home and contact details</a></li>"+
-				"<li><a href=\"https://servicedesk.uts.edu.au/CAisd/pdmweb.exe\">IT"+
-						"Help desk if you have login issues</a></li>"+
-				"<li><a href=\"https://www.facebook.com/UTSHELPS\">Like us"+
-						"on <strong>Facebook</strong> to keep up with"+
-						"what's&nbsp;happening&nbsp;at HELPS"+
-				"</a></li></ul>"+ 
-				"<p>&nbsp;</p>");*/
+		message11.setMessageTempDetailed(message11.getMessageDetailed());
 		MessageDatabase.updateMessage(message11);
 		Message message12 = MessageDatabase.getCurrentMessage(12);
-		message12.setMessageLocation("message12.jsp");
-		message12.setMessageDetailed("message12");
+		message12.setMessageLocation("probalby Programs.jsp");
+		message12.setMessageDetailed("not yet created");
+		message12.setMessageTempDetailed(message12.getMessageDetailed());
 		MessageDatabase.updateMessage(message12);
 	}
 }

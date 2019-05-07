@@ -34,7 +34,6 @@ public class MessageDatabase {
 		
 		try{
 			session.saveOrUpdate(message);
-			
 			updated = true;
 		}
 		catch(Exception e){
@@ -66,7 +65,5 @@ public class MessageDatabase {
 		catch(NullPointerException e){
 			System.out.println("CAUGHT IN MAIN: MESSAGE ID IS OUT OF BOUND!!!");
 		}
-		
 	}*/
-	
 }

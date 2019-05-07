@@ -1,4 +1,5 @@
 <%@ page import="com.dao.MessageDatabase"%>
+<%@ page import="com.bean.Message"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,31 +17,24 @@
 				/* initiate the page */
 				$('.head').load('admin_head.html');
 				$('.footer').load('admin_footer.html');
-				CKEDITOR.config.allowedContent = true;
 				var choiceValue = localStorage.getItem("selectedOption");
 				document.getElementById("messageTabSelectList").options[choiceValue].selected = "selected";
 				var txtEditor = CKEDITOR.replace( 'textEditor');
-					/* on: {
-						instanceReady: function(evt){
-						var editor = evt.editor;
-						editor.config.allowedContent = true;
-						}
-					}*/
-				
+				//this disable ACF of CKEDITOR
 				CKEDITOR.config.allowedContent = true;
 				
-				var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageDetailed()%>";
-				var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageDetailed()%>";
-				var mess3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageDetailed()%>";
-				var mess4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageDetailed()%>";
-				var mess5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageDetailed()%>";
-				var mess6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageDetailed()%>";
-				var mess7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageDetailed()%>";
-				var mess8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageDetailed()%>";
-				var mess9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageDetailed()%>";
-				var mess10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageDetailed()%>";
-				var mess11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageDetailed()%>";
-				var mess12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageDetailed()%>";
+				var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageTempDetailed()%>";
+				var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageTempDetailed()%>";
+				var mess3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageTempDetailed()%>";
+				var mess4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageTempDetailed()%>";
+				var mess5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageTempDetailed()%>";
+				var mess6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageTempDetailed()%>";
+				var mess7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageTempDetailed()%>";
+				var mess8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageTempDetailed()%>";
+				var mess9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageTempDetailed()%>";
+				var mess10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageTempDetailed()%>";
+				var mess11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageTempDetailed()%>";
+				var mess12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageTempDetailed()%>";
 
 				//TODO: if there is any way to directly use choiceValue for getCurrentMessage, it would be much less of hard-coding
 				switch(choiceValue){
@@ -91,7 +85,7 @@
 					}
 					else{
 						window.location = "MessageTab.jsp";
-					}	
+					}
 				});
 				/*handle preview button click*/
 				$("#previewButton").click(function(){
@@ -102,9 +96,18 @@
 				/*handle publish button click*/
 				$("#publishButton").click(function(){
 					//save changes made to the message into the database
-					var message = txtEditor.html();
-					
+					var m = txtEditor.getData();
 					$("#updateMessage").show();
+					$.ajax({
+						url:"MessageServlet",
+						type:"post",
+						data:{message: m, index: document.getElementById("messageTabSelectList").value, type: "publish"},
+						dataType:"text",
+						success:function(data){
+							$("#updateMessage").show();
+							window.location.reload(true);
+						}
+					});
 				});
 				/*handle cancel button click*/
 				$("#cancelButton").click(function(){
@@ -113,6 +116,18 @@
 				/*handle save button click*/
 				$("#saveButton").click(function(){
 					//save changes and enable preview and publish button
+					var m = txtEditor.getData();
+					
+					$.ajax({
+						url:"MessageServlet",
+						type:"post",
+						data:{message: m, index: document.getElementById("messageTabSelectList").value, type: "save"},
+						dataType:"text",
+						success:function(data){
+							$("#updateMessage").show();
+							window.location.reload(true);
+						}
+					});
 					$("#previewButton").show();
 					$("#publishButton").show();
 					$("#saveButton").hide();
@@ -123,7 +138,7 @@
 	</head>
 	
 	<body>
-		<div class="header"></div>
+		<div class="head"></div>
 		
 		<p id="updateMessage">Updated the message</p>
 		

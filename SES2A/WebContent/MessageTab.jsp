@@ -7,14 +7,15 @@
 	<title>MESSAGE TAB</title>
 	<script type="text/javascript">
 		$(function(){
-			$('.header').load('admin_head.html');
+			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
 		});
 	</script>
 	</head>
-
+	
 	<body>
-		<div class="header"></div>
+		<div class="head"></div>
+		
 		<select id="messageTabSelectList" onchange="onChangedSelectList()">
 			<option value="0"></option>
 			<option value="1">FAQ in student interface</option>
