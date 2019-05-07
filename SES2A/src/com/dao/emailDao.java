@@ -12,11 +12,11 @@ public class emailDao {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		ConfirmationEmail email = new ConfirmationEmail();
-		email.setConfirmationId(1);
+		email.setConfirmationId(9);
 		email.setTitle("Confirmation of waiting list(to student)");
 		email.setSubject("Confirmation of waiting list");
 		//email.setTemplate("[% student_givernname %] [% student_surname %] has cancelled a one-to-one appointment with you.\n" + "Appointment time: [% datetime %]");
-		email.setTemplate("98888888888888888888888888");
+		email.setTemplate("999999999999999999999999999999");
 
 		session.saveOrUpdate(email);
 		transaction.commit();

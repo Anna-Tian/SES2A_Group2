@@ -8,11 +8,11 @@ public class HibernateUtil {
 	private static SessionFactory sessionFactory = null;
 	static {
 		Configuration configuration = new Configuration();
-		configuration.configure(); //获取到src下HibernateUtil.java的配置文件.
-		sessionFactory = configuration.buildSessionFactory(); //创建session工厂
+		configuration.configure();
+		sessionFactory = configuration.buildSessionFactory();
 	}
 	public static Session getCurrentSession() {
-		return sessionFactory.getCurrentSession(); //返回session对象
+		return sessionFactory.getCurrentSession();
 	}
 	public static void main(String[] args) {
 		System.out.println("Success");

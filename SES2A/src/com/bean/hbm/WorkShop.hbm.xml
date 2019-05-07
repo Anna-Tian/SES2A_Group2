@@ -17,21 +17,21 @@
 		<property name="targetGroup"></property>
 		<property name="description"></property>
 		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
-		<many-to-one name="room" column="roomId" class="com.bean.Room"></many-to-one>
+		<many-to-one name="room" column="roomId" class="com.bean.Room" lazy="false"></many-to-one>
 		<many-to-one name="skillSet" column="skillSetId" class="com.bean.SkillSet"></many-to-one>
-		<set name="confirmationEmails">
+		<set name="confirmationEmails" lazy="false">
 			<key column="workShopId"></key>
 			<one-to-many class="com.bean.ConfirmationEmail"/>
 		</set>
-		<set name="attendances">
+		<set name="attendances" lazy="false">
 			<key column="workShopId"></key>
 			<one-to-many class="com.bean.Attendance"/>
 		</set>
-		<set name="reports" table="t_report_workShop">
+		<set name="reports" table="t_report_workShop" lazy="false">
 			<key column="workShopId"></key>
 			<many-to-many class="com.bean.Report" column="reportId"/>
 		</set>
-		<set name="students" table="t_student_workShop">
+		<set name="students" table="t_student_workShop" lazy="false">
 			<key column="workShopId"></key>
 			<many-to-many class="com.bean.Student" column="studentId"/>
 		</set>

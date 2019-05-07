@@ -13,7 +13,7 @@
 		<property name="time"></property>
 		<property name="isPresent"></property>
 		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
-		<many-to-one name="session" column="sessionId" class="com.bean.Session"></many-to-one>
+		<many-to-one name="session" unique="true" column="sessionId" class="com.bean.Session" not-null="false" lazy="false"></many-to-one>
 		<many-to-one name="workShop" column="workShopId" class="com.bean.WorkShop"></many-to-one>
 		<set name="reports" table="t_attendance_report">
 			<key column="attendanceId"></key>

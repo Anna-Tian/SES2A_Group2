@@ -12,11 +12,14 @@ public class Session {
 	private String type;
 	private String advisorName;
 	private String rule;
-	
+
+	private String booked;//1.non-booked;2.booked;3.canceled
+	private String isAttendance;//1.yes; 2.no
 	private Student student;//n:1
 	private Room room;//n:1
 	private Admin admin;//n:1
-	private Set<Attendance> attendances = new HashSet<Attendance>();//1:n
+	private Advisor advisor;//n:1
+	private Attendance attendance;//1:1
 	private Set<WaitingList> waitingLists = new HashSet<WaitingList>();//1:n
 	private Set<Report> reports = new HashSet<Report>();//n:n
 	private Set<ConfirmationEmail> confirmationEmails = new HashSet<ConfirmationEmail>();//1:n
@@ -26,9 +29,9 @@ public class Session {
 		// TODO Auto-generated constructor stub
 	}
 	public Session(Integer sessionId, Date date, Date startTime, Date endTime, String type, String advisorName,
-			String rule, Student student, Room room, Admin admin, Set<Attendance> attendances,
-			Set<WaitingList> waitingLists, Set<Report> reports, Set<ConfirmationEmail> confirmationEmails,
-			Set<Comment> comments) {
+			String rule, String booked, String isAttendance, Student student, Room room, Admin admin, Advisor advisor,
+			Attendance attendance, Set<WaitingList> waitingLists, Set<Report> reports,
+			Set<ConfirmationEmail> confirmationEmails, Set<Comment> comments) {
 		super();
 		this.sessionId = sessionId;
 		this.date = date;
@@ -37,10 +40,13 @@ public class Session {
 		this.type = type;
 		this.advisorName = advisorName;
 		this.rule = rule;
+		this.booked = booked;
+		this.isAttendance = isAttendance;
 		this.student = student;
 		this.room = room;
 		this.admin = admin;
-		this.attendances = attendances;
+		this.advisor = advisor;
+		this.attendance = attendance;
 		this.waitingLists = waitingLists;
 		this.reports = reports;
 		this.confirmationEmails = confirmationEmails;
@@ -88,6 +94,18 @@ public class Session {
 	public void setRule(String rule) {
 		this.rule = rule;
 	}
+	public String getBooked() {
+		return booked;
+	}
+	public void setBooked(String booked) {
+		this.booked = booked;
+	}
+	public String getIsAttendance() {
+		return isAttendance;
+	}
+	public void setIsAttendance(String isAttendance) {
+		this.isAttendance = isAttendance;
+	}
 	public Student getStudent() {
 		return student;
 	}
@@ -106,11 +124,17 @@ public class Session {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	public Set<Attendance> getAttendances() {
-		return attendances;
+	public Advisor getAdvisor() {
+		return advisor;
 	}
-	public void setAttendances(Set<Attendance> attendances) {
-		this.attendances = attendances;
+	public void setAdvisor(Advisor advisor) {
+		this.advisor = advisor;
+	}
+	public Attendance getAttendance() {
+		return attendance;
+	}
+	public void setAttendance(Attendance attendance) {
+		this.attendance = attendance;
 	}
 	public Set<WaitingList> getWaitingLists() {
 		return waitingLists;
@@ -136,7 +160,4 @@ public class Session {
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
-	
-	
-	
 }

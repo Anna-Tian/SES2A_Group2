@@ -132,5 +132,5 @@ public class ConfirmationEmail {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}	
+	}
 }

@@ -13,13 +13,15 @@
 		<property name="type"></property>
 		<property name="advisorName"></property>
 		<property name="rule"></property>
+
+		<property name="booked"></property>
+		<property name="isAttendance"></property>
 		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
 		<many-to-one name="room" column="roomId" class="com.bean.Room"></many-to-one>
 		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
-		<set name="attendances">
-			<key column="sessionId"></key>
-			<one-to-many class="com.bean.Attendance"/>
-		</set>
+		<many-to-one name="advisor" column="advisorId" class="com.bean.Advisor" lazy="false"></many-to-one>
+		<many-to-one name="attendance" unique="true" column="attendanceId" class="com.bean.Attendance" not-null="false" lazy="false"></many-to-one>
+
 		<set name="waitingLists">
 			<key column="sessionId"></key>
 			<one-to-many class="com.bean.WaitingList"/>
