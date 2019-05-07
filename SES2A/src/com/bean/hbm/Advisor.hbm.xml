@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Advisor" table="advisor">
+		<id name="advisorId" column="advisorId">
+			<generator class="native"></generator>
+		</id>
+		<property name="staffNumber"></property>
+		<property name="firstName"></property>
+		<property name="lastName"></property>
+		<property name="email"></property>
+		<set name="sessions" lazy="false">
+			<key column="advisorId"></key>
+			<one-to-many class="com.bean.Session"/>
+		</set>
+	</class>
+</hibernate-mapping>
