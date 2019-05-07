@@ -119,7 +119,7 @@ public final class InitiateDatabase {
 		MessageDatabase.updateMessage(message6);
 		Message message7 = MessageDatabase.getCurrentMessage(7);
 		message7.setMessageLocation("blank");
-		message7.setMessageDetailed("to be deleted");
+		message7.setMessageDetailed("Attendance interface does not exist, to be deleted");
 		message7.setMessageTempDetailed(message7.getMessageDetailed());
 		MessageDatabase.updateMessage(message7);
 		Message message8 = MessageDatabase.getCurrentMessage(8);
@@ -129,7 +129,7 @@ public final class InitiateDatabase {
 		MessageDatabase.updateMessage(message8);
 		Message message9 = MessageDatabase.getCurrentMessage(9);
 		message9.setMessageLocation("blank");
-		message9.setMessageDetailed("to be deleted");
+		message9.setMessageDetailed("Attendance interface does not exist, to be deleted");
 		message9.setMessageTempDetailed(message9.getMessageDetailed());
 		MessageDatabase.updateMessage(message9);
 		Message message10 = MessageDatabase.getCurrentMessage(10);
