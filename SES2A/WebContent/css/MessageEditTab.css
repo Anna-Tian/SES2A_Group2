@@ -1,0 +1,21 @@
+#logo {
+	font-size: 15px;
+	color: black;
+	text-align: center;
+}
+
+button {
+	display: none;
+}
+
+div {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#updateMessage {
+	display: none;
+	color: green;
+	text-align: left;
+	font-weight: bold;
+}

@@ -8,7 +8,9 @@
 			<generator class="native"></generator>
 		</id>
 		<property name="messageLocation"></property>
-		<property name="messageDetailed"></property>
+		<property name="messageDetailed" length="2000"></property>
+		<property name="messageTempDetailed" length="2000"></property>
+
 		<set name="studentProfiles">
 			<key column="messageId"></key>
 			<one-to-many class="com.bean.StudentProfile"/>

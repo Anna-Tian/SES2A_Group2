@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+
+input[type=text]{
+	width: 10%;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+select {
+	width: 10%;
+}
+select:focus {
+	min-width: 100px;
+	width: auto;
+} 
+
+p {
+	display: block;
+	margin-block-start: 10px;
+	margin-block-end: 10px;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+p.header_name{
+	display: block;
+	margin-block-start: 5px;
+	margin-block-end: 5px;
+	padding: 7px 15px 5px;
+	font-weight:bold;
+	font-size: 18pt;
+	line-height: 100%;
+	background-color: #33d6ff;
+	color:white;
+}
+
+input[type=submit]{
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+input[type=submit]:hover{
+	background-color: #33adff;
+}
+
+button {
+	align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+button:hover {
+	background-color: #33adff;
+}
+
+
+/* Style the tab */
+.tab {
+	overflow: hidden;
+	background-color: none;
+	box-sizing: border-box;
+	
+	width: 100%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: 1px solid #33adff;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+.tab button:hover {
+	background-color: #33d6ff;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	background-color: #00ace6;
+	font-weight:bold;
+}
+
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.table_session_available{
+	padding: 1px 12px;
+	border-collapse: collapse;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.table_session_available tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+.table_session_available tr:hover {
+	background-color: #ddd;
+}
+
+.table_session_available th{
+	border: 1px solid #ddd;
+	padding: 8px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: left;
+	background-color: #ccf5ff;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.table_session_available td{
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+.attendance{
+	margin-top: 3em;
+	padding-bottom: 1em;
+	border-bottom: 2px solid #ccc;
+	
+}
+#tAddSessions th, td{
+	border-bottom: 1px solid #ccc;
+	padding: 8px;
+}

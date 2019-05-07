@@ -1,0 +1,69 @@
+*{
+	margin: 0;
+}
+body {
+    background-color: #0099cc url(../img/background.png) no-repeat scroll left top;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 0.8em;
+}
+
+.title{
+	width: 90%;
+	margin: 0 auto;
+	
+	padding-top: 10px;
+	
+	
+}
+.title nav{
+	width: 75%;
+	//margin: 0 auto;
+	margin-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	//border: 2px #95e0fd solid;
+}
+
+.title h2
+{
+	
+	line-height: 1.5em;
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+.title .step
+{
+	width:20%;
+	font-weight:bold;
+	
+}
+.title #skillDetails
+{
+	padding-top:10px;
+}
+.title .topics
+{
+	padding-top:10px;
+}
+.title .sessionTime
+{
+	padding-top:10px;
+}
+
+.submitSession
+{
+	margin-bottom:60px;
+	height:80%;
+}
+.submitWS
+{
+	margin-bottom:180px;
+	height:100%;
+}
+footer{
+	padding:8px;
+	text-align: center;
+	font-size: 0.8em;
+	color: #595a5a;
+}
+//<p id="skillDetails" style="display:none;">Workshop skill-sets
