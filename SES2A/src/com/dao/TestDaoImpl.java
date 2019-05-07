@@ -44,7 +44,7 @@ public class TestDaoImpl {
 		workShop.setName("workShop1");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		workShop.setStartDate((simpleDateFormat.parse(simpleDateFormat.format(new Date()))));
-		workShop.setEndDate((simpleDateFormat.parse(simpleDateFormat.format(new Date().getTime()+60*60*24))));
+		workShop.setEndDate((simpleDateFormat.parse(simpleDateFormat.format(new Date().getTime()+1000*60*60*24*30))));
 		workShop.setDays("9");
 		workShop.setMaximumPlace("8");
 		workShop.setPlaceAvailable("7");
