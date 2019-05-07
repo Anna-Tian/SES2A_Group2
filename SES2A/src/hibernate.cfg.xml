@@ -16,6 +16,7 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 		
 		<mapping resource="com/bean/hbm/Admin.hbm.xml"/>
+		<mapping resource="com/bean/hbm/Advisor.hbm.xml"/>
 		<mapping resource="com/bean/hbm/Attendance.hbm.xml"/>
 		<mapping resource="com/bean/hbm/Comment.hbm.xml"/>
 		<mapping resource="com/bean/hbm/ConfirmationEmail.hbm.xml"/>

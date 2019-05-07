@@ -176,6 +176,22 @@ function addAdvisors() {
 
         	}
         	else{
+        		
+        		Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+         
+                // Add new Employee object
+                Advisor Ad = new Advisor();
+                Ad.setStaffNumber(document.getElementById('staffnumberadd'+i).value);
+//                 Ad.setFirstName("demo");
+//                 Ad.setLastName("user");
+//                 Ad.setEmail();
+         
+                session.save(emp);
+         
+                session.getTransaction().commit();
+                HibernateUtil.shutdown();
+                
         		//If all elements are filled, then add each of them onto Avaialble Advisors table
         		//Add staffnumber 1,2,3 with checkbox
                 var row=ADtable.insertRow(ADtable.rows.length);
@@ -190,6 +206,7 @@ function addAdvisors() {
                 staffno.name = "staffnumber"+index;
                 staffno.value = document.getElementById('staffnumberadd'+i).value;
                 cell1.appendChild(staffno);
+                
                 
                 //Add firstname 1,2,3
                 var cell2=row.insertCell(1);
@@ -215,7 +232,8 @@ function addAdvisors() {
                     email.name = "email"+index;
                     email.value = document.getElementById('emailadd'+i).value;
                     cell4.appendChild(email);
-                    
+                
+                
              	 index++;
              	 count--;
         	}
