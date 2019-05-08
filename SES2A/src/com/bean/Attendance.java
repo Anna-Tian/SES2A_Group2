@@ -13,7 +13,7 @@ public class Attendance {
 	private Boolean isPresent;
 	
 	private Student student;//n:1
-	private Session session;//n:1
+	private Session session;//1:1
 	private WorkShop workShop;//n:1
 	private Set<Report> reports = new HashSet<Report>();//n:n
 	public Attendance() {

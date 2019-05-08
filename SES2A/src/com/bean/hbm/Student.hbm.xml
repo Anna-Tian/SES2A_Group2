@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<class name="com.bean.Student" table="student">
 		<id name="studentId">
-			<generator class="native"></generator>
+			<generator class="assigned"></generator>
 		</id>
 		<property name="firstName"></property>
 		<property name="lastName"></property>

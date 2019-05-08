@@ -1,7 +1,5 @@
 package com.bean;
 
-
-
 public class ConfirmationEmail {
 	private Integer confirmationId;
 	private Boolean isSessConfSent;
