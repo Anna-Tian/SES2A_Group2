@@ -105,7 +105,6 @@
 						dataType:"text",
 						success:function(data){
 							$("#updateMessage").show();
-							window.location.reload(true);
 						}
 					});
 				});
@@ -125,7 +124,6 @@
 						dataType:"text",
 						success:function(data){
 							$("#updateMessage").show();
-							window.location.reload(true);
 						}
 					});
 					$("#previewButton").show();

@@ -30,6 +30,7 @@ public class MessageDatabase {
 	public static boolean updateMessage(Message message){
 		boolean updated = false;
 		Session session = HibernateUtil.getCurrentSession();
+		System.out.println(session);
 		Transaction transaction = session.beginTransaction();
 		
 		try{
@@ -55,8 +56,11 @@ public class MessageDatabase {
 	/************TESTING PURPOSE******************/
 	/*public static void main(String[] agrs){
 		try{
+			System.out.println("BEFORE HIBERNATE FUNCTION");
 			Message mess = getCurrentMessage(1);
 			printMessage(mess);
+			updateMessage(mess);
+		
 			Message newMess = getCurrentMessage(11);
 			newMess.setMessageDetailed("THIS IS FROM THE DATABASE FOR Logon page box on the right in student interface");
 			newMess.setMessageLocation("stu_login.jsp");

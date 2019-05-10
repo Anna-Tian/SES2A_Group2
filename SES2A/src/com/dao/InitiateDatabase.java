@@ -24,7 +24,7 @@ public final class InitiateDatabase {
 		
 		Message message1 = MessageDatabase.getCurrentMessage(1);
 		message1.setMessageLocation("probably FAQs.jsp");
-		message1.setMessageDetailed("not yet created");
+		message1.setMessageDetailed("not yet created,,,, TESTING");
 		message1.setMessageTempDetailed(message1.getMessageDetailed());
 		MessageDatabase.updateMessage(message1);
 		Message message2 = MessageDatabase.getCurrentMessage(2);
@@ -123,8 +123,25 @@ public final class InitiateDatabase {
 		message7.setMessageTempDetailed(message7.getMessageDetailed());
 		MessageDatabase.updateMessage(message7);
 		Message message8 = MessageDatabase.getCurrentMessage(8);
-		message8.setMessageLocation("stu_login.jsp");
-		message8.setMessageDetailed("message8");
+		message8.setMessageLocation("WR_Step2.jsp");
+		message8.setMessageDetailed("<h4>"+
+					"&nbsp;</h4>"+
+				"<h2>Step 2:</h2>"+
+				"<ul>"+
+					"<li>"+
+						"<p>"+
+							"<strong>To avoid a timetable clash</strong>, please check the "+
+							"date, time and location of each session carefully."+
+						"</p>"+
+					"</li>"+
+					"<li>"+
+						"<p>"+
+							"For additional session information and to register, click on the "+
+							"<strong>\'detail\'</strong> link."+
+						"</p>"+
+					"</li>"+
+				"</ul>"+
+				"<p>&nbsp;</p>");
 		message8.setMessageTempDetailed(message8.getMessageDetailed());
 		MessageDatabase.updateMessage(message8);
 		Message message9 = MessageDatabase.getCurrentMessage(9);
@@ -158,7 +175,7 @@ public final class InitiateDatabase {
 		MessageDatabase.updateMessage(message11);
 		Message message12 = MessageDatabase.getCurrentMessage(12);
 		message12.setMessageLocation("probalby Programs.jsp");
-		message12.setMessageDetailed("not yet created");
+		message12.setMessageDetailed("not yet created,,,, TESTING");
 		message12.setMessageTempDetailed(message12.getMessageDetailed());
 		MessageDatabase.updateMessage(message12);
 	}
