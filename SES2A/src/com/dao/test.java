@@ -1,6 +1,8 @@
 package com.dao;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.hibernate.Session;
@@ -12,23 +14,28 @@ import com.util.HibernateUtil;
 
 public class test {
 	
-	public void save() {
+	public void save() throws ParseException {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		WorkShop workshop = new WorkShop();
+		SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String beginTimeString="2017-03-23 08:00:00";
+		String endTimeString="2017-03-26 08:00:00";
+		Date beginTimeDate = sdf.parse( beginTimeString );
+		Date endTimeDate = sdf.parse( endTimeString );
 		
-		workshop.setName("JiachenLiu");
-		workshop.setStartDate(new Date());
-		workshop.setEndDate(new Date());
-		workshop.setDays("July 999st");
+		workshop.setName("workshop07");
+		workshop.setStartDate(beginTimeDate);
+		workshop.setEndDate(endTimeDate);
+		workshop.setDays("Just");
 		workshop.setPlaceAvailable("10");
-		workshop.setTargetGroup("test02");
-		workshop.setDescription("kdjsakjdskas");
+		workshop.setTargetGroup("test03");
+		workshop.setDescription("1332");
 		
 		
 		Room room = new Room();
 		
-		room.setRoomLocation("sjhksahjdsajhk");
+		room.setRoomLocation("004");
 		
 		
 		workshop.setRoom(room);
@@ -44,7 +51,7 @@ public class test {
 		transaction.commit();
 		return student;
 	}*/
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		(new test()).save();
 	}
 

@@ -14,6 +14,24 @@
 		$(".head").load("student_menu.html");
 		$(".foot").load("foot.html");
 		
+$("[id^='del_']").click(function(){
+			
+			var id = this.id.split("_")[1];
+			//alert(id);
+			$.ajax({
+			      url:"ComfirmationServlet",
+			      type:"post",
+			      data:"wid="+id,
+			      dataType:"text",
+			      success:function(data){
+			    	  alert(data);
+			    	  if(data){
+			    		  location.href="WR_Comfirmation_new.jsp"
+			    	  }
+			      }
+			     });
+		});
+		
 	});
 </script>
 </head>
@@ -65,7 +83,7 @@
 			</form>
 
 			<p></p>
-			<input id="bookingWorkshop" type="button" value="Book this workshop"></input>
+			<input id="del_${workShop.workShopId }" type="button" value="Book this workshop"></input>
 			</div>
 	<footer>
 		

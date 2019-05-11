@@ -37,16 +37,6 @@
 <div class="head"></div>
 	<div id="content">
 
-			<noscript>
-				<p style="color: red;">Either your browser does not support
-					javascript or javascript has been turned off. The HELPS Booking
-					System Admin area needs javascript to work. Please:</p>
-				<p style="color: red;">
-					- Switch to another browser that does supports javascript OR<br />
-					- Turn javsacript on
-				</p>
-			</noscript>
-
 
 			<h2>The skill-set title</h2>
 
@@ -94,17 +84,7 @@
 							</th>
 							<th>Detail</th>
 						</tr>
-
-						<!-- <tr>
-							<td>bchn</td>
-							<td>xx/xx/xxxx</td>
-							<td>yy/yy/yyyy</td>
-							<td>zz</td>
-							<td>xx:xx - yy:yy</td>
-							<td>z</td>
-							<td>0</td>
-							<td><a href="WR_Details_new.jsp">Detail</a></td>
-						</tr> -->
+						
 						<c:forEach var="sessions1" items="${qqq }">
 						  	<tr style="background: gray;">
 							  	<td>${sessions1.name }</td>

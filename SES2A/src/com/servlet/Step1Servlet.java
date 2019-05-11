@@ -17,6 +17,7 @@ import com.dao.WorkshopRegistrationDao;
  * Servlet implementation class Step1Servlet
  */
 @WebServlet("/Step1Servlet")
+//http://localhost:8080/SES2A/Step1Servlet
 public class Step1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
