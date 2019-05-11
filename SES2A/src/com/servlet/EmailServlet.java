@@ -18,7 +18,7 @@ import com.util.MailUtils;
 /**
  * Servlet implementation class EmailServlet
  */
-@WebServlet(urlPatterns= {"/EmailServlet","/EmailServlet_publish","/EmailServlet_sendEmail"})
+@WebServlet(urlPatterns= {"/EmailServlet","/EmailServlet_publish","/EmailServlet_sendEmail", "/EmailServlet_update"})
 public class EmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private emailDao eDao = new emailDao();
@@ -38,6 +38,8 @@ public class EmailServlet extends HttpServlet {
 		String servletPath = request.getServletPath();
 		if("/EmailServlet".equals(servletPath)){
 			Email(request, response);
+		}else if("/EmailServlet_update".equals(servletPath)) {
+			emailUpdate(request, response);
 		}else if("/EmailServlet_publish".equals(servletPath)){
 			emailPublish(request, response);
 		}else if("/EmailServlet_sendEmail".equals(servletPath)){
@@ -63,18 +65,18 @@ public class EmailServlet extends HttpServlet {
 		
 	}
 	
-//	private void emailUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//		// TODO Auto-generated method stub
-//		PrintWriter writer = response.getWriter();
-//		String emailId = request.getParameter("emailId");
-//		
-//		String updateTime = "";
-//		Date date = new Date();
-//		SimpleDateFormat u = new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
-//		updateTime = u.format(date);
-//		ConfirmationEmail email = eDao.updateEmail(Integer.parseInt(emailId),updateTime);
-//		writer.print(email.getUpdateTime());
-//	}
+	private void emailUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		PrintWriter writer = response.getWriter();
+		String emailId = request.getParameter("emailId");
+		
+		String updateTime = "";
+		Date date = new Date();
+		SimpleDateFormat u = new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
+		updateTime = u.format(date);
+		ConfirmationEmail email = eDao.updateEmail(Integer.parseInt(emailId),updateTime);
+		writer.print(email.getUpdateTime());
+	}
 
 	private void emailPublish(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter writer = response.getWriter();
@@ -104,16 +106,16 @@ public class EmailServlet extends HttpServlet {
 		ConfirmationEmail email = eDao.getCurrentEmail(emailId);
 		//request.getSession().setAttribute("emailContent",email.getTemplate());
 //		System.out.println("111111111111: "+email.getConfirmationId());
-//		if(email.getPublishTime()!= null && email.getPublishTime()!=null) {
-//			writer.print(email.getTemplate()+"$"+email.getPublishTime()+"$"+email.getPublishTime());			
-//		}else if(email.getPublishTime()== null && email.getPublishTime()!=null) {
-//			writer.print(email.getTemplate()+"$"+"Never publishes$"+email.getPublishTime());
-//		}else if(email.getPublishTime()!= null && email.getPublishTime()==null) {
-//			writer.print(email.getTemplate()+"$"+email.getPublishTime()+"$Never updates");
-//		}else {
-//			writer.print(email.getTemplate()+"$"+"Never publishes$Never updates");	
-//		}
-		writer.print(email.getTemplate()+"$"+email.getPublishTime());
+		if(email.getPublishTime()!= null && email.getUpdateTime()!=null) {
+			writer.print(email.getTemplate()+"$"+email.getPublishTime()+"$"+email.getUpdateTime());			
+		}else if(email.getPublishTime()== null && email.getUpdateTime()!=null) {
+			writer.print(email.getTemplate()+"$"+"Never publishes$"+email.getUpdateTime());
+		}else if(email.getPublishTime()!= null && email.getUpdateTime()==null) {
+			writer.print(email.getTemplate()+"$"+email.getUpdateTime()+"$Never updates");
+		}else {
+			writer.print(email.getTemplate()+"$"+"Never publishes$Never updates");	
+		}
+//		writer.print(email.getTemplate()+"$"+email.getPublishTime()+"$"+email.getUpdateTime());
 		}
 
 	/**

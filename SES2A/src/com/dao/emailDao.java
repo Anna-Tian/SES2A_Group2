@@ -12,11 +12,11 @@ public class emailDao {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		ConfirmationEmail email = new ConfirmationEmail();
-		email.setConfirmationId(9);
-		email.setTitle("Confirmation of waiting list(to student)");
-		email.setSubject("Confirmation of waiting list");
-		//email.setTemplate("[% student_givernname %] [% student_surname %] has cancelled a one-to-one appointment with you.\n" + "Appointment time: [% datetime %]");
-		email.setTemplate("999999999999999999999999999999");
+		email.setConfirmationId(8);
+		email.setTitle("   Confirmation of workshop booking (to student)");
+		email.setSubject("   Confirmation of workshop booking ");
+		email.setTemplate("[% student_givernname %] [% student_surname %] has cancelled a one-to-one appointment with you.\n" + "Appointment time: [% datetime %]");
+//		email.setTemplate("999999999999999999999999999999");
 
 		session.saveOrUpdate(email);
 		transaction.commit();
@@ -30,15 +30,15 @@ public class emailDao {
 		return email;
 	}
 	
-//	public ConfirmationEmail updateEmail(Integer id, String updateTime) {		
-//		Session session = HibernateUtil.getCurrentSession();
-//		Transaction transaction = session.beginTransaction();
-//		ConfirmationEmail email = session.get(ConfirmationEmail.class, id);
-//		email.setUpdateTime(updateTime);
-//		session.saveOrUpdate(email);
-//	    transaction.commit();
-//		return email;
-//	}
+	public ConfirmationEmail updateEmail(Integer id, String updateTime) {		
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		ConfirmationEmail email = session.get(ConfirmationEmail.class, id);
+		email.setUpdateTime(updateTime);
+		session.saveOrUpdate(email);
+	    transaction.commit();
+		return email;
+	}
 	
 	public ConfirmationEmail publishEmail(Integer id, String template, String publishTime) {
 //		Session session = null;

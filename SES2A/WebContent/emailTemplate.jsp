@@ -50,29 +50,40 @@
 							
 							/* for(i=0; i < splitArray.length; i++){
 							 document.write(splitArray[i] + "<br>");
-							} */
+							}  */
 							
-							alert(splitArray[0]);
+							/* alert(splitArray[0]);
 							alert(splitArray[1]);
-							/* alert(splitArray[2]); */
+							alert(splitArray[2]); */ 
 							$("#current_body, #new_body").val(splitArray[0]);
 							$("table tr:eq(3) th:eq(1)").html("last published on "+splitArray[1]); 
-							/* $("table tr:eq(3) th:eq(2)").html("last updated on "+splitArray[2]);   */
+							$("table tr:eq(3) th:eq(2)").html("last updated on "+splitArray[2]);  
 						}	
 					}); 
 			});
 			
 			$("#update_email").click(function(){
-				/* var id =$("#select_email").val(); */
+				var id =$("#select_email").val(); 
 				var emailTemplate = $("#new_body").val();
 				$("#current_body").val(emailTemplate);
 				alert("Update Successfully");
+				$.ajax({
+					url: "EmailServlet_update",
+					type: "post",
+					data: "emailId="+id,
+					dataType: "text",
+					success: function(data){
+						/* alert(data); */
+						$("table tr:eq(3) th:eq(2)").html("last updated on "+data); 
+					}
+				});
 			});
 
 			
 			$("#publish_email").click(function(){
 				var emailTemplate = $("#new_body").val();
 				var id =$("#select_email").val();
+				$("#current_body").val(emailTemplate);
 				$.ajax({
 					url: "EmailServlet_publish", 
 					type: "post",
@@ -84,7 +95,7 @@
 					success: function(data){
 						alert(data); 
 						/*  alert("Publish Successfully");  */
-						var publishTime=$("table tr:eq(3) th:eq(1)").html("last published on "+data); 
+						var publishTime=$("table tr:eq(3) th:eq(1)").html("last published on "+data);
 					}
 					
 				});
@@ -170,7 +181,7 @@
 					<tr>
 						<th></th>
 						<th>Never publishes</th>
-						<th></th>
+						<th>Never updates</th>
 					</tr>
 					<tr>
 						<th></th>
