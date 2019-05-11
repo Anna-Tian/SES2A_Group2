@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@
 				$(".head").load("student_menu.html");
 				$(".foot").load("foot.html");
 				
-				var sessions1 = "${sessions_a }";
+				var sessions1 = "${sessions }";
 				var sessions2 = "${upcoming }";
 				var sessions3 = "${past }";
 				if(sessions1==""){
@@ -92,24 +93,24 @@
 					<p>There are no sessions to display.</p>
 				</div>
 				<div id="session2">
-					<h4>Past</h4>
+					<!-- <h4>Past</h4> -->
 					<table align="center" width="500px" class="table table-hover">
 						<tr align="left">
 							<th>Date</th>
-							<th>Days</th>
+							<!-- <th>Days</th> -->
 							<th>Time</th>
 							<th>Room</th>
 							<th>Advisor</th>
 							<th>Type</th>
 						</tr>
-						<c:forEach var="sessions1" items="${sessions_a }">
+						<c:forEach var="thisSession" items="${sessions }">
 						  	<tr align="left">
-							  	<td>${sessions1.attr1 }</td>
-							  	<td>${sessions1.attr2 }</td>
-							  	<td>${sessions1.attr3 }</td>
-							  	<td>${sessions1.attr4 }</td>
-							  	<td>${sessions1.attr5 }</td>
-							  	<td>${sessions1.attr6 }</td>
+							  	<td><fmt:formatDate type="date" value="${thisSession.date }" /></td>
+							  	<%-- <td>${thisSession.endTime } - ${thisSession.startTime }</td> --%>
+							  	<td><fmt:formatDate type="time" value="${thisSession.startTime }" /></td>
+							  	<td>${thisSession.room }</td>
+							  	<td>${thisSession.advisorName }</td>
+							  	<td>${thisSession.type }</td>
 						 	</tr>
 					  </c:forEach>		
 					</table>
@@ -137,8 +138,8 @@
 						<c:forEach var="workShop" items="${upcoming }">
 						  	<tr align="left">
 							  	<td>${workShop.name }</td>
-							  	<td>${workShop.startDate }</td>
-							  	<td>${workShop.endDate }</td>
+							  	<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${workShop.startDate }" /></td>
+							  	<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${workShop.endDate }" /></td>
 							  	<td>${workShop.days }</td>
 							  	<td>${workShop.placeAvailable }</td>
 							  	<td>${workShop.room }</td>
@@ -167,8 +168,8 @@
 						<c:forEach var="workShop" items="${past }">
 						  	<tr align="left">
 							  	<td>${workShop.name }</td>
-							  	<td>${workShop.startDate }</td>
-							  	<td>${workShop.endDate }</td>
+							  	<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${workShop.startDate }" /></td>
+							  	<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${workShop.endDate }" /></td>
 							  	<td>${workShop.days }</td>
 							  	<td>${workShop.placeAvailable }</td>
 							  	<td>${workShop.room }</td>

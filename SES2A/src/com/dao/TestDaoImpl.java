@@ -36,6 +36,24 @@ public class TestDaoImpl {
 		session.save(student);
 		transaction.commit();
 	}
+	public void saveSession() throws ParseException {
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		
+		com.bean.Session pSession = new com.bean.Session();
+		pSession.setDate(new Date());
+		pSession.setStartTime(new Date());
+		pSession.setEndTime(new Date());
+		pSession.setType("type");
+		pSession.setAdvisorName("name");
+		pSession.setRule("rule");
+		pSession.setBooked("1");
+		pSession.setIsAttendance("2");
+		
+		session.save(pSession);
+		transaction.commit();
+		
+	}
 	public void saveWorkShop() throws ParseException {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
@@ -80,7 +98,7 @@ public class TestDaoImpl {
 		return workShop;
 	}
 	public static void main(String[] args) throws ParseException {
-		(new TestDaoImpl()).saveStudent();
+		(new TestDaoImpl()).saveSession();
 		System.out.println("TestDaoImpl Success");
 	}
 }

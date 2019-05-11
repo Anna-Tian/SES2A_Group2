@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.Session;
 import com.bean.Student;
 import com.bean.WorkShop;
 import com.dao.StudentBookings;
@@ -103,8 +104,10 @@ public class MyBookingsServlet extends HttpServlet {
 		Student student = (Student) request.getSession().getAttribute("student");
 		Student currentStudent = studentProfileDao.getCurrentStudent(student.getStudentId());
 		Set<WorkShop> workShops = currentStudent.getWorkShops();
+		Set<Session> sessions = currentStudent.getSessions();
 
 		request.getSession().setAttribute("workShops",null);
+		request.getSession().setAttribute("sessions",null);
 		if(workShops!=null&&workShops.size()>0) {
 			upcomingPast(workShops);
 			if (past!=null&&past.size()>0) {
@@ -117,6 +120,9 @@ public class MyBookingsServlet extends HttpServlet {
 			}else if (upcoming.size()==0) {
 				request.getSession().setAttribute("upcoming",null);
 			}
+		}
+		if(sessions!=null&&sessions.size()>0) {
+			request.getSession().setAttribute("sessions",sessions);
 		}
 		response.sendRedirect("myBookings.jsp");
 	}
