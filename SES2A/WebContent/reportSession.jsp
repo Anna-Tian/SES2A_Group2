@@ -90,8 +90,26 @@
 			var sel;
 			var sql;
 			var startDate = document.getElementById("datetimepicker1").value;
-			var endDate = document.getElementById("datetimepicker2").value;
 			
+			var endDate = document.getElementById("datetimepicker2").value;
+			var repType = document.getElementsByName('repType'); 
+			
+			var temp_type=false;
+			for(var i=0;i<repType.length;i++)
+				{
+				if(repType[i].checked)
+					{
+					temp_type=true;
+					break;
+					}
+				}
+			if((temp_type==false)||(startDate=="")||endDate=="")
+				
+				{
+				alert("Please fill the form");
+				}
+			
+			else{
 			if(document.getElementById("bookedSession").checked){
 			
 			
@@ -135,7 +153,7 @@
 				
 			
 				sql="select studentId,sessionId from session where studentId="+id+ " between "+startDate+" and "+endDate;
-				alert(sql)
+				//alert(sql)
 			}
 			else if(document.getElementById("advisorComment").checked){
 				var id = document.getElementById("advisorID").value;
@@ -143,13 +161,14 @@
 		
 			
 				sql="select  * from comment where adminId= "+id+ " between "+startDate+" and "+endDate;
-				alert(sql);
+				//alert(sql);
 			}
 			else if(document.getElementById("stuinWL").checked){
 				
 				sel = "Students in the waiting list";
 				sql="select * from waitingList where waitingDateTime between "+startDate+" and "+endDate;
 			}
+			
 			$.ajax({
 				url:"reportDownload",
 				type:"post",
@@ -164,6 +183,7 @@
 					
 				}
 			});
+			}
 			
 		
 			
