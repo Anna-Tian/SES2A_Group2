@@ -15,25 +15,8 @@
 	</script>
 </head>
 <body>
-<<<<<<< HEAD
 	<div class="head"></div>
-=======
-	<header>
-		<nav>
-			<a href="//">Sessions</a> 
-			<a href="//">Workshops</a>
-			<a href="//">Advisors</a>
-			<a href="//">Students</a> 
-			<a href="//">Waiting List</a>
-			<a href="reportSession.jsp">Reports</a>
-			<a href="//">Template</a>
-			<a href="emailTemplate.jsp">Email</a>
-			<a href="//">Room</a>
-			<a href="//">Message</a>
-			<a href="//">Exit</a>
-		</nav>
-	</header>
->>>>>>> refs/remotes/origin/OneToOneSession_Anna
+	
 	<div class="wrapper">
 		<h2>Archived Workshops</h2>
 		<div></div>
