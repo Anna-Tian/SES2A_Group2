@@ -6,38 +6,14 @@ body {
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-size: 0.8em;
 }
-header nav{
-	text-align: center;
-	margin:4px;
-}
-
-header nav a{
-	padding:5px;
-	background-color: #5ebef0;
-	font-weight: 600;
-	font-size: 0.8em;
-	color: #fff;
-	text-decoration: none;
-}
-
-header nav a:hover{
-	padding:5px;
-	background-color: #fff;
-	font-weight: 600;
-	font-size: 0.8em;
-	color: black;
-	text-decoration: none;
-	border:1px #5ebef0 solid;
-}
 
 .title{
-	width: 75%;
+	width: 90%;
 	margin: 0 auto;
 	
-	padding-left: 10px;
-	padding-right: 10px;
-	border: 2px #95e0fd solid;
-	//border-right: 2px #95e0fd solid;
+	padding-top: 10px;
+	
+	
 }
 .title nav{
 	width: 75%;
@@ -48,10 +24,9 @@ header nav a:hover{
 	//border: 2px #95e0fd solid;
 }
 
-.title h3
+.title h2
 {
-	background-color: #2ccaff;
-	color: white;
+	
 	line-height: 1.5em;
 	margin-top:20px;
 	margin-bottom: 20px;
@@ -60,6 +35,7 @@ header nav a:hover{
 {
 	width:20%;
 	font-weight:bold;
+	
 }
 .title #skillDetails
 {
@@ -74,7 +50,16 @@ header nav a:hover{
 	padding-top:10px;
 }
 
-
+.submitSession
+{
+	margin-bottom:60px;
+	height:80%;
+}
+.submitWS
+{
+	margin-bottom:180px;
+	height:100%;
+}
 footer{
 	padding:8px;
 	text-align: center;

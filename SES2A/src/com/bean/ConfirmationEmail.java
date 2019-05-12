@@ -1,5 +1,7 @@
 package com.bean;
 
+import oracle.net.aso.q;
+
 public class ConfirmationEmail {
 	private Integer confirmationId;
 	private Boolean isSessConfSent;
@@ -12,13 +14,20 @@ public class ConfirmationEmail {
 	private WorkShop workShop;//n:1
 	private Admin admin;//n:1
 	private ReminderEmail reminderEmail;//1:1
+	private String template;
+	
+	private String title;
+	private String publishTime;
+	private String updateTime;
+	private String subject;
 	public ConfirmationEmail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ConfirmationEmail(Integer confirmationId, Boolean isSessConfSent, String sessConfDateTime,
 			Boolean isWkshConfSent, String wkshConfDateTime, Student student, Session session, WorkShop workShop,
-			Admin admin, ReminderEmail reminderEmail) {
+			Admin admin, ReminderEmail reminderEmail, String template, String title, String publishTime,
+			String updateTime, String subject) {
 		super();
 		this.confirmationId = confirmationId;
 		this.isSessConfSent = isSessConfSent;
@@ -30,6 +39,11 @@ public class ConfirmationEmail {
 		this.workShop = workShop;
 		this.admin = admin;
 		this.reminderEmail = reminderEmail;
+		this.template = template;
+		this.title = title;
+		this.publishTime = publishTime;
+		this.updateTime = updateTime;
+		this.subject = subject;
 	}
 	public Integer getConfirmationId() {
 		return confirmationId;
@@ -91,6 +105,37 @@ public class ConfirmationEmail {
 	public void setReminderEmail(ReminderEmail reminderEmail) {
 		this.reminderEmail = reminderEmail;
 	}
+	public String getTemplate() {
+		return template;
+	}
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getPublishTime() {
+		return publishTime;
+	}
+	public void setPublishTime(String publishTime) {
+		this.publishTime = publishTime;
+	}
+	public String getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	
 	
 	
 }

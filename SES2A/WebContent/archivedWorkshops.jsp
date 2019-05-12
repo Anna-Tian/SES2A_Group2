@@ -6,15 +6,18 @@
 	<meta charset="UTF-8">
 	<title>Archived Workshops</title>
 	<link rel="stylesheet" href="css/archivedWorkshops.css" />
-		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				
-				
-			});
-		</script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
+		});
+	</script>
 </head>
 <body>
+<<<<<<< HEAD
+	<div class="head"></div>
+=======
 	<header>
 		<nav>
 			<a href="//">Sessions</a> 
@@ -30,11 +33,9 @@
 			<a href="//">Exit</a>
 		</nav>
 	</header>
+>>>>>>> refs/remotes/origin/OneToOneSession_Anna
 	<div class="wrapper">
-		<nav>
-			<a href="//">Current</a> 
-			<a href="//">Archived</a>
-		</nav>
+		<h2>Archived Workshops</h2>
 		<div></div>
 		<div class="title">Skill-set:&nbsp;</div>
 		<input id="skillsInput" type="text">
@@ -152,8 +153,6 @@
 			<button>Update</button>
 		</div>
 	</div>
-	<footer>
-		<a>© HELPS Booking System</a>
-	</footer>
+	<div class="footer"></div>
 </body>
 </html>
