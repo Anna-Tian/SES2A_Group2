@@ -16,7 +16,7 @@ import com.dao.skillsetDao;
 /**
  * Servlet implementation class SkillsetServlet
  */
-@WebServlet(urlPatterns= {"/SkillsetServlet","/SkillsetServlet_add"})
+@WebServlet(urlPatterns= {"/SkillsetServlet","/SkillsetServlet_add","/SkillsetServlet_update"})
 public class SkillsetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private skillsetDao sDao = new skillsetDao();
@@ -39,10 +39,24 @@ public class SkillsetServlet extends HttpServlet {
 			skillset(request, response);
 		}else if("/SkillsetServlet_add".equals(servletPath)){
 			skillsetAdd(request, response);
+		}else if("/SkillsetServlet_update".equals(servletPath)){
+			skillsetUpdate(request, response);
 		}else {
 			
+		}		
+	}
+
+	private void skillsetUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		PrintWriter writer = response.getWriter();
+		String skillSetId = request.getParameter("skillSetId");
+		String shortName = request.getParameter("shortName");
+		boolean flag = sDao.updateSkill(Integer.parseInt(skillSetId),shortName);
+		if(flag) {
+			writer.print("true");
+		}else {
+			writer.print("false");
 		}
-		
 	}
 
 	private void skillsetAdd(HttpServletRequest request, HttpServletResponse response) throws IOException {
