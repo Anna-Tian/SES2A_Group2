@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="com.dao.FromDbToExcelTest01"%>
+    <%@page import="com.dao.FromDbToExcel"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +59,7 @@
 
 
 <select  name="skillSets" id="skills">
-<option value=""></option>
+<option id="none" value=""></option>
 <option value="">Improve your writing</option>
 <option value="">Improve your grammar</option>
 <option value="">Improve your speaking</option>
@@ -74,33 +74,32 @@
 </p>
 
 
-<p class="topics" id="topics" style="display:none" >&nbsp;&nbsp;&nbsp;&nbsp;Workshop Topics
+<!-- <p class="topics" id="topics" style="display:none" >&nbsp;&nbsp;&nbsp;&nbsp;Workshop Topics
 
-
-<select >
-<option value="none"></option>
+ <select >
+<option  value="none"></option>
 <option value="session">Starting your session</option>
 <option value="writing">What is Academic writing</option>
 </select>
-</p>
+</p> -->
 
-<p class="sessionTime" id="sessionTime" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;Session
+<!-- <p class="sessionTime" id="sessionTime" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;Session
 <select >
 <option value="none"></option>
 <option value="date">Date:19/03 Time:14:00-15:00</option>
 
 </select>
-</p>
+</p> -->
 
-<span class="includeRep" id="includeRep" style="display:none; ">
+<!-- <span class="includeRep" id="includeRep" style="display:none; ">
 &nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Booking
 &nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Waiting
 &nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Include student profiles
-</span>
+</span>  -->
 
 
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;<input type="Radio" name="repType" value=""/>Workshop skill-sets summary
+&nbsp;&nbsp;&nbsp;&nbsp;<input id="skillSummary" type="Radio" name="repType" value=""/>Workshop skill-sets summary
 <br/>
 <br/>
 <div class="submitWS">
@@ -120,13 +119,77 @@
 			laydate.render({
 			  	elem: '#datetimepicker2' 
 			});
-			$("#btnSessionsub").click(function(){
-				
-				<%
-				FromDbToExcelTest01.download("report");
-				%>
-			})
 			
+
+			$("#btnWorksub").click(function(){
+				//alert("submit");
+				var sel;
+				var sql;
+				var startDate = document.getElementById("datetimepicker1").value;
+				var endDate = document.getElementById("datetimepicker2").value;
+				var obj=document.getElementById('skills');
+				var index=obj.selectedIndex;
+				var val = obj.options[index].text;
+				//alert(val);
+				if("Improve your writing" == val){
+					sel="Improve your writing";
+					sql="select * from workshop where name='Improve your writing' between "+startDate+" and "+endDate;
+				}else if("Improve your grammar"==val){
+					sel="Improve your grammar";
+					sql="select * from workshop where name='Improve your grammar' between "+startDate+" and "+endDate;
+				}
+				else if("Improve your speaking"==val){
+					sel="Improve your speaking";
+					sql="select * from workshop where name='Improve your speaking' between "+startDate+" and "+endDate;
+				} else if("Write now| Writing Support Sessions"==val){
+					sel="Write now| Writing Support Sessions";
+					sql="select * from workshop where name='Write now| Writing Support Sessions' between "+startDate+" and "+endDate;
+				}
+				 else if("U: PASS write"==val){
+						sel="U Pass Write";
+						sql="select * from workshop where name='U: PASS write' between "+startDate+" and "+endDate;
+					}
+				 else if("U:PASS"==val){
+						sel="U PASS";
+						sql="select * from workshop where name='U:PASS' between "+startDate+" and "+endDate;
+					}
+				 else if("Conversations@UTS(register not required)"==val){
+						sel="Conversations@UTS(register not required)";
+						sql="select * from workshop where name='Conversations@UTS(register not required)' between "+startDate+" and "+endDate;
+					}
+				 else if("Academic Writing Boot Camp Feb 2019"==val){
+						sel="Academic Writing Boot Camp Feb 2019";
+						sql="select * from workshop where name='Academic Writing Boot Camp Feb 2019' between "+startDate+" and "+endDate;
+					}
+				 else if("Summer Special Workshops 2018-19"==val){
+						sel="Summer Special Workshops 2018-19";
+						sql="select * from workshop where name='Summer Special Workshops 2018-19' between "+startDate+" and "+endDate;
+					}
+				 else if(document.getElementById("skillSummary").checked){
+					 sel="skillSummary";
+					 sql="select workShopId, name, description from workshop where startDate between "+startDate+" and "+endDate;
+				 }
+				//alert("wwwww");
+
+				$.ajax({
+					url:"reportDownload",
+					type:"post",
+					data:{
+						sel:sel,
+						sql:sql
+						
+					},
+					dataType:"text",
+					success:function(data){
+						//alert(data);
+						//alert("qqqqqq");
+
+					}
+				});
+				
+				
+				
+			});
 		</script>
 
 </body>

@@ -15,11 +15,15 @@ public class HibernateUtil {
 	}
 	public static Session getCurrentSession() {
 		
-
+		
 		return sessionFactory.getCurrentSession();
 	}
 	public static void main(String[] args) {
 		System.out.println("Success");
+		System.out.println("Succe1ss");
+		System.out.println("Succes2s");
+		System.out.println("Success");
+		System.out.println("Succe77ss");
 	}
 	
 }
