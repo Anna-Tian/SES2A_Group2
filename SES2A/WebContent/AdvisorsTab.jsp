@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import = "com.bean.Advisor" %>
+<%@page import = "java.sql.Connection"%>
+<%@page import = "java.sql.DriverManager"%>
+<%@page import = "java.sql.SQLException"%>
+<%@page import = "java.sql.Statement"%>  
+<%@page import = "java.sql.ResultSet"%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <style>  
 td {  
     border: 1px solid black;  
@@ -13,6 +21,11 @@ td {
 td {
     padding: 10px; 
 }
+
+th{
+	text-align:left;
+}
+
 
 .header {
     background-color: #4db8ff;
@@ -27,43 +40,72 @@ td {
 .buttonholder{
 	text-align:center;
 }
-</style>  
 
+</style>  
 </head>
+ 
+<!----------------------------------------------------------------------------------- Line break for each sections of Advisors tab ----------------------------------------------------------------------------------->
+ 
  
 <body class ="tab">
 
 <!-- Create the table of Available Advisors -->
 <div class = 'header'><b><font color = "white" size = "+2">Advisors Available</font></b></div>
+<form method="post" action="update-process.jsp">
 <table id = "availableAD" style="border-bottom: 1px solid black">
-
 <tr>  
-<th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
+<th><input type = "checkbox" name ="chk"> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
 </tr>
 
-<tr>
-	<td><input type="checkbox" name = "chk"><input type = "number" name = "staffnumber" ></td> 
-	<td><input type = "text" name = "firstname" ></td> <td><input type = "text" name = "lastname" ></td> 
-	<td><input type = "text" name = "email" ></td> 
-</tr>
-<tr>
-	<td><input type="checkbox" name = "chk"><input type = "number" name = "staffnumber" ></td> 
-	<td><input type = "text" name = "firstname" ></td> <td><input type = "text" name = "lastname" ></td> 
-	<td><input type = "text" name = "email" ></td> 
-</tr>
-<tr>
-	<td><input type="checkbox" name = "chk"><input type = "number" name = "staffnumber" ></td> 
-	<td><input type = "text" name = "firstname" ></td> <td><input type = "text" name = "lastname" ></td> 
-	<td><input type = "text" name = "email" ></td> 
-</tr>
-<tr>
-	<td><input type="checkbox" name = "chk"><input type = "number" name = "staffnumber" ></td> 
-	<td><input type = "text" name = "firstname" ></td> <td><input type = "text" name = "lastname" ></td> 
-	<td><input type = "text" name = "email" ></td> 
-</tr>
-</table>  
+  <%
+  String id = request.getParameter("id");
+  String driver = "com.mysql.jdbc.Driver"; 
+  String connectionURL = "jdbc:mysql://localhost:3306/"; 
+  String dtbName = "uts_help"; 
+  String dtbId =  "root"; 
+  String dtbPass = "rootroot";
+  
+  try{ 
+	  Class.forName(driver); 
+	}catch(ClassNotFoundException e) 
+  		{
+  			e.printStackTrace(); 
+ 		}
+  
+  Connection connection = null; 
+  Statement statement = null; 
+  ResultSet resultSet =  null; 
+  %> 
+  <tr> 
+  <% 
+  try{ 
+	  connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
+  statement = connection.createStatement(); 
+  String  dtb = "SELECT * FROM advisor"; 
+  resultSet = statement.executeQuery(dtb); 
+  while  (resultSet.next()) {
+ %>
 
-<!-- Note -->
+  <tr> 
+  <td><input type = "checkbox" name = "chk"/> <input name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
+  <td><input value = <%=resultSet.getString("firstName")%> /></td> 
+  <td><input value = <%=resultSet.getString("lastName")%> /></td>
+  <td><input value = <%=resultSet.getString("email") %> /></td>
+  </tr> 
+
+
+<%
+} 
+  }catch
+  (Exception e) { e.printStackTrace(); }
+  
+%>
+
+</table>
+
+
+
+<!-- Note displayed in Advisors Tab -->
 <b>Please note:</b>
 <ul>
 <li>If  you delete an advisor, all sessions run by that advisor will also be deleted.</li>
@@ -71,8 +113,8 @@ td {
 </ul>
 
 <!-- Create Delete Update Inactive buttons -->
-<div class= 'buttonholder'> <button onclick="delAd()">Delete</button> <button>Update</button> <button onclick = "inActivate()">Inactive</button> </div>
-
+<div class= 'buttonholder'> <button onclick="delAd()">Delete</button> <input type = "submit" value = "update"/> <button onclick = "inActivate()">Inactive</button> </div>
+</form>
 <script>
 
 // Delete function
@@ -116,11 +158,24 @@ function inActivate(){
 		}
 	
 }
+
+// Update function
+/* function update(){
+	var nBoxes = document.getElementsByName('chk');
+	var staffnumberupdate = document.getElementsByName('staffno')
+
+					connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
+				  	statement = connection.createStatement(); 
+				  	String  dtbupdate = "update advisor set staffNumber = " + staffnumberupdate  
+				  					", lastName = ng, firstName = h, email = @" ++; 
+				  	resultSet = statement.executeUpdate(dtbupdate);
+	
+} */
 </script>
 
-<!-------------------------------------------- Line break for each sections of Advisors tab -------------------------------------------->
-																 	<hr>
-<!-------------------------------------------- Line break for each sections of Advisors tab -------------------------------------------->
+<!----------------------------------------------------------------------------------- Line break for each sections of Advisors tab ----------------------------------------------------------------------------------->
+																 											<hr>
+<!----------------------------------------------------------------------------------- Line break for each sections of Advisors tab ----------------------------------------------------------------------------------->
 
 
 <!-- Note  -->
@@ -130,6 +185,7 @@ To enter more advisors, please enter their details below and click "Add". <br>
 
 
 <!-- Add Advisors Table -->
+<form action="AdvisorsTab" method="post">
 <table id = "addAD">  
 <tr><th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th></tr>
 <tr id = "add1">
@@ -151,11 +207,13 @@ To enter more advisors, please enter their details below and click "Add". <br>
 	<td><input type = "text" name = "firstnameadd" id = "firstnameadd3"></td> 
 	<td><input type = "text" name = "lastnameadd" id = "lastnameadd3"></td> 
 	<td><input type = "text" name = "emailadd" id = "emailadd3"></td> 
+
 </tr>
 </table>
 
 <!-- Create button and functions to add advisors  -->
-<div class= 'buttonholder'> <button onclick = "addAdvisors()">Add</button> </div>
+<div class= 'buttonholder'> <input type="submit" value="Add" /> </div>
+</form>
 
 <script>
 var index = 1;
@@ -177,21 +235,7 @@ function addAdvisors() {
         	}
         	else{
         		
-        		Session session = HibernateUtil.getSessionFactory().openSession();
-                session.beginTransaction();
-         
-                // Add new Employee object
-                Advisor Ad = new Advisor();
-                Ad.setStaffNumber(document.getElementById('staffnumberadd'+i).value);
-                Ad.setFirstName(document.getElementById('firstnameadd'+i).value;);
-                Ad.setLastName(document.getElementById('lastnameadd'+i).value);
-                Ad.setEmail(document.getElementById('emailadd'+i).value);
-         
-                session.save(emp);
-         
-                session.getTransaction().commit();
-                HibernateUtil.shutdown();
-                
+        		
         		//If all elements are filled, then add each of them onto Avaialble Advisors table
         		//Add staffnumber 1,2,3 with checkbox
                 var row=ADtable.insertRow(ADtable.rows.length);
@@ -232,8 +276,7 @@ function addAdvisors() {
                     email.name = "email"+index;
                     email.value = document.getElementById('emailadd'+i).value;
                     cell4.appendChild(email);
-                
-                
+                    
              	 index++;
              	 count--;
         	}
@@ -241,9 +284,9 @@ function addAdvisors() {
 }
 </script>
 
-<!-------------------------------------------- Line break for each sections of Advisors tab -------------------------------------------->
-																	<hr>
-<!-------------------------------------------- Line break for each sections of Advisors tab -------------------------------------------->
+<!----------------------------------------------------------------------------------- Line break for each sections of Advisors tab ----------------------------------------------------------------------------------->
+																											<hr>
+<!----------------------------------------------------------------------------------- Line break for each sections of Advisors tab ----------------------------------------------------------------------------------->
 
 
 <!-- Inactive Advisor -->
@@ -266,3 +309,4 @@ function addAdvisors() {
 
 </body>
 </html>
+

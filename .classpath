@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="SES2A/src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_211">
 		<attributes>
 			<attribute name="module" value="true"/>
 			<attribute name="owner.project.facets" value="java"/>
@@ -16,5 +16,7 @@
 	<classpathentry kind="lib" path="C:/hibernate-distribution-3.6.10.Final/lib/required/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/hibernate-distribution-3.6.10.Final/hibernate-core-4.2.4.final.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="lib" path="C:/spring-framework-5.1.6.RELEASE/libs"/>
+	<classpathentry kind="var" path="SpringFrameWork"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
