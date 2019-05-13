@@ -12,126 +12,152 @@
 		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	
 		<script>
-			
-			$(function(){
-				/* initiate the page */
-				$('.head').load('admin_head.html');
-				$('.footer').load('admin_footer.html');
-				var choiceValue = localStorage.getItem("selectedOption");
-				document.getElementById("messageTabSelectList").options[choiceValue].selected = "selected";
-				var txtEditor = CKEDITOR.replace( 'textEditor');
-				//this disable ACF of CKEDITOR
-				CKEDITOR.config.allowedContent = true;
-				
-				var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageTempDetailed()%>";
-				var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageTempDetailed()%>";
-				var mess3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageTempDetailed()%>";
-				var mess4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageTempDetailed()%>";
-				var mess5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageTempDetailed()%>";
-				var mess6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageTempDetailed()%>";
-				var mess7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageTempDetailed()%>";
-				var mess8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageTempDetailed()%>";
-				var mess9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageTempDetailed()%>";
-				var mess10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageTempDetailed()%>";
-				var mess11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageTempDetailed()%>";
-				var mess12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageTempDetailed()%>";
 
-				//TODO: if there is any way to directly use choiceValue for getCurrentMessage, it would be much less of hard-coding
-				switch(choiceValue){
-				    case '1': txtEditor.setData(mess1); break;
-					case '2': txtEditor.setData(mess2); break;
-					case '3': txtEditor.setData(mess3); break;
-					case '4': txtEditor.setData(mess4); break;
-					case '5': txtEditor.setData(mess5); break;
-					case '6': txtEditor.setData(mess6); break;
-					case '7': txtEditor.setData(mess7); break;
-					case '8': txtEditor.setData(mess8); break;
-					case '9': txtEditor.setData(mess9); break;
-					case '10': txtEditor.setData(mess10); break;
-					case '11': txtEditor.setData(mess11); break;
-					case '12': txtEditor.setData(mess12); break;
-					default: break;
-				}
-				/*text area change event*/
-				txtEditor.on('change', function(){
-					$("#cancelButton").show();
-					$("#saveButton").show();
-				}); 
-				
+		$(window).load(function(){
+			initiateView();
+		});
 			
-				/*handle select list event*/
-				$("#messageTabSelectList").change(function(){
-					var selectedOptionValue = document.getElementById("messageTabSelectList").value;
-					if(selectedOptionValue != '0'){   
-						$("#previewButton").hide();
-						$("#publishButton").hide();
-						$("#cancelButton").hide();
-						$("#saveButton").hide();
-						switch(selectedOptionValue){
-						    case '1': txtEditor.setData(mess1); break;
-							case '2': txtEditor.setData(mess2); break;
-							case '3': txtEditor.setData(mess3); break;
-							case '4': txtEditor.setData(mess4); break;
-							case '5': txtEditor.setData(mess5); break;
-							case '6': txtEditor.setData(mess6); break;
-							case '7': txtEditor.setData(mess7); break;
-							case '8': txtEditor.setData(mess8); break;
-							case '9': txtEditor.setData(mess9); break;
-							case '10': txtEditor.setData(mess10); break;
-							case '11': txtEditor.setData(mess11); break;
-							case '12': txtEditor.setData(mess12); break;
-							default: break;
-						}	
-					}
-					else{
-						window.location = "MessageTab.jsp";
-					}
-				});
-				/*handle preview button click*/
-				$("#previewButton").click(function(){
-					//open preview window
-					var myWindow = window.open("", "width=200,height=100");
-				    
-				});
-				/*handle publish button click*/
-				$("#publishButton").click(function(){
-					//save changes made to the message into the database
-					var m = txtEditor.getData();
-					$("#updateMessage").show();
-					$.ajax({
-						url:"MessageServlet",
-						type:"post",
-						data:{message: m, index: document.getElementById("messageTabSelectList").value, type: "publish"},
-						dataType:"text",
-						success:function(data){
-							$("#updateMessage").show();
-						}
-					});
-				});
-				/*handle cancel button click*/
-				$("#cancelButton").click(function(){
-					window.location = "MessageTab.jsp";
-				});
-				/*handle save button click*/
-				$("#saveButton").click(function(){
-					//save changes and enable preview and publish button
-					var m = txtEditor.getData();
-					
-					$.ajax({
-						url:"MessageServlet",
-						type:"post",
-						data:{message: m, index: document.getElementById("messageTabSelectList").value, type: "save"},
-						dataType:"text",
-						success:function(data){
-							$("#updateMessage").show();
-						}
-					});
-					$("#previewButton").show();
-					$("#publishButton").show();
-					$("#saveButton").hide();
+		/* initiate the page */			
+		function initiateView(){
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
+			var choiceValue = localStorage.getItem("selectedOption");
+			document.getElementById("messageTabSelectList").options[choiceValue].selected = "selected";
+			var txtEditor = CKEDITOR.replace( 'textEditor');
+			//this disable ACF of CKEDITOR
+			CKEDITOR.config.allowedContent = true;
+			
+			var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageTempDetailed()%>";
+ 			var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageTempDetailed()%>";
+			var mess3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageTempDetailed()%>";
+			var mess4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageTempDetailed()%>";
+			var mess5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageTempDetailed()%>";
+			var mess6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageTempDetailed()%>";
+			var mess7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageTempDetailed()%>";
+			var mess8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageTempDetailed()%>";
+			var mess9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageTempDetailed()%>";
+			var mess10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageTempDetailed()%>";
+			var mess11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageTempDetailed()%>";
+			var mess12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageTempDetailed()%>";
+			var loc1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageLocation()%>";
+ 			var loc2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageLocation()%>";
+			var loc3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageLocation()%>";
+			var loc4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageLocation()%>";
+			var loc5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageLocation()%>";
+			var loc6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageLocation()%>";
+			var loc7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageLocation()%>";
+			var loc8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageLocation()%>";
+			var loc9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageLocation()%>";
+			var loc10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageLocation()%>";
+			var loc11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageLocation()%>";
+			var loc12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageLocation()%>";
+
+			//TODO: if there is any way to directly use choiceValue for getCurrentMessage, it would be much less of hard-coding
+			switch(choiceValue){
+			    case '1': txtEditor.setData(mess1); break;
+				case '2': txtEditor.setData(mess2); break;
+				case '3': txtEditor.setData(mess3); break;
+				case '4': txtEditor.setData(mess4); break;
+				case '5': txtEditor.setData(mess5); break;
+				case '6': txtEditor.setData(mess6); break;
+				case '7': txtEditor.setData(mess7); break;
+				case '8': txtEditor.setData(mess8); break;
+				case '9': txtEditor.setData(mess9); break;
+				case '10': txtEditor.setData(mess10); break;
+				case '11': txtEditor.setData(mess11); break;
+				case '12': txtEditor.setData(mess12); break;
+				default: break;
+			}
+				
+			/*text area change event*/
+			txtEditor.on('change', function(){
+				$("#cancelButton").show();
+				$("#saveButton").show();
+			}); 
+
+			/*handle select list event*/
+			$("#messageTabSelectList").change(function(){
+				choiceValue = document.getElementById("messageTabSelectList").value;
+				if(choiceValue != '0'){   
+					$("#previewButton").hide();
+					$("#publishButton").hide();
 					$("#cancelButton").hide();
-				});
+					$("#saveButton").hide();
+					$("#updateMessage").hide();
+					switch(choiceValue){
+					    case '1': txtEditor.setData(mess1); break;
+						case '2': txtEditor.setData(mess2); break;
+						case '3': txtEditor.setData(mess3); break;
+						case '4': txtEditor.setData(mess4); break;
+						case '5': txtEditor.setData(mess5); break;
+						case '6': txtEditor.setData(mess6); break;
+						case '7': txtEditor.setData(mess7); break;
+						case '8': txtEditor.setData(mess8); break;
+						case '9': txtEditor.setData(mess9); break;
+						case '10': txtEditor.setData(mess10); break;
+						case '11': txtEditor.setData(mess11); break;
+						case '12': txtEditor.setData(mess12); break;
+						default: break;
+					}	
+				}
+				else{
+					window.location = "MessageTab.jsp";
+				}
 			});
+
+
+			/*handle publish button click*/
+			$("#publishButton").click(function(){
+				//save changes made to the message into the database
+				var m = txtEditor.getData();
+				
+				$.ajax({
+					url:"MessageServlet",
+					type:"post",
+					data:{message: m, index: document.getElementById("messageTabSelectList").value, type: "publish"},
+					dataType:"text",
+					success:function(data){
+						$("#updateMessage").text("MESSAGE PUBLISHED").show();
+					}
+				});
+				
+			});
+
+			/*handle save button click*/
+			$("#saveButton").click(function(){
+				//save changes and enable preview and publish button
+				var m = txtEditor.getData();
+
+				$.ajax({
+					url:"MessageServlet",
+					type:"post",
+					data:{message: m, index: document.getElementById("messageTabSelectList").value, type: "save"},
+					dataType:"text",
+					success:function(data){
+						$("#updateMessage").text("MESSAGE SAVED").show();
+					}
+				});
+				
+				$("#previewButton").show();
+				$("#publishButton").show();
+				$("#saveButton").hide();
+				$("#cancelButton").hide();
+			});
+
+			/*handle preview button click*/
+			$("#previewButton").click(function(){
+				//open preview window
+				switch(choiceValue){
+				 default: window.open(loc11, "width=200,height=100");
+				}
+					    
+			});
+
+			/*handle cancel button click*/
+			$("#cancelButton").click(function(){
+				window.location = "MessageTab.jsp";
+			});
+		}
 		</script>
 	</head>
 	

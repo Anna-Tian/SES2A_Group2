@@ -7,7 +7,7 @@
 	<title>MESSAGE TAB</title>
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script>
-		$(function(){
+		$(document).ready(function(){
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
 		});

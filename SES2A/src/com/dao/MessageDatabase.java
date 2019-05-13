@@ -59,12 +59,9 @@ public class MessageDatabase {
 			System.out.println("BEFORE HIBERNATE FUNCTION");
 			Message mess = getCurrentMessage(1);
 			printMessage(mess);
+			mess.setMessageDetailed("new message for testing");
+			mess.setMessageTempDetailed("new message for testing");
 			updateMessage(mess);
-		
-			Message newMess = getCurrentMessage(11);
-			newMess.setMessageDetailed("THIS IS FROM THE DATABASE FOR Logon page box on the right in student interface");
-			newMess.setMessageLocation("stu_login.jsp");
-			updateMessage(newMess);
 		}
 		catch(NullPointerException e){
 			System.out.println("CAUGHT IN MAIN: MESSAGE ID IS OUT OF BOUND!!!");

@@ -55,17 +55,17 @@ public class MessageServlet extends HttpServlet {
 	
 	private void save(String message, String id, HttpServletResponse response) throws IOException{
 		Message mess = MessageDatabase.getCurrentMessage(Integer.parseInt(id));
-		mess.setMessageTempDetailed(message);
+		//mess.setMessageTempDetailed(message);
 		MessageDatabase.updateMessage(mess);
-		
+		System.out.println("SAVE MESSAGE CALLED");
 		response.sendRedirect("MessageEditTab.jsp");
 	}
 	
 	private void publish(String message, String id, HttpServletResponse response) throws IOException{
 		Message mess = MessageDatabase.getCurrentMessage(Integer.parseInt(id));
-		mess.setMessageDetailed(message);
+		//mess.setMessageDetailed(message);
 		MessageDatabase.updateMessage(mess);
-		
+		System.out.println("PUBLISH MESSAGE CALLED");
 		response.sendRedirect("MessageEditTab.jsp");
 	}
 
