@@ -52,7 +52,7 @@ th{
 
 <!-- Create the table of Available Advisors -->
 <div class = 'header'><b><font color = "white" size = "+2">Advisors Available</font></b></div>
-<form method="post" action="advisorUpdate.java">
+<form action="AdvisorsTab" method="post">
 <table id = "availableAD" style="border-bottom: 1px solid black">
 <tr>  
 <th><input type = "checkbox" name ="chk"> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
@@ -88,10 +88,11 @@ th{
  %>
 
   <tr> 
-  <td><input type = "checkbox" name = "chk"/> <input name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
-  <td><input name = "firstname"  value = <%=resultSet.getString("firstName")%> /></td> 
-  <td><input name = "lastname"  value = <%=resultSet.getString("lastName")%> /></td>
-  <td><input name = "email" value = <%=resultSet.getString("email") %> /></td>
+  <td><input type = "checkbox" name = "chk"/> 
+  	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
+  <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
+  <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
+  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
   </tr> 
 
 
@@ -113,7 +114,7 @@ th{
 <li>If  you delete an advisor, all sessions run by that advisor will also be deleted.</li>
 <li>Inactive advisors will not be able to log in, and their names will be removed from the drop down list.</li>
 </ul>
-<div class= 'buttonholder'> <button onclick="delAd()">Delete</button> <input type = "submit" value = "update"/> <button onclick = "inActivate()">Inactive</button> </div>
+<div class= 'buttonholder'> <button onclick="delAd()">Delete</button> <input type = "submit" name = "action" value = "Update"/> <button onclick = "inActivate()">Inactive</button> </div>
 </form>
 
 
@@ -216,7 +217,7 @@ To enter more advisors, please enter their details below and click "Add". <br>
 </table>
 
 <!-- Create button and functions to add advisors  -->
-<div class= 'buttonholder'> <input type="submit" value="Add" /> </div>
+<div class= 'buttonholder'> <input type="submit" name = "action" value="Add" /> </div>
 </form>
 
 <script>

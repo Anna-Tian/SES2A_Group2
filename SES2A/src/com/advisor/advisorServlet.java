@@ -19,18 +19,38 @@ public class advisorServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
- 
+    	
+    	String action = request.getParameter("action");
+    	String[] checkbx = request.getParameterValues("chk");
         String staffnumber = request.getParameter("staffnumberadd");
         String firstname = request.getParameter("firstnameadd");
         String lastname = request.getParameter("lastnameadd");
         String email = request.getParameter("emailadd");
-
+        
+        String staffnumberupdate = request.getParameter("staffno");
+        String firstnameupdate = request.getParameter("fname");
+        String lastnameupdate = request.getParameter("lname");
+        String emailupdate = request.getParameter("staffemail");
+        if(action.equalsIgnoreCase("Add")) {
         try {
             advisorDao AdvisorDAO = new advisorDao();
             AdvisorDAO.add(staffnumber, firstname, lastname, email);
-        } catch (Exception e) {
- 
-            e.printStackTrace();
+            response.sendRedirect("AdvisorsTab.jsp");
+        	} catch (Exception e) {
+        		e.printStackTrace(); 
+        	}
+        }else if (action.equalsIgnoreCase("Update")) {
+        	if(checkbx != null) {
+                try {
+                    advisorDao AdvisorDAO = new advisorDao();
+                    AdvisorDAO.update(staffnumberupdate, firstnameupdate, lastnameupdate, emailupdate);
+                    response.sendRedirect("AdvisorsTab.jsp");
+                } catch (Exception e) {
+         
+                    e.printStackTrace();
+                }
+        	}
+
         }
  
     }
