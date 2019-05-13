@@ -56,7 +56,7 @@ public class advisorDao {
             advisorupdate.setFirstName(firstNameupdate);
             advisorupdate.setLastName(lastNameupdate);
             advisorupdate.setEmail(emailupdate);
-            session.saveOrUpdate(advisorupdate);
+            session.update(advisorupdate);
             transaction.commit();
             System.out.println("\n\n Details Updated \n");
  
