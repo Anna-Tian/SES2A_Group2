@@ -28,6 +28,7 @@ public class advisorServlet extends HttpServlet {
         try {
             advisorDao AdvisorDAO = new advisorDao();
             AdvisorDAO.add(staffnumber, firstname, lastname, email);
+            response.sendRedirect("AdvisorsTab.jsp");
         } catch (Exception e) {
  
             e.printStackTrace();
