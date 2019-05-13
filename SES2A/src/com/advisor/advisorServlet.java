@@ -8,7 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
- 
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.bean.Advisor;
 import com.dao.advisorDao;
  
 
@@ -35,15 +41,18 @@ public class advisorServlet extends HttpServlet {
         try {
             advisorDao AdvisorDAO = new advisorDao();
             AdvisorDAO.add(staffnumber, firstname, lastname, email);
+  		  System.out.println("Object Added successfully.....!!");
             response.sendRedirect("AdvisorsTab.jsp");
         	} catch (Exception e) {
         		e.printStackTrace(); 
         	}
         }else if (action.equalsIgnoreCase("Update")) {
         	if(checkbx != null) {
+            	Integer advisorId = Integer.valueOf(request.getParameter("adId"));
                 try {
                     advisorDao AdvisorDAO = new advisorDao();
-                    AdvisorDAO.update(staffnumberupdate, firstnameupdate, lastnameupdate, emailupdate);
+                    AdvisorDAO.update(advisorId,staffnumberupdate, firstnameupdate, lastnameupdate, emailupdate);
+          		    System.out.println("Object Updated successfully.....!!");
                     response.sendRedirect("AdvisorsTab.jsp");
                 } catch (Exception e) {
          
@@ -51,9 +60,21 @@ public class advisorServlet extends HttpServlet {
                 }
         	}
 
+        }else if(action.equalsIgnoreCase("Delete")) {
+        	if(checkbx != null) {
+            	Integer advisorId = Integer.valueOf(request.getParameter("adId"));
+                try {
+                  advisorDao AdvisorDao = new advisorDao();
+                  AdvisorDao.delete(advisorId);
+        		  System.out.println("Object Deleted successfully.....!!"); 
+                  response.sendRedirect("AdvisorsTab.jsp");
+
+
+                }catch (Exception e) {
+                        	e.printStackTrace();
+                        }
+                }
         }
- 
     }
-    
     
 }

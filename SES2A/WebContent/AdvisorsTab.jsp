@@ -88,7 +88,8 @@ th{
  %>
 
   <tr> 
-  <td><input type = "checkbox" name = "chk"/> 
+  
+  <td><input type = "checkbox" name = "chk"/> <input type="hidden" name="adId" value = <%=resultSet.getString("advisorId")%>> 
   	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
   <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
   <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
@@ -114,22 +115,13 @@ th{
 <li>If  you delete an advisor, all sessions run by that advisor will also be deleted.</li>
 <li>Inactive advisors will not be able to log in, and their names will be removed from the drop down list.</li>
 </ul>
-<div class= 'buttonholder'> <button onclick="delAd()">Delete</button> <input type = "submit" name = "action" value = "Update"/> <button onclick = "inActivate()">Inactive</button> </div>
+<div class= 'buttonholder'> <input type = "submit" name = "action" value = "Delete"/> <input type = "submit" name = "action" value = "Update"/> <button onclick = "inActivate()">Inactive</button> </div>
 </form>
 
 
 <!-- Create Delete Update Inactive buttons -->
 
 <script>
-
-// Delete function
-function delAd(){
-	var isTable = document.getElementById('availableAD');
-	var nBoxes = document.getElementsByName('chk');
-	for (i=nBoxes.length-1; i>=0; i--)
-		{if (nBoxes[i].checked == true){isTable.deleteRow(i+1)}}
-}
-
 
 
 // Inactive function
@@ -164,18 +156,6 @@ function inActivate(){
 	
 }
 
-// Update function
-/* function update(){
-	var nBoxes = document.getElementsByName('chk');
-	var staffnumberupdate = document.getElementsByName('staffno')
-
-					connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
-				  	statement = connection.createStatement(); 
-				  	String  dtbupdate = "update advisor set staffNumber = " + staffnumberupdate  
-				  					", lastName = ng, firstName = h, email = @" ++; 
-				  	resultSet = statement.executeUpdate(dtbupdate);
-	
-} */
 </script>
 
 <!----------------------------------------------------------------------------------- Line break for each sections of Advisors tab ----------------------------------------------------------------------------------->
