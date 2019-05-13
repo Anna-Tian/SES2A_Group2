@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import = "com.bean.Advisor" %>
-<%@page import = "java.sql.Connection"%>
-<%@page import = "java.sql.DriverManager"%>
-<%@page import = "java.sql.SQLException"%>
-<%@page import = "java.sql.Statement"%>  
-<%@page import = "java.sql.ResultSet"%>    
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page import = "com.bean.Advisor" %>
+<%@ page import = "java.sql.Connection"%>
+<%@ page import = "java.sql.DriverManager"%>
+<%@ page import = "java.sql.SQLException"%>
+<%@ page import = "java.sql.Statement"%>  
+<%@ page import = "java.sql.ResultSet"%>    
     
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,7 @@ th{
 
 <!-- Create the table of Available Advisors -->
 <div class = 'header'><b><font color = "white" size = "+2">Advisors Available</font></b></div>
-<form method="post" action="update-process.jsp">
+<form method="post" action="advisorUpdate.java">
 <table id = "availableAD" style="border-bottom: 1px solid black">
 <tr>  
 <th><input type = "checkbox" name ="chk"> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
@@ -79,23 +80,24 @@ th{
   <tr> 
   <% 
   try{ 
-	  connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
-  statement = connection.createStatement(); 
-  String  dtb = "SELECT * FROM advisor"; 
-  resultSet = statement.executeQuery(dtb); 
+	connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
+  	statement = connection.createStatement(); 
+  	String  dtb = "SELECT * FROM advisor"; 
+  	resultSet = statement.executeQuery(dtb); 
   while  (resultSet.next()) {
  %>
 
   <tr> 
   <td><input type = "checkbox" name = "chk"/> <input name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
-  <td><input value = <%=resultSet.getString("firstName")%> /></td> 
-  <td><input value = <%=resultSet.getString("lastName")%> /></td>
-  <td><input value = <%=resultSet.getString("email") %> /></td>
+  <td><input name = "firstname"  value = <%=resultSet.getString("firstName")%> /></td> 
+  <td><input name = "lastname"  value = <%=resultSet.getString("lastName")%> /></td>
+  <td><input name = "email" value = <%=resultSet.getString("email") %> /></td>
   </tr> 
 
 
 <%
 } 
+  connection.close();
   }catch
   (Exception e) { e.printStackTrace(); }
   
@@ -111,10 +113,12 @@ th{
 <li>If  you delete an advisor, all sessions run by that advisor will also be deleted.</li>
 <li>Inactive advisors will not be able to log in, and their names will be removed from the drop down list.</li>
 </ul>
-
-<!-- Create Delete Update Inactive buttons -->
 <div class= 'buttonholder'> <button onclick="delAd()">Delete</button> <input type = "submit" value = "update"/> <button onclick = "inActivate()">Inactive</button> </div>
 </form>
+
+
+<!-- Create Delete Update Inactive buttons -->
+
 <script>
 
 // Delete function
