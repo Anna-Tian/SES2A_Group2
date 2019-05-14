@@ -1,4 +1,4 @@
-package com.advisor;
+package servlet;
  
 import java.io.IOException;
  

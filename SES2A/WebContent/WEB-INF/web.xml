@@ -5,7 +5,7 @@
   <servlet>
       <display-name>AdvisorServlet</display-name>
       <servlet-name>advisorServlet</servlet-name>
-      <servlet-class>com.advisor.advisorServlet</servlet-class>
+      <servlet-class>servlet.advisorServlet</servlet-class>
   </servlet>
   <servlet-mapping>
       <servlet-name>advisorServlet</servlet-name>
