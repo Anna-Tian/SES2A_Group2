@@ -1,154 +1,136 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Set Workshops</title>
 <link rel="stylesheet" href="css/setWorkshops.css" />
-
+<link rel="stylesheet" href="css/emailTemplate.css" />
+<link rel="stylesheet" href="css/adminMenu.css">
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.head').load('admin_head.html');
+		$('.footer').load('admin_footer.html');
+	});
+</script>
 </head>
 <body>
-	<header>
-		<nav>
-			<a href="//">Sessions</a> 
-			<a href="//">Workshops</a>
-			<a href="//">Advisors</a>
-			<a href="//">Students</a> 
-			<a href="//">Waiting List</a>
-			<a href="//">Reports</a>
-			<a href="//">Template</a>
-			<a href="//">Email</a>
-			<a href="//">Room</a>
-			<a href="//">Message</a>
-			<a href="//">Exit</a>
-		</nav>
-	</header>
+	<div class="head"></div>
+
 	<div class="wrapper">
 		<nav>
-			<a href="//">Current</a> 
-			<a href="//">Archived</a>
+			<a id="Current" href="workshop?action=toSkillSet">Current</a> <a
+				href="//">Archived</a>
 		</nav>
 		<div></div>
-		<div class="title">Skill-set:&nbsp;</div>
-		<input id="skillsInput" type="text">
-		<button>Add</button>
+		<form action="workshop" method="post">
+			<div class="title">Skill-set:&nbsp;</div>
+			<input type="hidden" name="action" value="insertSkillSet"
+				required="required"> <input id="skillsInput" name="name"
+				type="text"> <input type="submit" value="Add">
+		</form>
 		<table rules="rows">
 			<tbody>
 				<tr>
 					<th>No</th>
 					<th>
-						<input type="checkbox">
+						<!-- <input type="checkbox"> -->select
 					</th>
 					<th>Skill-set</th>
 					<th>Short Title</th>
 					<th></th>
 				</tr>
-				<tr>
-					<th>
-						<select>
-							<option>1</option>
-						</select>
-					</th>
-					<th>
-						<input type="checkbox">
-					</th>
-					<th style="width: 30%;">
-						<input placeholder="Improve your writing" readonly="readonly">
-					</th>
-					<th style="width: 30%;">
-						<input placeholder="Writing 2019">
-					</th>
-					<th>
-						<a href="">SetWorkshops</a>
-					</th>
-				</tr>
-				<tr style="background-color: #eff0f3;">
-					<th>
-						<select>
-							<option>2</option>
-						</select>
-					</th>
-					<th>
-						<input type="checkbox">
-					</th>
-					<th style="width: 55%;">
-						<input placeholder="U:PASSwrite" readonly="readonly">
-					</th>
-					<th style="width: 25%;">
-						<input placeholder="U:PASSWrite 2019">
-					</th>
-					<th>
-						<a href="">SetWorkshops</a>
-					</th>
-				</tr>
-				<tr>
-					<th>
-						<select>
-							<option>3</option>
-						</select>
-					</th>
-					<th>
-						<input type="checkbox">
-					</th>
-					<th style="width: 55%;">
-						<input placeholder="Improve your grammar" readonly="readonly">
-					</th>
-					<th style="width: 25%;">
-						<input placeholder="Grammar 2019">
-					</th>
-					<th>
-						<a href="">SetWorkshops</a>
-					</th>
-				</tr>
-				<tr style="background-color: #eff0f3;">
-					<th style="width: 7%;">
-						<select>
-							<option>4</option>
-						</select>
-					</th>
-					<th style="width: 3%;">
-						<input type="checkbox">
-					</th>
-					<th style="width: 55%;">
-						<input placeholder="Improve your speaking" readonly="readonly">
-					</th>
-					<th style="width: 25%;">
-						<input placeholder="Speaking 2019">
-					</th>
-					<th style="width: 10%;">
-						<a href="">SetWorkshops</a>
-					</th>
-				</tr>
-				<tr>
-					<th>
-						<select>
-							<option>5</option>
-						</select>
-					</th>
-					<th>
-						<input type="checkbox">
-					</th>
-					<th style="width: 55%;">
-						<input placeholder="U:PASS" readonly="readonly">
-					</th>
-					<th style="width: 25%;">
-						<input placeholder="U:PASS">
-					</th>
-					<th>
-						<a href="">SetWorkshops</a>
-					</th>
-				</tr>
+
+				<c:forEach items="${skillSets}" var="item" varStatus="status">
+					<tr>
+						<th>
+							<%-- <select class="skillSetId" data-index="${item.skillSetId }">
+								<c:forEach var="s"  begin="1" end="${fn:length(skillSets)}" >
+									<option   <c:if test="${status.index+1 == s }"> selected </c:if> >${s}</option>
+								</c:forEach>
+							</select> --%> ${status.index+1 }
+						</th>
+						<th><input type="radio" name="sel" class="sel"
+							value="${item.skillSetId}"></th>
+						<th style="width: 30%;"><input readonly="readonly"
+							value="${item.name}"></th>
+						<th style="width: 30%;"><input name="shortName"
+							value="${item.shortName}"></th>
+						<th><a
+							href="workshop?action=showWorkShop&skillSetId=${item.skillSetId}">SetWorkshops</a>
+						</th>
+					</tr>
+				</c:forEach>
+
 			</tbody>
 		</table>
 		<div class="buttonArea">
 			<button>Archive</button>
-			<button>Update</button>
+			<button id="Update">Update</button>
 		</div>
 	</div>
-	<footer>
-		<a>© HELPS Booking System</a>
-	</footer>
-
+	<div class="footer"></div>
 </body>
+<script type="text/javascript">
+ $(function(){
+	
+	$("#Update").click(function(){
+		
+		var skillSetId = $(".sel:checked").val();
+		var shortName = $(".sel:checked").parent().next().next().children().val();
+		
+		$.ajax({
+			url:"workshop",
+			data:{"skillSetId":skillSetId,"shortName":shortName,"action":'updateSkillSet'},
+			type:"post",
+			async: false ,
+			success:function(result){
+				if(result=='success'){
+					window.location.href="workshop?action=toSkillSet"
+				}
+			}
+		});
+		
+		
+	});
+	
+	
+	/* $(".skillSetId").change(function(){
+		
+		var newv = $(this).val();
+		var oldv=$(this).attr("data-index");
+		
+		$.ajax({
+			url:"workshop",
+			data:{"id1":newv,"id2":oldv,"action":'changeSkillSet'},
+			type:"post",
+			async: false ,
+			success:function(result){
+				if(result=='success'){
+					window.location.href="workshop?action=toSkillSet"
+				}
+			}
+		});
+	}) */
+	
+}) 
+
+</script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('select').change(function(){
+				var value=$("select").find("option:selected").val();
+				
+				if(value!=" "){
+					$(changeTemplate).removeClass('hide');
+				}else{
+					$(changeTemplate).addClass('hide');
+				}
+			})
+		})
+	</script>
 </html>
