@@ -11,6 +11,7 @@
 		<property name="firstName"></property>
 		<property name="lastName"></property>
 		<property name="email"></property>
+		<property name="isActive"></property>
 		<set name="sessions" lazy="false">
 			<key column="advisorId"></key>
 			<one-to-many class="com.bean.Session"/>
