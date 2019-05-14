@@ -72,9 +72,9 @@ public class advisorServlet extends HttpServlet {
 
                 }catch (Exception e) {
                         	e.printStackTrace();
-                        }
-                }
-        }
-    }
+                     	}
+                	}
+        	}
+    	}
     
 }

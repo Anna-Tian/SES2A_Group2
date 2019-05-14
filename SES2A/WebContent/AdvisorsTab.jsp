@@ -54,7 +54,7 @@ th{
 
 <!-- Create the table of Available Advisors -->
 <div class = 'header'><b><font color = "white" size = "+2">Advisors Available</font></b></div>
-<form action="AdvisorsTab" method="post">
+<form action="advisorServlet" method="post">
 <table id = "availableAD" style="border-bottom: 1px solid black">
 <tr>  
 <th><input type = "checkbox" name ="chk"> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
@@ -172,7 +172,7 @@ To enter more advisors, please enter their details below and click "Add". <br>
 
 
 <!-- Add Advisors Table -->
-<form action="AdvisorsTab" method="post">
+<form action="advisorServlet" method="post">
 <table id = "addAD">  
 <tr><th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th></tr>
 <tr id = "add1">
