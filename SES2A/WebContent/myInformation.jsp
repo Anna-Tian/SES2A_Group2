@@ -53,7 +53,8 @@
 	</script>
 	<script>
 	$(function(){
-		var mess = "<%=MessageDatabase.getCurrentMessage(6).getMessageDetailed()%>";
+		<%MessageDatabase database = new MessageDatabase();%>
+		var mess = "<%=database.getCurrentMessage(6).getMessageDetailed()%>";
 		$(".notes-box").html(mess);
 	});
 	</script>
