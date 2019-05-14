@@ -21,7 +21,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>UTS</h1>
+            <h1>
+            <a herf="https://www.uts.edu.au/current-students/support/helps">UTS:HELPS</a></h1>
         </header>
         <!--Body-->>
         <section>
