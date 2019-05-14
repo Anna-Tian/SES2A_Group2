@@ -21,23 +21,23 @@ public final class InitiateDatabase {
 			session.createSQLQuery(sql).executeUpdate();
 		}
 		transaction.commit();*/
-		
-		Message message1 = MessageDatabase.getCurrentMessage(1);
+		MessageDatabase database = new MessageDatabase();
+		Message message1 = database.getCurrentMessage(1);
 		message1.setMessageLocation("probably FAQs.jsp");
 		message1.setMessageDetailed("not yet created,,,, TESTING");
 		message1.setMessageTempDetailed(message1.getMessageDetailed());
-		MessageDatabase.updateMessage(message1);
-		Message message2 = MessageDatabase.getCurrentMessage(2);
+		database.updateMessage(message1);
+		Message message2 = database.getCurrentMessage(2);
 		message2.setMessageLocation("message2.jsp");
 		message2.setMessageDetailed("message2");
 		message2.setMessageTempDetailed(message2.getMessageDetailed());
-		MessageDatabase.updateMessage(message2);
-		Message message3 = MessageDatabase.getCurrentMessage(3);
+		database.updateMessage(message2);
+		Message message3 = database.getCurrentMessage(3);
 		message3.setMessageLocation("stu_login.jsp");
 		message3.setMessageDetailed("message3");
 		message3.setMessageTempDetailed(message3.getMessageDetailed());
-		MessageDatabase.updateMessage(message3);
-		Message message4 = MessageDatabase.getCurrentMessage(4);
+		database.updateMessage(message3);
+		Message message4 = database.getCurrentMessage(4);
 		message4.setMessageLocation("WR_Step1.jsp");
 		message4.setMessageDetailed("<h3>"+
 					"<strong>Important information:</strong>"+
@@ -91,16 +91,16 @@ public final class InitiateDatabase {
 				"</p>"+
 				"<p>&nbsp;</p>");
 		message4.setMessageTempDetailed(message4.getMessageDetailed());
-		MessageDatabase.updateMessage(message4);
-		Message message5 = MessageDatabase.getCurrentMessage(5);
-		message5.setMessageLocation("my_information.jsp");
+		database.updateMessage(message4);
+		Message message5 = database.getCurrentMessage(5);
+		message5.setMessageLocation("myInformation.jsp");
 		message5.setMessageDetailed("<p>This page displays your profile. Please update it whenever necessary (especially your contact details).</p>"+
 					"<p>Questions marked with an asterisk (*) are compulsory.</p>"+
 					"<p>&nbsp;</p>");
 		message5.setMessageTempDetailed(message5.getMessageDetailed());
-		MessageDatabase.updateMessage(message5);
-		Message message6 = MessageDatabase.getCurrentMessage(6);
-		message6.setMessageLocation("my_information.jsp");
+		database.updateMessage(message5);
+		Message message6 = database.getCurrentMessage(6);
+		message6.setMessageLocation("myInformation.jsp");
 		message6.setMessageDetailed("<p>"+
 				"The collected information (after removing any of your personal details) may also be used to:</p>"+
 				"<ul>"+
@@ -116,13 +116,13 @@ public final class InitiateDatabase {
 						"will not be disclosed unless required or permitted by law.</li>"+
 				"</ul>");
 		message6.setMessageTempDetailed(message6.getMessageDetailed());
-		MessageDatabase.updateMessage(message6);
-		Message message7 = MessageDatabase.getCurrentMessage(7);
+		database.updateMessage(message6);
+		Message message7 = database.getCurrentMessage(7);
 		message7.setMessageLocation("blank");
 		message7.setMessageDetailed("Attendance interface does not exist, to be deleted");
 		message7.setMessageTempDetailed(message7.getMessageDetailed());
-		MessageDatabase.updateMessage(message7);
-		Message message8 = MessageDatabase.getCurrentMessage(8);
+		database.updateMessage(message7);
+		Message message8 = database.getCurrentMessage(8);
 		message8.setMessageLocation("WR_Step2.jsp");
 		message8.setMessageDetailed("<h4>"+
 					"&nbsp;</h4>"+
@@ -143,13 +143,13 @@ public final class InitiateDatabase {
 				"</ul>"+
 				"<p>&nbsp;</p>");
 		message8.setMessageTempDetailed(message8.getMessageDetailed());
-		MessageDatabase.updateMessage(message8);
-		Message message9 = MessageDatabase.getCurrentMessage(9);
+		database.updateMessage(message8);
+		Message message9 = database.getCurrentMessage(9);
 		message9.setMessageLocation("blank");
 		message9.setMessageDetailed("Attendance interface does not exist, to be deleted");
 		message9.setMessageTempDetailed(message9.getMessageDetailed());
-		MessageDatabase.updateMessage(message9);
-		Message message10 = MessageDatabase.getCurrentMessage(10);
+		database.updateMessage(message9);
+		Message message10 = database.getCurrentMessage(10);
 		message10.setMessageLocation("stu_login.jsp");
 		message10.setMessageDetailed("<h1>Welcome to HELPS booking system.</h1>"+ 
 					"<p>&nbsp;</p>"+
@@ -158,8 +158,8 @@ public final class InitiateDatabase {
 					"<p>At this stage, we only open registration for March and April"+
 						" workshops. For the remaining workshops, registration will be open in week 5.&nbsp;</p>");
 		message10.setMessageTempDetailed(message10.getMessageDetailed());
-		MessageDatabase.updateMessage(message10);
-		Message message11 = MessageDatabase.getCurrentMessage(11);
+		database.updateMessage(message10);
+		Message message11 = database.getCurrentMessage(11);
 		message11.setMessageLocation("stu_login.jsp");
 		message11.setMessageDetailed("<ul>"+
 						"<li><a href=\\\"http://www.ssu.uts.edu.au/helps/about.html\\\">HELPS "+
@@ -172,11 +172,11 @@ public final class InitiateDatabase {
 						"</a></li></ul>"+ 
 						"<p>&nbsp;</p>");
 		message11.setMessageTempDetailed(message11.getMessageDetailed());
-		MessageDatabase.updateMessage(message11);
-		Message message12 = MessageDatabase.getCurrentMessage(12);
+		database.updateMessage(message11);
+		Message message12 = database.getCurrentMessage(12);
 		message12.setMessageLocation("probalby Programs.jsp");
 		message12.setMessageDetailed("not yet created,,,, TESTING");
 		message12.setMessageTempDetailed(message12.getMessageDetailed());
-		MessageDatabase.updateMessage(message12);
+		database.updateMessage(message12);
 	}
 }

@@ -10,7 +10,7 @@ import com.util.HibernateUtil;
 public class MessageDatabase {
 	
 	//Finds and returns the message with the given ID
-	public static Message getCurrentMessage(int id) {
+	public Message getCurrentMessage(int id) {
 
 		try{
 			Session session = HibernateUtil.getCurrentSession();
@@ -27,10 +27,9 @@ public class MessageDatabase {
 	
 	
 	//updates the given message object in the database
-	public static boolean updateMessage(Message message){
+	public boolean updateMessage(Message message){
 		boolean updated = false;
 		Session session = HibernateUtil.getCurrentSession();
-		System.out.println(session);
 		Transaction transaction = session.beginTransaction();
 		
 		try{
@@ -47,24 +46,25 @@ public class MessageDatabase {
 	}
 	
 	//Printing out details and the location of the message
-	public static void printMessage(Message message){
+	public void printMessage(Message message){
 		System.out.println(message.getMessageDetailed());
 		System.out.println(message.getMessageTempDetailed());
 		System.out.println(message.getMessageLocation());
 	}
 	
 	/************TESTING PURPOSE******************/
-	/*public static void main(String[] agrs){
+	public static void main(String[] agrs){
 		try{
+			MessageDatabase database = new MessageDatabase();
 			System.out.println("BEFORE HIBERNATE FUNCTION");
-			Message mess = getCurrentMessage(1);
-			printMessage(mess);
-			mess.setMessageDetailed("new message for testing");
-			mess.setMessageTempDetailed("new message for testing");
-			updateMessage(mess);
+			Message mess = database.getCurrentMessage(1);
+			/*printMessage(mess);*/
+			mess.setMessageDetailed("new message for testingDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd");
+			mess.setMessageTempDetailed("new message for testingDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd");
+			database.updateMessage(mess);
 		}
 		catch(NullPointerException e){
 			System.out.println("CAUGHT IN MAIN: MESSAGE ID IS OUT OF BOUND!!!");
 		}
-	}*/
+	}
 }
