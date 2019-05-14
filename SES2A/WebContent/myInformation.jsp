@@ -1,6 +1,5 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="com.bean.StudentProfile"%>
-<%@ page import="com.dao.MessageDatabase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -85,14 +84,6 @@
 				$("#btnRegister").submit();
 			}); */
 		});
-	</script>
-	<script>
-	$(function(){
-		var mess1 = "<%=MessageDatabase.getCurrentMessage(4).getMessageDetailed()%>";
-		$("#a-box").html(mess);
-		var mess2 = "<%=MessageDatabase.getCurrentMessage(6).getMessageDetailed()%>";
-		$(".notes-box").html(mess);
-	});
 	</script>
 </head>
 <body>
