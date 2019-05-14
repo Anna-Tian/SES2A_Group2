@@ -1,95 +1,90 @@
-body{
+#foot{
+	padding-top:40px;
+	border: none;
 	margin: 0;
-	padding: 0;
-	font-family: Microsoft Yahei, Verdana, Arial, Helvetica, sans-serif;
-}
-header{
+	width: 1504.3px;
+	height:296.4px;
 	position: relative;
-	top: 0;
-	left: 0;
-	padding-top: 0 50px;
-	padding-bottom: 0 50px;
-	width: 100%;
-	height: auto;
-	box-sizing: border-box;
+	background-color: #000;
 }
-
-header .logo{
-	padding: 15px;
-	padding-left: 50px;
-	height: 70px;
+#foot a{
+	font-family: "NB Akademie Std",Arial,sans-serif;
+	font-weight:300;
+	color: #b2b2b2;
+	text-decoration : none;
 }
-
-header nav{
-	background: black;
-	padding: 25px;
+#foot a:visited, :link:visited {
+    /* color: #0f4beb; */
 }
-
-header nav ul{
-	margin: 0;
-	padding: 0;
-	display: flex;
+#foot span{
+	color: #fff;
+	font-size: 1.25rem;
 }
-
-header nav ul li{
-	list-style: none;
-	position: relative;
-}
-
-header nav ul li.sub-menu:before{
-
-}
-
-header nav ul li.active.sub-menu:before{
-
-}
-
-header nav ul li ul{
+#foot #li1{
 	position: absolute;
-	left: 0;
-	background: black;
-	display: none;
+	left: 150px;
+}
+#foot #li2{
+	position: absolute;
+	left: 400px;
+}
+#foot #li3{
+	position: absolute;
+	left: 650px;
+}
+#foot #li4{
+	position: absolute;
+	left: 900px;
+}
+#foot .footer-menu__item a, #foot .field-item a{
+	font-size: 15px;
+    line-height: 1.5rem;
+    margin: 0 0 1.5rem;
+}
+#foot .footer-menu__item a:hover, #foot .field-item a:hover {
+    line-height: 1.5rem;
+    margin: 0 0 1.5rem;
+    color: #fff;
+}
+#foot .footer-menu__level-2{
+	padding-top: 20px;
+	position: absolute;
+	left:-40px;
+	width: 150px;
+}
+#foot .field-item{
+	position: absolute;
+	left: 1050px;
+	top:35px;
+	width: 300px;
+	line-height: 25px;
+}
+#foot .field-item h3{
+	position: absolute;
+	left:40px;
+	width: 300px;
+	line-height: 25px;
+}
+#foot .field-item p{
+	position: absolute;
+	left:40px;
+	top:50px;
+	width: 300px;
+	line-height: 25px;
+}
+#foot .footer-social__menu img{
+	background-color: #D3D3D3;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 115px;
+	margin-right: 20px;
+	padding: 0px;
+}
+#foot .footer-social__item{
+	float:left;
+	margin: 0 0 1.5rem;
+	margin-right: 20px;
+	padding: 0px;
 }
 
-header nav ul li ul .tri{
-	height:0px; 
-	width:0px;
-	margin-left: 65px;
-	margin-top: -15px;
-  	border-bottom:15px solid black;
-  	border-left:10px solid transparent;
-  	border-right:10px solid transparent;
-}
-
-header nav ul li.active ul, header nav ul li:hover ul{
-	display: block;
-	margin-top: 40px;
-}
-
-header nav ul li ul li{
-	display: block;
-	width: 200px;
-	margin: 20px;
-}
-
-header nav ul li a{
-	text-decoration: none;
-	color: white;
-	font-size: 17px;
-	padding-left: 45px;
-	Padding-bottom: 25px;
-}
-header nav ul li ul li a{
-	font-size: 14px;
-	padding-left: 25px;
-	padding-bottom: 15px;
-}
-
-header nav ul li a:hover, header nav ul li a.active{
-	color: #0f4beb;
-	background-color: black;
-}
-
-footer{
-
-}

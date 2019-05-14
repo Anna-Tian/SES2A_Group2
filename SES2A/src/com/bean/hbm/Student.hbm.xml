@@ -38,7 +38,7 @@
 			<key column="studentId"></key>
 			<many-to-many class="com.bean.WorkShop" column="workShopId"/>
 		</set>
-		<set name="sessions">
+		<set name="sessions" lazy="false">
 			<key column="studentId"></key>
 			<one-to-many class="com.bean.Session"/>
 		</set>

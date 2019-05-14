@@ -12,6 +12,11 @@ public class Session {
 	private String type;
 	private String advisorName;
 	private String rule;
+	private String subjectName;
+	private String assignType;
+	private Boolean isAssignment;
+	private Boolean isSendToStudent;
+	private Boolean isSendToLecture;
 	private String booked;//1.non-booked;2.booked;3.canceled
 	private String isAttendance;//1.yes; 2.no
 	private Student student;//n:1
@@ -28,8 +33,9 @@ public class Session {
 		// TODO Auto-generated constructor stub
 	}
 	public Session(Integer sessionId, Date date, Date startTime, Date endTime, String type, String advisorName,
-			String rule, String booked, String isAttendance, Student student, Room room, Admin admin, Advisor advisor,
-			Attendance attendance, Set<WaitingList> waitingLists, Set<Report> reports,
+			String rule, String subjectName, String assignType, Boolean isAssignment, Boolean isSendToStudent,
+			Boolean isSendToLecture, String booked, String isAttendance, Student student, Room room, Admin admin,
+			Advisor advisor, Attendance attendance, Set<WaitingList> waitingLists, Set<Report> reports,
 			Set<ConfirmationEmail> confirmationEmails, Set<Comment> comments) {
 		super();
 		this.sessionId = sessionId;
@@ -39,6 +45,11 @@ public class Session {
 		this.type = type;
 		this.advisorName = advisorName;
 		this.rule = rule;
+		this.subjectName = subjectName;
+		this.assignType = assignType;
+		this.isAssignment = isAssignment;
+		this.isSendToStudent = isSendToStudent;
+		this.isSendToLecture = isSendToLecture;
 		this.booked = booked;
 		this.isAttendance = isAttendance;
 		this.student = student;
@@ -92,6 +103,36 @@ public class Session {
 	}
 	public void setRule(String rule) {
 		this.rule = rule;
+	}
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+	public String getAssignType() {
+		return assignType;
+	}
+	public void setAssignType(String assignType) {
+		this.assignType = assignType;
+	}
+	public Boolean getIsAssignment() {
+		return isAssignment;
+	}
+	public void setIsAssignment(Boolean isAssignment) {
+		this.isAssignment = isAssignment;
+	}
+	public Boolean getIsSendToStudent() {
+		return isSendToStudent;
+	}
+	public void setIsSendToStudent(Boolean isSendToStudent) {
+		this.isSendToStudent = isSendToStudent;
+	}
+	public Boolean getIsSendToLecture() {
+		return isSendToLecture;
+	}
+	public void setIsSendToLecture(Boolean isSendToLecture) {
+		this.isSendToLecture = isSendToLecture;
 	}
 	public String getBooked() {
 		return booked;
@@ -159,4 +200,6 @@ public class Session {
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
+	
+	
 }

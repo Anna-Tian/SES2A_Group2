@@ -20,10 +20,12 @@
     position: absolute;
 }
 #main-container {
+	/* background: #0099cc url(../img/background.png) no-repeat scroll left top; */
     margin: 0 0 0 10px;
     padding: 0;
     width: 920px;
-    float: left;
+    width: 100%;
+    /*float: left;*/
 }
 #header {
     background: #fff url(../img/header_booking.jpg) no-repeat scroll left bottom;
@@ -85,6 +87,7 @@ div {
     z-index: 10;
 }
 #content {
+	width: 60%;
     background: #fff;
     border: 0pt none;
     min-height: 350px;
@@ -95,7 +98,7 @@ div {
     margin: 0;
 }
 body {
-    background: #0099cc url(../img/background.png) no-repeat scroll left top;
+    /* background: #0099cc url(../img/background.png) no-repeat scroll left top; */
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-size: 0.8em;
 }
@@ -136,10 +139,10 @@ body {
     width: 98%;
     display: block;
 }
-a:link, a:visited {
+#main-container a:link, #main-container a:visited {
     color: #0078cc;
     font-weight: bold;
-}
+} 
 .clear {
     clear: both;
 }
@@ -228,4 +231,9 @@ a:link, a:visited {
 	border-bottom: 1px dotted #a6a6a6;
 	font-weight: 600;
 	color: #a6a6a6;
+}
+.footer-main{
+	background-color: red;
+	width: 500px;
+	height: 500px;
 }
