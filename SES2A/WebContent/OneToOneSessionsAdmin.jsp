@@ -14,35 +14,31 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-	
 
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
 	<script type="text/javascript">
 		$(function(){
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
 			$('.filter').load('FilterComponent.jsp');
-			$('.addOneToOneSessions').load('AddOneToOneSessions.jsp');
 		});
 	</script>
-
-	
 </head>
 <body>
 	<div class="head"></div>
 	
 	<div class="wrapper">
+
 		<!-- Tab: Book Session; Admin Session -->
 		<nav>
 			<a href="OneToOneSessions.jsp">Book Sessions</a> 
 			<a href="OneToOneSessionsAdmin.jsp">Admin Sessions</a>
 		</nav>
-		
-		<div id="BookSessionsContent" class="tabcontent">
+
+		<div id="AdminSessionsContent" class="tabcontent">
 			<div class="filter" style="width:50%; float:left;"></div>
 			<form method="GET" style="width:50%; float:right;">
-				<p class="header_name" style="width:95%">Your Selection:</p>
+				<p class="header_name" style="width:95%" >Your Selection:</p>
 				<p>Date: <%=request.getParameter("datefilter")%></p>
 				<p>Type: <%=request.getParameter("typeDropbtn")%></p>
 				<p>Room: <%=request.getParameter("roomDropbtn")%></p>
@@ -51,17 +47,19 @@
 			</form>
 			
 			<p class="header_name" id="sessions_available_header" style="float:left; width:97%">Sessions Available</p>
-			<table class="table_session_available" id="tSessionAvailable" style="width:100%; float:left">
-				<tr class="header" align="left" style="width:90%">
+			<table class="table_session_available" id="tAdminSessionAvailable">
+				<tr class="header" align="left">
 					<th style="width:2%;"><input type="checkbox" name="attendance" value="No"><br></th>
-					<th style="width:13%;">Date</th>
-					<th style="width:10%;">Start Time</th>
-					<th style="width:10%;">End Time</th>
+					<th style="width:9%;">Date</th>
+					<th style="width:7%;">Start Time</th>
+					<th style="width:7%;">End Time</th>
 					<th style="width:15%;">Room</th>
+					<th style="width:15%;">Advisor</th>
 					<th style="width:15%;">Type</th>
 					<th style="width:15%;">Booked by</th>
-					<th style="width:10%;">Waiting</th>
-				</tr>				
+					<th style="width:5%;">A/NA</th>
+					<th style="width:5%;">Waiting</th>
+				</tr>
 				<%
 				try{
 					String host = "jdbc:mysql://localhost:3306/uts_help";
@@ -73,20 +71,21 @@
 					String type = request.getParameter("typeDropbtn");
 					String room = request.getParameter("roomDropbtn");
 					String advisor = request.getParameter("advisorDropbtn");
-										
-					if((type==null && room==null && advisor==null)|| (type=="" && room=="" && advisor=="")){
+					
+					if((type==null && room==null && room==null)|| (type=="" && room=="" && advisor=="")){
 						String QueryAllSessions="SELECT * FROM session LEFT JOIN room ON session.roomId=room.roomId";
 						ResultSet rs = stm.executeQuery(QueryAllSessions);
 						while(rs.next()){
 							%>
 							<tr class="filter_result">
-								<td><input type="checkbox" name="stu_attendance" value="No" /></td>
+								<td><input type="checkbox" name="attendance" value="No" /></td>
 								<td><%=rs.getDate("date") %>
 								<td><%=rs.getTime("startTime") %>
 								<td><%=rs.getTime("endTime") %>
 								<td><%=rs.getString("roomLocation") %>
+								<td><%=rs.getString("advisorName") %>
 								<td><%=rs.getString("type") %>
-								<td><form action="BookSpecificSession.jsp" method="POST">
+								<td><form action="StudentBookingDetails.jsp" method="POST">
 									<%
 									String get_sessionId = rs.getString("sessionId").toString();
 									Date get_date = rs.getDate("date");
@@ -105,6 +104,7 @@
 									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
 									<input type="submit" value="Student Name" />
 								</form></td>
+								<td><a href="AddToWaitingList.jsp">A/Na</a></td>
 								<td><a href="AddToWaitingList.jsp">Add</a></td>
 							</tr>
 							<%
@@ -116,13 +116,14 @@
 						while(rs.next()){
 							%>
 							<tr class="filter_result">
-								<td><input type="checkbox" name="stu_attendance" value="No" /></td>
+								<td><input type="checkbox" name="attendance" value="No" /></td>
 								<td><%=rs.getDate("date") %>
 								<td><%=rs.getTime("startTime") %>
 								<td><%=rs.getTime("endTime") %>
 								<td><%=rs.getString("roomLocation") %>
+								<td><%=rs.getString("advisorName") %>
 								<td><%=rs.getString("type") %>
-								<td><form action="BookSpecificSession.jsp" method="POST">
+								<td><form action="StudentBookingDetails.jsp" method="POST">
 									<%
 									String get_sessionId = rs.getString("sessionId").toString();
 									Date get_date = rs.getDate("date");
@@ -141,6 +142,7 @@
 									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
 									<input type="submit" value="Student Name" />
 								</form></td>
+								<td><a href="AddToWaitingList.jsp">A/Na</a></td>
 								<td><a href="AddToWaitingList.jsp">Add</a></td>
 							</tr>
 							<%
@@ -152,14 +154,13 @@
 					ex.printStackTrace();
 				}
 				%>
-			</table>
 				
-			<div class="edit_available_sessions" align="center" style="width:100%; float:left; padding-top:5px">
+			</table>
+			<div class="edit_available_sessions" align="center">
 				<button onclick="updAvlbSess()" id="updateAblbSess">Update</button>
 				<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete</button>
 			</div>
-			<div class="attendance" style="width:100%; float:left">
-			
+			<div class="attendance">
 				<p align="center">Did student(s) attend these selected session(s)?</p>
 				<div align="center">
 					<select name="isAttended" style="width:5%">
@@ -170,18 +171,48 @@
 					<input type="submit" name="btnMarkAttendance" value="Mark Attendance" id="btnMarkAttendance"/>
 				</div>
 			</div>
-			
-			
-			<div class="addOneToOneSessions" style="width:100%; float:left"></div>
-			
-			<div align="left" id="legendDesc" style="width:100%; float:left">
+			<jsp:include page="AddOneToOneSessions.jsp"></jsp:include>
+			<div align="left" id="legendDesc">
 				<p style="font-weight:bold">Legend</p>
 				<p>A: Attended</p>
 				<p>NA: Not Attended</p>
 			</div>
 		</div>
 	</div>
-	<div class="footer" style="width:100%; float:left"></div>
+	
+	<div class="footer"></div>
+
+<!-- 	
+	Switch to different tab content
+	<script>
+	function openSession(evt, sessionName) {
+		// Declare all variables
+		var i, tabcontent, tablinks;
+		// Get all elements with class="tabcontent" and hide them
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		// Get all elements with class="tablinks" and remove the class "active"
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		
+		// Show the current tab, and add an "active" class to the button that opened the tab
+		document.getElementById(sessionName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+	</script>
+ -->	
+	
+
+	
+	
+	
 	
 </body>
 </html>
