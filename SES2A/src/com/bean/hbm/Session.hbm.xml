@@ -15,7 +15,6 @@
 		<property name="rule"></property>
 		<property name="booked"></property>
 		<property name="isAttendance"></property>
-		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
 		<property name="subjectName"></property>
 		<property name="assignType"></property>
 		<property name="isAssignment"></property>
