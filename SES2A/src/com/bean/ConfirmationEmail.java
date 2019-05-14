@@ -1,7 +1,5 @@
 package com.bean;
 
-import oracle.net.aso.q;
-
 public class ConfirmationEmail {
 	private Integer confirmationId;
 	private Boolean isSessConfSent;
