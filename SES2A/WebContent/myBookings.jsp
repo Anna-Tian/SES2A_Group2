@@ -1,18 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>HELPS booking system</title>
 	<link rel="stylesheet" href="css/myBookings.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
 	<script type="text/javascript">
 		$(function(){
-			/*{
-				var sessions1 = "${sessions_a }";
-				var sessions2 = "${sessions_b }";
+			
+			$("[id^='del_']").click(function(){
+				var workshop_id = this.id.split("_")[1];
+				if(confirm("confirm cancel?")){
+					$.ajax({
+						url:"MyBookingsServlet_delete",
+						type:"post",
+						data:"workshop_id="+workshop_id,
+						dataType:"text",
+						success:function(data){
+							alert("Cancel Successfully!")
+							window.location.reload(true);
+						}
+					});
+				}
+			});
+			
+			{
+				$(".head").load("student_menu.html");
+				$(".foot").load("foot.html");
+				
+				var sessions1 = "${sessions }";
+				var sessions2 = "${upcoming }";
+				var sessions3 = "${past }";
 				if(sessions1==""){
 					$("#session1").show();
 					$("#session2").hide();
@@ -27,31 +51,40 @@
 					$("#session3").hide();
 					$("#session4").show();
 				}
-			}*/
+				if(sessions3==""){
+					$("#session5").show();
+					$("#session6").hide();
+				}else{
+					$("#session5").hide();
+					$("#session6").show();
+				}
+			}
+			
 		});
 	</script>
 </head>
 <body>
-
-	<div id="global-utility-bar">
-		<!-- UTS Logo -->
+	<div class="head"></div>
+	
+	<!-- <div id="global-utility-bar">
+		UTS Logo
 		<div id="uts-logo">
 			<a href="http://www.uts.edu.au"><img src="https://web-common.uts.edu.au/images/utslogo.gif" alt="University of Technology, Sydney homepage" width="132" height="30" /></a>
 		</div>
-	</div>
+	</div> -->
 	
 	<div id="main-container">
-		<div id="header">
+		<!-- <div id="header">
 			<a href="http://www.ssu.uts.edu.au/helps/index.html" id="logo-elssa">HELPS</a>
 			<div id="navigation">
-				<a href="myInformation.jsp">My Information</a>
-				<a href="myBookings.jsp">My bookings</a>
-				<a href="WR_Step1.jsp">Workshop registration</a>
+				<a href="index.cfm?scope=profile">My Information</a>
+				<a href="index.cfm?scope=newsession">My bookings</a>
+				<a href="index.cfm?scope=workshop">Workshop registration</a>
 				<a href="index.cfm?scope=Program">Programs</a>
 				<a href="index.cfm?scope=help">FAQ</a>
 				<a href="index.cfm?scope=logout">Exit</a>
 			</div>
-		</div>
+		</div> -->
 		<!-- Content -->
 		<div id="content">
 			<div>
@@ -60,24 +93,24 @@
 					<p>There are no sessions to display.</p>
 				</div>
 				<div id="session2">
-					<h4>Past</h4>
-					<table align="center" width="500px">
+					<!-- <h4>Past</h4> -->
+					<table align="center" width="500px" class="table table-hover">
 						<tr align="left">
 							<th>Date</th>
-							<th>Days</th>
+							<!-- <th>Days</th> -->
 							<th>Time</th>
 							<th>Room</th>
 							<th>Advisor</th>
 							<th>Type</th>
 						</tr>
-						<c:forEach var="sessions1" items="${sessions_a }">
+						<c:forEach var="thisSession" items="${sessions }">
 						  	<tr align="left">
-							  	<td>${sessions1.attr1 }</td>
-							  	<td>${sessions1.attr2 }</td>
-							  	<td>${sessions1.attr3 }</td>
-							  	<td>${sessions1.attr4 }</td>
-							  	<td>${sessions1.attr5 }</td>
-							  	<td>${sessions1.attr6 }</td>
+							  	<td><fmt:formatDate type="date" value="${thisSession.date }" /></td>
+							  	<%-- <td>${thisSession.endTime } - ${thisSession.startTime }</td> --%>
+							  	<td><fmt:formatDate pattern="HH:mm" value="${thisSession.startTime }" /></td>
+							  	<td>${thisSession.room }</td>
+							  	<td>${thisSession.advisorName }</td>
+							  	<td>${thisSession.type }</td>
 						 	</tr>
 					  </c:forEach>		
 					</table>
@@ -90,8 +123,39 @@
 					<p>There are no workshop sessions to display.</p>
 				</div>
 				<div id="session4">
+					<h4>Upcoming</h4>
+					<table align="center" width="500px" class="table table-hover">
+						<tr align="left">
+							<th>Topic</th>
+							<th>Start date</th>
+							<th>End date</th>
+							<th>Days</th>
+							<th>Time</th>
+							<th>Room</th>
+							<th>No. Of Session</th>
+							<th>Cancel</th>
+						</tr>
+						<c:forEach var="workShop" items="${upcoming }">
+						  	<tr align="left">
+							  	<td>${workShop.name }</td>
+							  	<td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${workShop.startDate }" /></td>
+							  	<td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${workShop.endDate }" /></td>
+							  	<td>${workShop.days }</td>
+							  	<td>${workShop.placeAvailable }</td>
+							  	<td>${workShop.room }</td>
+							  	<td>${workShop.noOfSessions }</td>
+							  	<td><input class="btn btn-primary btn-sm" type="button" value="Cancel" id="del_${workShop.workShopId}"/></td>
+						 	</tr>
+					 	</c:forEach>
+					</table>
+				</div>
+				
+				<div id="session5" style="display: none">
+					<p>There are no workshop sessions to display.</p>
+				</div>
+				<div id="session6">
 					<h4>Past</h4>
-					<table align="center" width="500px">
+					<table align="center" width="500px" class="table table-hover">
 						<tr align="left">
 							<th>Topic</th>
 							<th>Start date</th>
@@ -101,15 +165,15 @@
 							<th>Room</th>
 							<th>No. Of Session</th>
 						</tr>
-						<c:forEach var="sessions2" items="${sessions_b }">
+						<c:forEach var="workShop" items="${past }">
 						  	<tr align="left">
-							  	<td>${sessions2.attr1 }</td>
-							  	<td>${sessions2.attr2 }</td>
-							  	<td>${sessions2.attr3 }</td>
-							  	<td>${sessions2.attr4 }</td>
-							  	<td>${sessions2.attr5 }</td>
-							  	<td>${sessions2.attr6 }</td>
-							  	<td>${sessions2.attr7 }</td>
+							  	<td>${workShop.name }</td>
+							  	<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${workShop.startDate }" /></td>
+							  	<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${workShop.endDate }" /></td>
+							  	<td>${workShop.days }</td>
+							  	<td>${workShop.placeAvailable }</td>
+							  	<td>${workShop.room }</td>
+							  	<td>${workShop.noOfSessions }</td>
 						 	</tr>
 					  </c:forEach>		
 					</table>
@@ -118,7 +182,7 @@
 		</div>
 
 		<!-- Footer -->
-		<div id="footer-wrapper">		
+		<!-- <div id="footer-wrapper">		
 			<div class="footer-navigation">
 				<a href="index.cfm?scope=profile">My Information</a>
 				<a href="index.cfm?scope=newsession">My bookings</a>
@@ -159,9 +223,9 @@
 					<a href="http://www.uts.edu.au/">UTS homepage</a>
 				</div>
 			</div>
-		</div>
+		</div> -->
 			
 	</div> <!-- end main-container -->
-
+	<div class="foot"></div>
 </body>
 </html>

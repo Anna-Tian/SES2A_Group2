@@ -54,7 +54,7 @@ header nav ul li ul .tri{
   	border-right:10px solid transparent;
 }
 
-header nav ul li.active ul, header nav ul li:hover ul{
+ header nav ul li:hover ul{
 	display: block;
 	margin-top: 40px;
 }
@@ -71,7 +71,7 @@ header nav ul li a{
 	font-size: 17px;
 	padding-left: 45px;
 	padding-right: 25px;
-	padding-bottom: 25px;
+	padding-bottom: 40px;
 }
 header nav ul li ul li a{
 	font-size: 14px;
@@ -81,7 +81,7 @@ header nav ul li ul li a{
 
 header nav ul li a:hover, header nav ul li a.active{
 	color: #0f4beb;
-	background-color: black;
+	background-color: transparent;																																																																																																						;
 }
 
 .menu-toggle{
