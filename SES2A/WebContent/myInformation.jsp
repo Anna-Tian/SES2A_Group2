@@ -1,4 +1,5 @@
 <%@page import="com.bean.StudentProfile"%>
+<%@ page import="com.dao.MessageDatabase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -49,6 +50,13 @@
 				}
 			});
 		});
+	</script>
+	<script>
+	$(function(){
+		<%MessageDatabase database = new MessageDatabase();%>
+		var mess = "<%=database.getCurrentMessage(6).getMessageDetailed()%>";
+		$(".notes-box").html(mess);
+	});
 	</script>
 </head>
 <body>

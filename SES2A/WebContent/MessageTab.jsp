@@ -1,13 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>MESSAGE TAB</title>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
+		});
+	</script>
 	</head>
-
+	
 	<body>
+		<div class="head"></div>
+		<p></p>
 		<select id="messageTabSelectList" onchange="onChangedSelectList()">
 			<option value="0"></option>
 			<option value="1">FAQ in student interface</option>
@@ -23,6 +32,10 @@
 			<option value="11">Logon page box on the right in student interface</option>
 			<option value="12">Program in student interface</option>
 		</select>
+		
+		<p></p>
+		
+		<div class="footer"></div>
                 
 		<script>
 			function onChangedSelectList() {
@@ -35,7 +48,8 @@
 			}
 		</script>
 		
-		<!-- In case browser doesnot enable JS -->
+		<!-- In case browser does not enable JS -->
 		<noscript>Sorry, your browser does not support JavaScript!</noscript>
+		
 	</body>
 </html>

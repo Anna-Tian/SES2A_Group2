@@ -1,3 +1,4 @@
+<%@ page import="com.dao.MessageDatabase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +10,13 @@
 <link href="css/core_WR.css" rel="stylesheet" type="text/css">
 <link href="css/elssa_css_WR.css" rel="stylesheet" type="text/css">
 <link href="css/elssa_booking_WR.css" rel="stylesheet" type="text/css">
+<script>
+$(function(){
+	<%MessageDatabase database = new MessageDatabase();%>
+	var mess = "<%=database.getCurrentMessage(4).getMessageDetailed()%>";
+	$("#student_workshop_skillset_instruction").html(mess);
+});
+</script>
 </head>
 <body>
 

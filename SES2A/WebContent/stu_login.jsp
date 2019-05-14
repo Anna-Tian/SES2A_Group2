@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HELPS booking system</title>
-
+ 
 <link href="css/login.css" rel="stylesheet"
 	type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
