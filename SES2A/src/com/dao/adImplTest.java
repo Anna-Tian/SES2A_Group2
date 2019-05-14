@@ -38,27 +38,17 @@ import com.util.HibernateUtil;
 	  session.delete(a);
 	  System.out.println("Object Deleted successfully.....!!"); 
 	  tx.commit();
-	  session.close(); factory.close(); }
+	  session.close(); 
+	  factory.close(); }
   
   public static void main(String[] args) { 
-	  (new adImplTest()).delete(3); 
+	  Configuration cfg = new Configuration();
+	  SessionFactory factory = cfg.buildSessionFactory(); 
+	  Session session = factory.openSession();
+	  session.flush();
+	  session.clear();
+  }
 
-//	    Session session = HibernateUtil.getCurrentSession();
-//	    Advisor advisor = new Advisor();
-//	    advisor.setStaffNumber("12628475");
-//	    advisor.setLastName("title");
-//	    
-//	    String id = (String)session.save(advisor);
-//	    System.out.println(id);
-//	    session.flush();
-//	    advisor.setLastName("title1");
-//
-//	    session.update(advisor);
-//	    session.flush();
-//
-//	    session.close();
-
-	  }
 	   
 	  
   }
