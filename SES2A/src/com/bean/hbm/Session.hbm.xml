@@ -15,7 +15,12 @@
 		<property name="rule"></property>
 		<property name="booked"></property>
 		<property name="isAttendance"></property>
-		<many-to-one name="student" column="studentId" class="com.bean.Student"></many-to-one>
+		<property name="subjectName"></property>
+		<property name="assignType"></property>
+		<property name="isAssignment"></property>
+		<property name="isSendToStudent"></property>
+		<property name="isSendToLecture"></property>
+		<many-to-one name="student" column="studentId" class="com.bean.Student" lazy="false"></many-to-one>
 		<many-to-one name="room" column="roomId" class="com.bean.Room"></many-to-one>
 		<many-to-one name="admin" column="adminId" class="com.bean.Admin"></many-to-one>
 		<many-to-one name="advisor" column="advisorId" class="com.bean.Advisor" lazy="false"></many-to-one>

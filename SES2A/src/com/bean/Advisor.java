@@ -9,19 +9,21 @@ public class Advisor {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String isActive;
 	private Set<Session> sessions = new HashSet<Session>();//1:n
 	public Advisor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Advisor(Integer advisorId, String staffNumber, String firstName, String lastName, String email,
-			Set<Session> sessions) {
+			String isActive, Set<Session> sessions) {
 		super();
 		this.advisorId = advisorId;
 		this.staffNumber = staffNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.isActive = isActive;
 		this.sessions = sessions;
 	}
 	public Integer getAdvisorId() {
@@ -54,10 +56,17 @@ public class Advisor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
 	public Set<Session> getSessions() {
 		return sessions;
 	}
 	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
+	
 }
