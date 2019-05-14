@@ -1,96 +1,50 @@
-body{
-	margin: 0;
-	padding: 0;
-	font-family: Microsoft Yahei, Verdana, Arial, Helvetica, sans-serif;
-}
-header{
-	position: relative;
-	top: 0;
-	left: 0;
-	padding-top: 0 50px;
-	padding-bottom: 0 50px;
-	width: 100%;
-	height: auto;
-	box-sizing: border-box;
-}
-
-header .logo{
-	padding: 15px;
-	padding-left: 50px;
-	height: 70px;
-}
-
-header nav{
-	background: black;
-	padding: 25px;
-}
-
-header nav ul{
-	margin: 0;
-	padding: 0;
-	display: flex;
-}
-
-header nav ul li{
-	list-style: none;
-	position: relative;
-}
-
-header nav ul li.sub-menu:before{
-
-}
-
-header nav ul li.active.sub-menu:before{
-
-}
-
-header nav ul li ul{
-	position: absolute;
-	left: 0;
-	background: black;
-	display: none;
-}
-
-header nav ul li ul .tri{
-	height:0px; 
-	width:0px;
-	margin-left: 65px;
-	margin-top: -15px;
-  	border-bottom:15px solid black;
-  	border-left:10px solid transparent;
-  	border-right:10px solid transparent;
-}
-
-header nav ul li:hover ul{
-	display: block;
-	margin-top: 40px;
-}
-
-header nav ul li ul li{
-	display: block;
-	width: 200px;
-	margin: 20px;
-}
-
-header nav ul li a{
-	text-decoration: none;
-	color: white;
-	font-size: 17px;
-	padding-left: 45px;
-	Padding-bottom: 40px;
-}
-header nav ul li ul li a{
-	font-size: 14px;
-	padding-left: 25px;
-	padding-bottom: 15px;
-}
-
-header nav ul li a:hover, header nav ul li a.active{
-	color: #0f4beb;
-	background-color: transparent;
-}
-
-footer{
-
-}
-
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/student_menu.css">
+</head>
+<body>
+	<header>
+		<div class="logo"><img src="img/HeaderFooter/logo.png" style="height: 100%;"></div>
+		<nav class="active">
+			<ul>
+				<li class="sub-menu"><a href="#">MyInformation</a>
+					<ul>
+						<div class="tri"></div>
+						<li><a href="/SES2A/LoginServlet">Profile</a></li>
+						<li><a href="/SES2A/MyBookingsServlet">MyBookings</a></li>
+					</ul>
+				</li>
+				<li class="sub-menu"><a href="#">Workshop</a>>
+					<ul>
+						<div class="tri"></div>
+						<li><a href="#">Step-1</a></li>
+						<li><a href="#">Step-2</a></li>
+					</ul>
+				</li>
+				
+				<li><a href="#">Exit</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="content">
+		
+	</div>
+	<footer>
+		
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.menu-toggle').click(function(){
+				$('nav').toggleClass('active')
+			})
+			/* $('ul li').click(function(){
+				$(this).siblings().removeClass('active')
+				$(this).toggleClass('active')
+			}) */
+		})
+	</script>
+</body>
+</html>
