@@ -54,7 +54,7 @@ header nav ul li ul .tri{
   	border-right:10px solid transparent;
 }
 
-header nav ul li.active ul, header nav ul li:hover ul{
+ header nav ul li:hover ul{
 	display: block;
 	margin-top: 40px;
 }
