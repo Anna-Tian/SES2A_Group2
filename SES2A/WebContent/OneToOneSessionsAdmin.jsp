@@ -16,24 +16,16 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
+	<script type="text/javascript">
+		$(function(){
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
+			$('.filter').load('FilterComponent.jsp');
+		});
+	</script>
 </head>
 <body>
-	<header>
-		<nav>
-			<a href="OneToOneSessions.jsp">Sessions</a> 
-			<a href="setWorkshop.jsp">Workshops</a>
-			<a href="//">Advisors</a>
-			<a href="//">Students</a> 
-			<a href="//">Waiting List</a>
-			<a href="reportSession.jsp">Reports</a>
-			<a href="//">Template</a>
-			<a href="emailTemplate.jsp">Email</a>
-			<a href="//">Room</a>
-			<a href="//">Message</a>
-			<a href="//">Exit</a>
-		</nav>
-	</header>
+	<div class="head"></div>
 	
 	<div class="wrapper">
 
@@ -44,8 +36,17 @@
 		</nav>
 
 		<div id="AdminSessionsContent" class="tabcontent">
-			<jsp:include page="FilterComponent.jsp"></jsp:include>
-			<p class="header_name" id="sessions_available_header" style="margin-top:3em">Sessions Available</p>
+			<div class="filter" style="width:50%; float:left;"></div>
+			<form method="GET" style="width:50%; float:right;">
+				<p class="header_name" style="width:95%" >Your Selection:</p>
+				<p>Date: <%=request.getParameter("datefilter")%></p>
+				<p>Type: <%=request.getParameter("typeDropbtn")%></p>
+				<p>Room: <%=request.getParameter("roomDropbtn")%></p>
+				<p>Advisor: <%=request.getParameter("advisorDropbtn")%></p>
+				<p><br></p>
+			</form>
+			
+			<p class="header_name" id="sessions_available_header" style="float:left; width:97%">Sessions Available</p>
 			<table class="table_session_available" id="tAdminSessionAvailable">
 				<tr class="header" align="left">
 					<th style="width:2%;"><input type="checkbox" name="attendance" value="No"><br></th>
@@ -59,67 +60,101 @@
 					<th style="width:5%;">A/NA</th>
 					<th style="width:5%;">Waiting</th>
 				</tr>
+				<%
+				try{
+					String host = "jdbc:mysql://localhost:3306/uts_help";
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection conn=DriverManager.getConnection(host, "root", "rootroot");
+					Statement stm = conn.createStatement();
+					
+					String date = request.getParameter("datefilter");
+					String type = request.getParameter("typeDropbtn");
+					String room = request.getParameter("roomDropbtn");
+					String advisor = request.getParameter("advisorDropbtn");
+					
+					if((type==null && room==null && room==null)|| (type=="" && room=="" && advisor=="")){
+						String QueryAllSessions="SELECT * FROM session LEFT JOIN room ON session.roomId=room.roomId";
+						ResultSet rs = stm.executeQuery(QueryAllSessions);
+						while(rs.next()){
+							%>
+							<tr class="filter_result">
+								<td><input type="checkbox" name="attendance" value="No" /></td>
+								<td><%=rs.getDate("date") %>
+								<td><%=rs.getTime("startTime") %>
+								<td><%=rs.getTime("endTime") %>
+								<td><%=rs.getString("roomLocation") %>
+								<td><%=rs.getString("advisorName") %>
+								<td><%=rs.getString("type") %>
+								<td><form action="StudentBookingDetails.jsp" method="POST">
+									<%
+									String get_sessionId = rs.getString("sessionId").toString();
+									Date get_date = rs.getDate("date");
+									Time get_startTime = rs.getTime("startTime");
+									Time get_endTime = rs.getTime("endTime");
+									String get_room = rs.getString("roomLocation").toString();
+									String get_type = rs.getString("type").toString();
+									String get_advisorName = rs.getString("advisorName").toString();
+									%>
+									<input type="hidden" name="get_sessionId" value = "<%=get_sessionId %>">
+									<input type="hidden" name="get_date" value = "<%=get_date %>">
+									<input type="hidden" name="get_startTime" value = "<%=get_startTime %>">
+									<input type="hidden" name="get_endTime" value = "<%=get_endTime %>">
+									<input type="hidden" name="get_room" value = "<%=get_room %>">
+									<input type="hidden" name="get_type" value = "<%=get_type %>">
+									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
+									<input type="submit" value="Student Name" />
+								</form></td>
+								<td><a href="AddToWaitingList.jsp">A/Na</a></td>
+								<td><a href="AddToWaitingList.jsp">Add</a></td>
+							</tr>
+							<%
+						}
+					}
+					if(type!="" || room!="" || advisor!=""){
+						String Query="SELECT * FROM session LEFT JOIN room ON session.roomId=room.roomId WHERE type='" + type + "' OR session.roomId='" + room + "' OR adminId='" + advisor + "'";						
+						ResultSet rs = stm.executeQuery(Query);
+						while(rs.next()){
+							%>
+							<tr class="filter_result">
+								<td><input type="checkbox" name="attendance" value="No" /></td>
+								<td><%=rs.getDate("date") %>
+								<td><%=rs.getTime("startTime") %>
+								<td><%=rs.getTime("endTime") %>
+								<td><%=rs.getString("roomLocation") %>
+								<td><%=rs.getString("advisorName") %>
+								<td><%=rs.getString("type") %>
+								<td><form action="StudentBookingDetails.jsp" method="POST">
+									<%
+									String get_sessionId = rs.getString("sessionId").toString();
+									Date get_date = rs.getDate("date");
+									Time get_startTime = rs.getTime("startTime");
+									Time get_endTime = rs.getTime("endTime");
+									String get_room = rs.getString("roomLocation").toString();
+									String get_type = rs.getString("type").toString();
+									String get_advisorName = rs.getString("advisorName").toString();
+									%>
+									<input type="hidden" name="get_sessionId" value = "<%=get_sessionId %>">
+									<input type="hidden" name="get_date" value = "<%=get_date %>">
+									<input type="hidden" name="get_startTime" value = "<%=get_startTime %>">
+									<input type="hidden" name="get_endTime" value = "<%=get_endTime %>">
+									<input type="hidden" name="get_room" value = "<%=get_room %>">
+									<input type="hidden" name="get_type" value = "<%=get_type %>">
+									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
+									<input type="submit" value="Student Name" />
+								</form></td>
+								<td><a href="AddToWaitingList.jsp">A/Na</a></td>
+								<td><a href="AddToWaitingList.jsp">Add</a></td>
+							</tr>
+							<%
+						}
+					}
+					
+					
+				} catch(Exception ex){
+					ex.printStackTrace();
+				}
+				%>
 				
-				<tr class="filter_result">
-					<td><input type="checkbox" name="attendance" value="No" /></td>
-					<td><input type="text" name="datePicker" style="width:100%" value="" /></td>
-					<td><input type="text" name="startTimePicker" style="width:100%" value="" /></td>
-					<td><input type="text" name="endTimePicker" style="width:100%" value="" /></td>
-					<td>
-						<select name="roomDropbtn" style="width:100%">
-							<option value=""></option>
-							<%
-							try{
-								String Query="SELECT * FROM room";
-								String host = "jdbc:mysql://localhost:3306/uts_help";
-								Class.forName("com.mysql.jdbc.Driver").newInstance();
-								Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-								Statement stm = conn.createStatement();
-								ResultSet rs = stm.executeQuery(Query);
-								while(rs.next()){
-									%>
-									<option value="<%=rs.getInt("roomId")%>"><%=rs.getString("roomLocation") %></option>
-									<%
-								}
-							} catch(Exception ex){
-								ex.printStackTrace();
-							}
-							%>
-						</select>
-					</td>
-					<td>
-						<select name="advisorDropbtn" style="width:100%">
-							<option value=""></option>
-							<%
-							try{
-								String Query="SELECT * FROM admin";
-								String host = "jdbc:mysql://localhost:3306/uts_help";
-								Class.forName("com.mysql.jdbc.Driver").newInstance();
-								Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-								Statement stm = conn.createStatement();
-								ResultSet rs = stm.executeQuery(Query);
-								while(rs.next()){
-									%>
-									<option value="<%=rs.getInt("adminId")%>"><%=rs.getString("firstName") %> <%=rs.getString("lastName") %></option>
-									<%
-								}
-							} catch(Exception ex){
-								ex.printStackTrace();
-							}
-							%>
-						</select>
-					</td>
-					<td>
-						<select name="typeDropbtn" style="width:100%">
-							<option value=""></option>
-							<option value="Type1">Type1</option>
-							<option value="Type2">Type2</option>
-						</select>
-					</td>
-					<td><a href="StudentBookingDetails.jsp">Student Name</a></td>
-					<td><a href="index.cfm?scope=Program">A/NA</a></td>
-					<td><a href="index.cfm?scope=Program">Add</a></td>
-				</tr>
 			</table>
 			<div class="edit_available_sessions" align="center">
 				<button onclick="updAvlbSess()" id="updateAblbSess">Update</button>
@@ -144,6 +179,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="footer"></div>
 
 <!-- 	
 	Switch to different tab content

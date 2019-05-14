@@ -29,29 +29,32 @@
 			});
 		});
 	</script>
+	
+	<script type="text/javascript">
+		$(function(){
+			$('.head').load('admin_head.html');
+			$('.footer').load('admin_footer.html');
+		});
+	</script>
 </head>
 <body>
-	<div id="global-utility-bar">
-		<div id="uts-logo">
-			<a href="http://www.uts.edu.au"><img src="https://web-common.uts.edu.au/images/utslogo.gif" alt="University of Technology, Sydney homepage" width="132" height="30" /></a>
-		</div>
-	</div>
-
+	<div class="head"></div>
+	<div class="wrapper">
 	<p class="header_name" id="student_booking_header" style="margin-top:2em">Student booking</p>
 	<form method="post" id="book_details_form">
 		<div>
 			<div class="form_part1" style="width:30%">
-				<p>Date: <strong>02/04/2019</strong></p>
-				<p>Time: <strong>11:00 - 12:00</strong></p>
+				<p>Date: <strong><%=request.getParameter("get_date")%></strong></p>
+				<p>Time: <strong><%=request.getParameter("get_startTime")%> - <%=request.getParameter("get_endTime")%></strong></p>
 			</div>
 			<div class="form_part2" style="width:70%">
-				<p>Advisor: <strong>James Smith</strong></p>
-				<p>Campus: <strong>CB11.04.301</strong></p>
+				<p>Advisor: <strong><%=request.getParameter("get_advisorName")%></strong></p>
+				<p>Campus: <strong><%=request.getParameter("get_room")%></strong></p>
 			</div>
 		</div>
 		
 		<div class="form_part3" style="width:100%">
-			<p>Type: <strong>UG/PG course work students</strong></p>
+			<p>Type: <strong><%=request.getParameter("get_type")%></strong></p>
 			<p>Currently booked by student: 
 				<strong>Na Tian</strong>
 				 (Email: 12879678@student.uts.edu.au)
@@ -118,7 +121,7 @@
 		
 		
 	</form>
-	<form method="get">
+	<form method="GET">
 		<div>
 			<p class="header_name" id="comment_header" style="margin-top:2em">Advisor's comment</p>
 			<p>Comment:</p>
@@ -143,13 +146,13 @@
 			
 		</div>
 	</form>
-		<div style="float:left; width:100%">
-			<p class="header_name" id="upload_header" style="margin-top:1em">Upload your documents</p>
-			<button onclick="chooseFile()" style="display:inline">Choose File</button>
-			<p style="display:inline">No file chosen</p><br>
-			<input type="submit" name="btnUpload" value="Upload" id="btnUpload">
-		</div>
-	
-
+	<div style="float:left; width:100%">
+		<p class="header_name" id="upload_header" style="margin-top:1em">Upload your documents</p>
+		<button onclick="chooseFile()" style="display:inline">Choose File</button>
+		<p style="display:inline">No file chosen</p><br>
+		<input type="submit" name="btnUpload" value="Upload" id="btnUpload">
+	</div>
+</div>
+<div class="footer"></div>
 </body>
 </html>
