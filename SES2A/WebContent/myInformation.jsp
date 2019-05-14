@@ -88,8 +88,9 @@
 	</script>
 	<script>
 	$(function(){
-		<%MessageDatabase database = new MessageDatabase();%>
-		var mess = "<%=database.getCurrentMessage(6).getMessageDetailed()%>";
+		var mess1 = "<%=MessageDatabase.getCurrentMessage(4).getMessageDetailed()%>";
+		$("#a-box").html(mess);
+		var mess2 = "<%=MessageDatabase.getCurrentMessage(6).getMessageDetailed()%>";
 		$(".notes-box").html(mess);
 	});
 	</script>

@@ -27,31 +27,31 @@
 			var txtEditor = CKEDITOR.replace( 'textEditor');
 			//this disable ACF of CKEDITOR
 			CKEDITOR.config.allowedContent = true;
-			<%MessageDatabase database = new MessageDatabase();%>
-			var mess1 = "<%=database.getCurrentMessage(1).getMessageTempDetailed()%>";
-			var mess2 = "<%=database.getCurrentMessage(2).getMessageTempDetailed()%>";
-			var mess3 = "<%=database.getCurrentMessage(3).getMessageTempDetailed()%>";
-			var mess4 = "<%=database.getCurrentMessage(4).getMessageTempDetailed()%>";
-			var mess5 = "<%=database.getCurrentMessage(5).getMessageTempDetailed()%>";
-			var mess6 = "<%=database.getCurrentMessage(6).getMessageTempDetailed()%>";
-			var mess7 = "<%=database.getCurrentMessage(7).getMessageTempDetailed()%>";
-			var mess8 = "<%=database.getCurrentMessage(8).getMessageTempDetailed()%>";
-			var mess9 = "<%=database.getCurrentMessage(9).getMessageTempDetailed()%>";
-			var mess10 = "<%=database.getCurrentMessage(10).getMessageTempDetailed()%>";
-			var mess11 = "<%=database.getCurrentMessage(11).getMessageTempDetailed()%>";
-			var mess12 = "<%=database.getCurrentMessage(12).getMessageTempDetailed()%>";
-			var loc1 = "<%=database.getCurrentMessage(1).getMessageLocation()%>";
- 			var loc2 = "<%=database.getCurrentMessage(2).getMessageLocation()%>";
-			var loc3 = "<%=database.getCurrentMessage(3).getMessageLocation()%>";
-			var loc4 = "<%=database.getCurrentMessage(4).getMessageLocation()%>";
-			var loc5 = "<%=database.getCurrentMessage(5).getMessageLocation()%>";
-			var loc6 = "<%=database.getCurrentMessage(6).getMessageLocation()%>";
-			var loc7 = "<%=database.getCurrentMessage(7).getMessageLocation()%>";
-			var loc8 = "<%=database.getCurrentMessage(8).getMessageLocation()%>";
-			var loc9 = "<%=database.getCurrentMessage(9).getMessageLocation()%>";
-			var loc10 = "<%=database.getCurrentMessage(10).getMessageLocation()%>";
-			var loc11 = "<%=database.getCurrentMessage(11).getMessageLocation()%>";
-			var loc12 = "<%=database.getCurrentMessage(12).getMessageLocation()%>";
+			
+			var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageTempDetailed()%>";
+			var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageTempDetailed()%>";
+			var mess3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageTempDetailed()%>";
+			var mess4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageTempDetailed()%>";
+			var mess5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageTempDetailed()%>";
+			var mess6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageTempDetailed()%>";
+			var mess7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageTempDetailed()%>";
+			var mess8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageTempDetailed()%>";
+			var mess9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageTempDetailed()%>";
+			var mess10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageTempDetailed()%>";
+			var mess11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageTempDetailed()%>";
+			var mess12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageTempDetailed()%>";
+			var loc1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageLocation()%>";
+ 			var loc2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageLocation()%>";
+			var loc3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageLocation()%>";
+			var loc4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageLocation()%>";
+			var loc5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageLocation()%>";
+			var loc6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageLocation()%>";
+			var loc7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageLocation()%>";
+			var loc8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageLocation()%>";
+			var loc9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageLocation()%>";
+			var loc10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageLocation()%>";
+			var loc11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageLocation()%>";
+			var loc12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageLocation()%>";
 
 			//TODO: if there is any way to directly use choiceValue for getCurrentMessage, it would be much less of hard-coding
 			switch(choiceValue){
