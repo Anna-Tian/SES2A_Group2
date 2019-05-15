@@ -22,13 +22,13 @@ public class TestDaoImpl {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		Student student = new Student();
-		student.setStudentId(12990747);
-		student.setFirstName("Zicheng");
-		student.setLastName("Qu");
-		student.setPassword("123456");
+		student.setStudentId(12990560);
+		student.setFirstName("Siqi");
+		student.setLastName("Liu");
+		student.setPassword("654321");
 		student.setFaculty("Engineering and Information Technology");
 		student.setCourse("C09066");
-		student.setEmail("Zicheng.Qu@student.uts.edu.au");
+		student.setEmail("Siqi.Liu-3@student.uts.edu.au");
 		student.setPhone("N/A");
 		student.setMobile("+61451078677");
 		student.setDob("02/ 05/ 1996");
@@ -98,7 +98,7 @@ public class TestDaoImpl {
 		return workShop;
 	}
 	public static void main(String[] args) throws ParseException {
-		(new TestDaoImpl()).saveSession();
+		(new TestDaoImpl()).saveStudent();
 		System.out.println("TestDaoImpl Success");
 	}
 }

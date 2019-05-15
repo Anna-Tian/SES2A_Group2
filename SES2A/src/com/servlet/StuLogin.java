@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Student;
+import com.bean.StudentProfile;
 
 /**
  * Servlet implementation class StuLogin
@@ -43,7 +44,18 @@ public class StuLogin extends HttpServlet {
 		if(student!=null) {
 			request.getSession().setAttribute("student", student);
 			request.getSession().setAttribute("msg", null);
-			response.sendRedirect("index.jsp");//Load the index page if login successfully. I will modify it when merging because u dont have the myinformation.jsp now.
+			//response.sendRedirect("LoginServlet");//Load the index page if login successfully. I will modify it when merging because u dont have the myinformation.jsp now.
+			
+			StudentProfile studentProfile = student.getStudentProfile();
+			request.getSession().setAttribute("studentProfile", studentProfile);
+			if(studentProfile!=null) {
+				String[] eduBg = studentProfile.getEduBg().substring(1,studentProfile.getEduBg().length()-1).split(", ");
+				String[] eduBgMark = studentProfile.getEduBgMark().substring(1,studentProfile.getEduBgMark().length()-1).split(", ");
+				request.getSession().setAttribute("eduBg", eduBg);
+				request.getSession().setAttribute("eduBgMark", eduBgMark);
+			}
+			response.sendRedirect("myInformation.jsp");
+			
 		}else {
 			request.getSession().setAttribute("msg", "Please check your account and password");
 			response.sendRedirect("stu_login.jsp");
