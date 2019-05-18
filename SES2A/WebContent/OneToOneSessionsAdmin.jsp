@@ -1,6 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="com.bean.Admin"%>
+<%@page import="com.bean.Session"%>
+<%@page import="com.bean.Room"%>
+
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/uts_help" user="root" password="rootroot"/>
+
+<%
+String date = request.getParameter("datefilter");
+String type = request.getParameter("typeDropbtn");
+String room = request.getParameter("roomDropbtn");
+String advisor = request.getParameter("advisorDropbtn");
+boolean showAll = (type==null && room==null && advisor==null) || (type=="" && room=="" && advisor=="");
+boolean filtered = (type!=null || room!=null || advisor!=null) && (type!="" || room!="" || advisor!="");
+request.setAttribute("date", date);
+request.setAttribute("type", type);
+request.setAttribute("room", room);
+request.setAttribute("advisor", advisor);
+request.setAttribute("showAll", showAll);
+request.setAttribute("filtered", filtered);
+
+/* out.println("date: " + date + " | type: " + type + " | room " + room + " | advisor: " + advisor + "\n");
+out.println("showAll? " + showAll + " | filtered? " + filtered); */
+%>
+<sql:query var="queryAllSessions" dataSource="${myDS}">
+	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID;
+</sql:query>
+<sql:query var="queryFilterSessions" dataSource="${myDS}">
+	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR adminId=?;
+	<sql:param value="${type}" />
+	<sql:param value="${room}" />
+	<sql:param value="${advisor}" />
+</sql:query>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +58,7 @@
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
 			$('.filter').load('FilterComponent.jsp');
+			$('.addOneToOneSessions').load('AddOneToOneSessions.jsp');
 		});
 	</script>
 </head>
@@ -60,101 +98,89 @@
 					<th style="width:5%;">A/NA</th>
 					<th style="width:5%;">Waiting</th>
 				</tr>
-				<%
-				try{
-					String host = "jdbc:mysql://localhost:3306/uts_help";
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-					Statement stm = conn.createStatement();
-					
-					String date = request.getParameter("datefilter");
-					String type = request.getParameter("typeDropbtn");
-					String room = request.getParameter("roomDropbtn");
-					String advisor = request.getParameter("advisorDropbtn");
-					
-					if((type==null && room==null && room==null)|| (type=="" && room=="" && advisor=="")){
-						String QueryAllSessions="SELECT * FROM session LEFT JOIN room ON session.roomId=room.roomId";
-						ResultSet rs = stm.executeQuery(QueryAllSessions);
-						while(rs.next()){
-							%>
-							<tr class="filter_result">
-								<td><input type="checkbox" name="attendance" value="No" /></td>
-								<td><%=rs.getDate("date") %>
-								<td><%=rs.getTime("startTime") %>
-								<td><%=rs.getTime("endTime") %>
-								<td><%=rs.getString("roomLocation") %>
-								<td><%=rs.getString("advisorName") %>
-								<td><%=rs.getString("type") %>
-								<td><form action="StudentBookingDetails.jsp" method="POST">
-									<%
-									String get_sessionId = rs.getString("sessionId").toString();
-									Date get_date = rs.getDate("date");
-									Time get_startTime = rs.getTime("startTime");
-									Time get_endTime = rs.getTime("endTime");
-									String get_room = rs.getString("roomLocation").toString();
-									String get_type = rs.getString("type").toString();
-									String get_advisorName = rs.getString("advisorName").toString();
-									%>
-									<input type="hidden" name="get_sessionId" value = "<%=get_sessionId %>">
-									<input type="hidden" name="get_date" value = "<%=get_date %>">
-									<input type="hidden" name="get_startTime" value = "<%=get_startTime %>">
-									<input type="hidden" name="get_endTime" value = "<%=get_endTime %>">
-									<input type="hidden" name="get_room" value = "<%=get_room %>">
-									<input type="hidden" name="get_type" value = "<%=get_type %>">
-									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
-									<input type="submit" value="Student Name" />
+				<c:if test="${showAll}">
+					<c:forEach var="item" items="${queryAllSessions.rows }">
+						<tr class="filter_result">
+							<td><input type="checkbox" name="stu_attendance" value="No" /></td>
+							<td><fmt:formatDate type="date" value="${item.date}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
+							<td>${item.roomLocation}</td>
+							<td>${item.advisorName}</td>
+							<td>${item.type}</td>
+							<td><form action="StudentBookingDetails.jsp" method="POST">
+								<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+								<input type="hidden" name="get_date" value = "${item.date}">
+								<input type="hidden" name="get_startTime" value = "${item.startTime}">
+								<input type="hidden" name="get_endTime" value = "${item.endTime}">
+								<input type="hidden" name="get_room" value = "${item.roomLocation}">
+								<input type="hidden" name="get_type" value = "${item.type}">
+								<input type="hidden" name="get_adminId" value = "${item.adminId}">
+								<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+								<c:choose>
+									<c:when test="${item.booked =='1'}">
+										<input type="hidden" name="get_studentId" value = "${item.studentId}">
+										<input type="hidden" name="get_studentFirstName" value = "${item.firstName}">
+										<input type="hidden" name="get_studentLastName" value = "${item.lastName}">
+										<input type="hidden" name="get_studentEmail" value = "${item.email}">
+										<input type="hidden" name="get_subjectName" value = "${item.subjectName}">
+										<input type="hidden" name="get_assignType" value = "${item.assignType}">
+										<input type="hidden" name="get_isAssignment" value = "${item.isAssignment}">
+										<input type="hidden" name="get_helpType" value = "${item.rule}">
+										<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
+										<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
+										<input type="submit" value="${item.studentId}" id="bookedName"/>
+									</c:when>
+									<c:otherwise>
+										<input type="submit" value="Student Name" id="bookedName"/>
+									</c:otherwise>
+								</c:choose>
 								</form></td>
-								<td><a href="AddToWaitingList.jsp">A/Na</a></td>
-								<td><a href="AddToWaitingList.jsp">Add</a></td>
-							</tr>
-							<%
-						}
-					}
-					if(type!="" || room!="" || advisor!=""){
-						String Query="SELECT * FROM session LEFT JOIN room ON session.roomId=room.roomId WHERE type='" + type + "' OR session.roomId='" + room + "' OR adminId='" + advisor + "'";						
-						ResultSet rs = stm.executeQuery(Query);
-						while(rs.next()){
-							%>
-							<tr class="filter_result">
-								<td><input type="checkbox" name="attendance" value="No" /></td>
-								<td><%=rs.getDate("date") %>
-								<td><%=rs.getTime("startTime") %>
-								<td><%=rs.getTime("endTime") %>
-								<td><%=rs.getString("roomLocation") %>
-								<td><%=rs.getString("advisorName") %>
-								<td><%=rs.getString("type") %>
-								<td><form action="StudentBookingDetails.jsp" method="POST">
-									<%
-									String get_sessionId = rs.getString("sessionId").toString();
-									Date get_date = rs.getDate("date");
-									Time get_startTime = rs.getTime("startTime");
-									Time get_endTime = rs.getTime("endTime");
-									String get_room = rs.getString("roomLocation").toString();
-									String get_type = rs.getString("type").toString();
-									String get_advisorName = rs.getString("advisorName").toString();
-									%>
-									<input type="hidden" name="get_sessionId" value = "<%=get_sessionId %>">
-									<input type="hidden" name="get_date" value = "<%=get_date %>">
-									<input type="hidden" name="get_startTime" value = "<%=get_startTime %>">
-									<input type="hidden" name="get_endTime" value = "<%=get_endTime %>">
-									<input type="hidden" name="get_room" value = "<%=get_room %>">
-									<input type="hidden" name="get_type" value = "<%=get_type %>">
-									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
-									<input type="submit" value="Student Name" />
+							<td><a href="AddToWaitingList.jsp">A/Na</a></td>
+							<td><a href="AddToWaitingList.jsp">Add</a></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${filtered}">
+					<c:forEach var="item" items="${queryFilterSessions.rows }">
+						<tr class="filter_result">
+							<td><input type="checkbox" name="stu_attendance" value="No" /></td>
+							<td><fmt:formatDate type="date" value="${item.date}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
+							<td>${item.roomLocation}</td>
+							<td>${item.advisorName}</td>
+							<td>${item.type}</td>
+							<td><form action="StudentBookingDetails.jsp" method="POST">
+								<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+								<input type="hidden" name="get_date" value = "${item.date}">
+								<input type="hidden" name="get_startTime" value = "${item.startTime}">
+								<input type="hidden" name="get_endTime" value = "${item.endTime}">
+								<input type="hidden" name="get_room" value = "${item.roomLocation}">
+								<input type="hidden" name="get_type" value = "${item.type}">
+								<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+								<c:choose>
+									<c:when test="${item.booked =='1'}">
+										<input type="hidden" name="get_studentId" value = "${item.studentId}">
+										<input type="hidden" name="get_studentFirstName" value = "${item.firstName}">
+										<input type="hidden" name="get_studentLastName" value = "${item.lastName}">
+										<input type="hidden" name="get_studentEmail" value = "${item.email}">
+										<input type="hidden" name="get_subjectName" value = "${item.subjectName}">
+										<input type="hidden" name="get_assignType" value = "${item.assignType}">
+										<input type="hidden" name="get_isAssignment" value = "${item.isAssignment}">
+										<input type="hidden" name="get_helpType" value = "${item.rule}">
+										<input type="submit" value="${item.studentId}" id="bookedName"/>
+									</c:when>
+									<c:otherwise>
+										<input type="submit" value="Student Name" id="bookedName"/>
+									</c:otherwise>
+								</c:choose>
 								</form></td>
-								<td><a href="AddToWaitingList.jsp">A/Na</a></td>
-								<td><a href="AddToWaitingList.jsp">Add</a></td>
-							</tr>
-							<%
-						}
-					}
-					
-					
-				} catch(Exception ex){
-					ex.printStackTrace();
-				}
-				%>
-				
+							<td><a href="AddToWaitingList.jsp">A/Na</a></td>
+							<td><a href="AddToWaitingList.jsp">Add</a></td>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</table>
 			<div class="edit_available_sessions" align="center">
 				<button onclick="updAvlbSess()" id="updateAblbSess">Update</button>
@@ -171,7 +197,7 @@
 					<input type="submit" name="btnMarkAttendance" value="Mark Attendance" id="btnMarkAttendance"/>
 				</div>
 			</div>
-			<jsp:include page="AddOneToOneSessions.jsp"></jsp:include>
+			<div class="addOneToOneSessions"></div>
 			<div align="left" id="legendDesc">
 				<p style="font-weight:bold">Legend</p>
 				<p>A: Attended</p>
@@ -182,37 +208,5 @@
 	
 	<div class="footer"></div>
 
-<!-- 	
-	Switch to different tab content
-	<script>
-	function openSession(evt, sessionName) {
-		// Declare all variables
-		var i, tabcontent, tablinks;
-		// Get all elements with class="tabcontent" and hide them
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = "none";
-		}
-		// Get all elements with class="tablinks" and remove the class "active"
-		tablinks = document.getElementsByClassName("tablinks");
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(" active", "");
-		}
-		
-		// Show the current tab, and add an "active" class to the button that opened the tab
-		document.getElementById(sessionName).style.display = "block";
-		evt.currentTarget.className += " active";
-	}
-	
-	// Get the element with id="defaultOpen" and click on it
-	document.getElementById("defaultOpen").click();
-	</script>
- -->	
-	
-
-	
-	
-	
-	
 </body>
 </html>

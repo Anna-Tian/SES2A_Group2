@@ -43,12 +43,12 @@ body {
 	
 	border: 1px solid #ccc;
 	box-sizing: border-box;
+	width: auto;
 }
-.wrapper select {
-	width: 10%;
+select {
+	width: auto;
 }
-.wrapper select:focus {
-	min-width: 100px;
+select:focus {
 	width: auto;
 } 
 
@@ -64,12 +64,23 @@ body {
 	display: block;
 	margin-block-start: 5px;
 	margin-block-end: 5px;
-	padding: 7px 15px 5px;
+	padding: 7px 5px 5px;
 	font-weight:bold;
 	font-size: 18pt;
 	line-height: 100%;
 	background-color: #33d6ff;
 	color:white;
+}
+
+#bookedName{
+	background:none!important;
+	border:none; 
+	padding:0!important;
+	font-size: 10pt;
+	color:#069;
+	text-decoration:underline;
+	cursor:pointer;
+	
 }
 
 .wrapper input[type=submit]{
@@ -81,6 +92,18 @@ body {
     box-sizing: border-box;
 }
 .wrapper input[type=submit]:hover{
+	background-color: #33adff;
+}
+
+.wrapper input[type=reset]{
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.wrapper input[type=reset]:hover{
 	background-color: #33adff;
 }
 
@@ -170,4 +193,19 @@ body {
 .wrapper #tAddSessions th, td{
 	border-bottom: 1px solid #ccc;
 	padding: 8px;
+}
+
+.wrapper.form_part1{
+	width:30%;
+	float:left;
+}
+.wrapper.form_part2{
+	width:70%;
+	float:right;
+}
+
+#otherHelpTypeRichText{
+	display: none;
+	border: 1px solid #ccc;
+	width:70%;
 }

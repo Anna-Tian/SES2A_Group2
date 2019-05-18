@@ -1,6 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="com.bean.Admin"%>
+<%@page import="com.bean.Session"%>
+<%@page import="com.bean.Room"%>
+
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/uts_help" user="root" password="rootroot"/>
+
+<%
+String date = request.getParameter("datefilter");
+String type = request.getParameter("typeDropbtn");
+String room = request.getParameter("roomDropbtn");
+String advisor = request.getParameter("advisorDropbtn");
+boolean showAll = (type==null && room==null && advisor==null) || (type=="" && room=="" && advisor=="");
+boolean filtered = (type!=null || room!=null || advisor!=null) && (type!="" || room!="" || advisor!="");
+request.setAttribute("date", date);
+request.setAttribute("type", type);
+request.setAttribute("room", room);
+request.setAttribute("advisor", advisor);
+request.setAttribute("showAll", showAll);
+request.setAttribute("filtered", filtered);
+
+/* out.println("date: " + date + " | type: " + type + " | room " + room + " | advisor: " + advisor + "\n");
+out.println("showAll? " + showAll + " | filtered? " + filtered); */
+%>
+<sql:query var="queryAllSessions" dataSource="${myDS}">
+	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID;
+</sql:query>
+<sql:query var="queryFilterSessions" dataSource="${myDS}">
+	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR adminId=?;
+	<sql:param value="${type}" />
+	<sql:param value="${room}" />
+	<sql:param value="${advisor}" />
+</sql:query>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +87,7 @@
 			</form>
 			
 			<p class="header_name" id="sessions_available_header" style="float:left; width:97%">Sessions Available</p>
+			
 			<table class="table_session_available" id="tSessionAvailable" style="width:100%; float:left">
 				<tr class="header" align="left" style="width:90%">
 					<th style="width:2%;"><input type="checkbox" name="attendance" value="No"><br></th>
@@ -62,96 +99,69 @@
 					<th style="width:15%;">Booked by</th>
 					<th style="width:10%;">Waiting</th>
 				</tr>				
-				<%
-				try{
-					String host = "jdbc:mysql://localhost:3306/uts_help";
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-					Statement stm = conn.createStatement();
-					
-					String date = request.getParameter("datefilter");
-					String type = request.getParameter("typeDropbtn");
-					String room = request.getParameter("roomDropbtn");
-					String advisor = request.getParameter("advisorDropbtn");
-										
-					if((type==null && room==null && advisor==null)|| (type=="" && room=="" && advisor=="")){
-						String QueryAllSessions="SELECT * FROM session LEFT JOIN room ON session.roomId=room.roomId";
-						ResultSet rs = stm.executeQuery(QueryAllSessions);
-						while(rs.next()){
-							%>
-							<tr class="filter_result">
-								<td><input type="checkbox" name="stu_attendance" value="No" /></td>
-								<td><%=rs.getDate("date") %>
-								<td><%=rs.getTime("startTime") %>
-								<td><%=rs.getTime("endTime") %>
-								<td><%=rs.getString("roomLocation") %>
-								<td><%=rs.getString("type") %>
-								<td><form action="BookSpecificSession.jsp" method="POST">
-									<%
-									String get_sessionId = rs.getString("sessionId").toString();
-									Date get_date = rs.getDate("date");
-									Time get_startTime = rs.getTime("startTime");
-									Time get_endTime = rs.getTime("endTime");
-									String get_room = rs.getString("roomLocation").toString();
-									String get_type = rs.getString("type").toString();
-									String get_advisorName = rs.getString("advisorName").toString();
-									%>
-									<input type="hidden" name="get_sessionId" value = "<%=get_sessionId %>">
-									<input type="hidden" name="get_date" value = "<%=get_date %>">
-									<input type="hidden" name="get_startTime" value = "<%=get_startTime %>">
-									<input type="hidden" name="get_endTime" value = "<%=get_endTime %>">
-									<input type="hidden" name="get_room" value = "<%=get_room %>">
-									<input type="hidden" name="get_type" value = "<%=get_type %>">
-									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
-									<input type="submit" value="Student Name" />
-								</form></td>
-								<td><a href="AddToWaitingList.jsp">Add</a></td>
-							</tr>
-							<%
-						}
-					}
-					if(type!="" || room!="" || advisor!=""){
-						String Query="SELECT * FROM session LEFT JOIN room ON session.roomId=room.roomId WHERE type='" + type + "' OR session.roomId='" + room + "' OR adminId='" + advisor + "'";						
-						ResultSet rs = stm.executeQuery(Query);
-						while(rs.next()){
-							%>
-							<tr class="filter_result">
-								<td><input type="checkbox" name="stu_attendance" value="No" /></td>
-								<td><%=rs.getDate("date") %>
-								<td><%=rs.getTime("startTime") %>
-								<td><%=rs.getTime("endTime") %>
-								<td><%=rs.getString("roomLocation") %>
-								<td><%=rs.getString("type") %>
-								<td><form action="BookSpecificSession.jsp" method="POST">
-									<%
-									String get_sessionId = rs.getString("sessionId").toString();
-									Date get_date = rs.getDate("date");
-									Time get_startTime = rs.getTime("startTime");
-									Time get_endTime = rs.getTime("endTime");
-									String get_room = rs.getString("roomLocation").toString();
-									String get_type = rs.getString("type").toString();
-									String get_advisorName = rs.getString("advisorName").toString();
-									%>
-									<input type="hidden" name="get_sessionId" value = "<%=get_sessionId %>">
-									<input type="hidden" name="get_date" value = "<%=get_date %>">
-									<input type="hidden" name="get_startTime" value = "<%=get_startTime %>">
-									<input type="hidden" name="get_endTime" value = "<%=get_endTime %>">
-									<input type="hidden" name="get_room" value = "<%=get_room %>">
-									<input type="hidden" name="get_type" value = "<%=get_type %>">
-									<input type="hidden" name="get_advisorName" value = "<%=get_advisorName %>">
-									<input type="submit" value="Student Name" />
-								</form></td>
-								<td><a href="AddToWaitingList.jsp">Add</a></td>
-							</tr>
-							<%
-						}
-					}
-					
-					
-				} catch(Exception ex){
-					ex.printStackTrace();
-				}
-				%>
+				
+				<c:if test="${showAll}">
+					<c:forEach var="item" items="${queryAllSessions.rows }">
+						<tr class="filter_result">
+							<td><input type="checkbox" name="stu_attendance" value="No" /></td>
+							<td><fmt:formatDate type="date" value="${item.date}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
+							<td>${item.roomLocation}</td>
+							<td>${item.type}</td>
+							<td><form action="BookSpecificSession.jsp" method="POST">
+								<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+								<input type="hidden" name="get_date" value = "${item.date}">
+								<input type="hidden" name="get_startTime" value = "${item.startTime}">
+								<input type="hidden" name="get_endTime" value = "${item.endTime}">
+								<input type="hidden" name="get_room" value = "${item.roomLocation}">
+								<input type="hidden" name="get_type" value = "${item.type}">
+								<input type="hidden" name="get_adminId" value = "${item.adminId}">
+								<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+								<c:choose>
+									<c:when test="${item.booked =='1'}">
+										<input type="submit" value="${item.studentId}" id="bookedName"/>
+									</c:when>
+									<c:otherwise>
+										<input type="submit" value="Student Name" id="bookedName"/>
+									</c:otherwise>
+								</c:choose>
+							</form></td>
+							<td><a href="AddToWaitingList.jsp">Add</a></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${filtered}">
+					<c:forEach var="item" items="${queryFilterSessions.rows }">
+						<tr class="filter_result">
+							<td><input type="checkbox" name="stu_attendance" value="No" /></td>
+							<td><fmt:formatDate type="date" value="${item.date}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
+							<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
+							<td>${item.roomLocation}</td>
+							<td>${item.type}</td>
+							<td><form action="BookSpecificSession.jsp" method="POST">
+								<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+								<input type="hidden" name="get_date" value = "${item.date}">
+								<input type="hidden" name="get_startTime" value = "${item.startTime}">
+								<input type="hidden" name="get_endTime" value = "${item.endTime}">
+								<input type="hidden" name="get_room" value = "${item.roomLocation}">
+								<input type="hidden" name="get_type" value = "${item.type}">
+								<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+								<c:choose>
+									<c:when test="${item.booked =='1'}">
+										<input type="submit" value="${item.studentId}" id="bookedName"/>
+									</c:when>
+									<c:otherwise>
+										<input type="submit" value="Student Name" id="bookedName"/>
+									</c:otherwise>
+								</c:choose>
+							</form></td>
+							<td><a href="AddToWaitingList.jsp">Add</a></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				
 			</table>
 				
 			<div class="edit_available_sessions" align="center" style="width:100%; float:left; padding-top:5px">
@@ -184,4 +194,5 @@
 	<div class="footer" style="width:100%; float:left"></div>
 	
 </body>
+</html>
 </html>

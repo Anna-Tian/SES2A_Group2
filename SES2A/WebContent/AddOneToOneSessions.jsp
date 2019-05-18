@@ -2,8 +2,18 @@
 import="java.sql.*" 
 import="java.text.*"
 %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@page import="com.bean.Admin"%>
+<%@page import="com.bean.Session"%>
+<%@page import="com.bean.Room"%>
 
-<form class="add_sessions" action="http://localhost:8080/SES2A/Add1To1Confirmation.jsp" method="POST">
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/uts_help" user="root" password="rootroot"/>
+     
+<sql:query var="listRooms" dataSource="${myDS}"> SELECT * FROM room;</sql:query>
+<sql:query var="listAdmins" dataSource="${myDS}"> SELECT * FROM admin;</sql:query>
+
+<form action="Add1To1Confirmation.jsp" method="POST">
 	<p>To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
 	<p>Please note: all the fields are compulsory, otherwise that session will not be added.</p>
 	<table class="table_add_sessions" id="tAddSessions" style="padding-bottom:10px">
@@ -24,45 +34,19 @@ import="java.text.*"
 			<td>
 				<select name="roomDropbtn" style="width:100%">
 					<option value=""></option>
-					<%
-					try{
-						String Query="SELECT * FROM room";
-						String host = "jdbc:mysql://localhost:3306/uts_help";
-						Class.forName("com.mysql.jdbc.Driver").newInstance();
-						Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-						Statement stm = conn.createStatement();
-						ResultSet rs = stm.executeQuery(Query);
-						while(rs.next()){
-							%>
-							<option value="<%=rs.getInt("roomId")%>"><%=rs.getString("roomLocation") %></option>
-							<%
-						}
-					} catch(Exception ex){
-						ex.printStackTrace();
-					}
-					%>
+					<c:forEach var="item" items="${listRooms.rows}" >
+						<option value="${item.roomId}"><c:out value="${item.roomLocation}" /></option>
+					</c:forEach>
 				</select>
+				
 			</td>
 			<td>
 				<select name="ANADropbtn" style="width:100%">
 					<option value=""></option>
-					<%
-					try{
-						String Query="SELECT * FROM admin";
-						String host = "jdbc:mysql://localhost:3306/uts_help";
-						Class.forName("com.mysql.jdbc.Driver").newInstance();
-						Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-						Statement stm = conn.createStatement();
-						ResultSet rs = stm.executeQuery(Query);
-						while(rs.next()){
-							%>
-							<option value="<%=rs.getInt("adminId")%>"><%=rs.getString("firstName") %> <%=rs.getString("lastName") %></option>
-							<%
-						}
-					} catch(Exception ex){
-						ex.printStackTrace();
-					}
-					%>
+					<c:forEach var="item" items="${listAdmins.rows}" >
+						<option value="${item.adminId}"><c:out value="${item.firstName} ${item.lastName}"/></option>
+					</c:forEach>
+					
 				</select>
 			</td>
 			<td>
@@ -72,7 +56,7 @@ import="java.text.*"
 					<option value="UP/PG Others">UP/PG Others</option>
 				</select>
 			</td>
-			<td><input type="submit" name="btnClearAddSessions" value="Clear" id="btnClearAddSessions"/></td>					
+			<td><input type="reset" name="btnClearAddSessions" value="Clear" id="btnClearAddSessions"/></td>					
 		</tr>
 		
 	</table>
