@@ -78,14 +78,14 @@
 
 			/*handle select list event*/
 			$("#messageTabSelectList").change(function(){
-				var choice = document.getElementById("messageTabSelectList").value;
-				if(choice != '0'){   
+				choiceValue = document.getElementById("messageTabSelectList").value;
+				if(choiceValue != '0'){   
 					$("#previewButton").hide();
 					$("#publishButton").hide();
 					$("#cancelButton").hide();
 					$("#saveButton").hide();
 					$("#updateMessage").hide();
-					switch(choice){
+					switch(choiceValue){
 					    case '1': txtEditor.setData(mess1); break;
 						case '2': txtEditor.setData(mess2); break;
 						case '3': txtEditor.setData(mess3); break;

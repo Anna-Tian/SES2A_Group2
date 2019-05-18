@@ -56,7 +56,7 @@ public class MessageDatabase {
 	public static void main(String[] agrs){
 		try{
 			System.out.println("BEFORE HIBERNATE FUNCTION");
-			Message mess = getCurrentMessage(1);
+			Message mess = getCurrentMessage(5);
 			/*printMessage(mess);*/
 			mess.setMessageDetailed("new message for testingDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd");
 			mess.setMessageTempDetailed("new message for testingDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd");
