@@ -129,8 +129,7 @@
 			/*handle publish button click*/
 			$("#publishButton").on('click', function(){
 				//save changes made to the message into the database
-				
-				var m = txtEditor.getData();
+				var m = "" + txtEditor.getSnapshot();
 				
 				$.ajax({
 					url:"MessageServlet",
@@ -151,8 +150,8 @@
 			/*handle save button click*/
 			$("#saveButton").on('click', function(){
 				//save changes and enable preview and publish button
-				var m = txtEditor.getData();
-
+				var m = "" + txtEditor.getSnapshot();
+				
 				$.ajax({
 					url:"MessageServlet",
 					type:"post",

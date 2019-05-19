@@ -13,14 +13,14 @@ public final class InitiateDatabase {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//Creates 12 rows of data in message table
-		/*Session session = HibernateUtil.getCurrentSession();
+		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		String sql = "INSERT INTO message (messageLocation, messageDetailed, messageTempDetailed) " +
 		        "VALUES (NULL, NULL, NULL)";
 		for(int i=0; i < 12; i++){
 			session.createSQLQuery(sql).executeUpdate();
 		}
-		transaction.commit();*/
+		transaction.commit();
 		
 		Message message1 = MessageDatabase.getCurrentMessage(1);
 		message1.setMessageLocation("probably FAQs.jsp");
