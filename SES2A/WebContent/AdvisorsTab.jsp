@@ -69,7 +69,7 @@ th{
   String id = request.getParameter("id");
   String driver = "com.mysql.jdbc.Driver"; 
   String connectionURL = "jdbc:mysql://localhost:3306/"; 
-  String dtbName = "uts_help"; 
+  String dtbName = "uts_help?useSSL=false"; 
   String dtbId =  "root"; 
   String dtbPass = "rootroot";
   
@@ -92,20 +92,19 @@ th{
   	String  dtb = "SELECT * FROM advisor"; 
   	resultSet = statement.executeQuery(dtb); 
   while  (resultSet.next()) {
+	  if (resultSet.getString("isActive").equalsIgnoreCase("active")){
  %>
-
-  <tr> 
-  
-  <td><input type = "checkbox" name = "chk"/> <input type="hidden" name="adId" value = <%=resultSet.getString("advisorId")%>> 
-  	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
-  <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
-  <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
-  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
-  </tr> 
-
-
+	  <tr> 
+	  
+	  <td><input type = "checkbox" name = "chk"/> <input type="hidden" name="adId" value = <%=resultSet.getString("advisorId")%>> 
+	  	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
+	  <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
+	  <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
+	  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
+	  </tr> 
 <%
-} 
+	  }
+ } 
   connection.close();
   }catch
   (Exception e) { e.printStackTrace(); }
@@ -200,4 +199,3 @@ To enter more advisors, please enter their details below and click "Add". <br>
 </body>
 <div class="footer"></div>
 </html>
-
