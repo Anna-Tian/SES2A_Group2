@@ -65,7 +65,7 @@
 </head>
 <body>
 	<div class="head"></div>
-	
+	<a href="/SES2A/myInformation.jsp">Profile</a>
 	<!-- <div id="global-utility-bar">
 		UTS Logo
 		<div id="uts-logo">
@@ -108,7 +108,7 @@
 							  	<td><fmt:formatDate type="date" value="${thisSession.date }" /></td>
 							  	<%-- <td>${thisSession.endTime } - ${thisSession.startTime }</td> --%>
 							  	<td><fmt:formatDate pattern="HH:mm" value="${thisSession.startTime }" /></td>
-							  	<td>${thisSession.room }</td>
+							  	<td>${thisSession.room.roomLocation }</td>
 							  	<td>${thisSession.advisorName }</td>
 							  	<td>${thisSession.type }</td>
 						 	</tr>
@@ -142,7 +142,7 @@
 							  	<td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${workShop.endDate }" /></td>
 							  	<td>${workShop.days }</td>
 							  	<td>${workShop.placeAvailable }</td>
-							  	<td>${workShop.room }</td>
+							  	<td>${workShop.room.roomLocation }</td>
 							  	<td>${workShop.noOfSessions }</td>
 							  	<td><input class="btn btn-primary btn-sm" type="button" value="Cancel" id="del_${workShop.workShopId}"/></td>
 						 	</tr>
@@ -172,7 +172,7 @@
 							  	<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${workShop.endDate }" /></td>
 							  	<td>${workShop.days }</td>
 							  	<td>${workShop.placeAvailable }</td>
-							  	<td>${workShop.room }</td>
+							  	<td>${workShop.room.roomLocation }</td>
 							  	<td>${workShop.noOfSessions }</td>
 						 	</tr>
 					  </c:forEach>		

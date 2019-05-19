@@ -12,7 +12,7 @@
 			<key column="roomId"></key>
 			<one-to-many class="com.bean.WorkShop"/>
 		</set>
-		<set name="sessions">
+		<set name="sessions" lazy="false">
 			<key column="roomId"></key>
 			<one-to-many class="com.bean.Session"/>
 		</set>

@@ -72,6 +72,7 @@ public class TestDaoImpl {
 		
 		workShop.setRoom(room);
 		
+		session.save(room);
 		session.save(workShop);
 		/*
 		 * HashSet<Student> students= new HashSet<Student>(); HashSet<WorkShop>
@@ -101,7 +102,10 @@ public class TestDaoImpl {
 		return workShop;
 	}
 	public static void main(String[] args) throws ParseException {
-		(new TestDaoImpl()).saveWorkShop();
+		for(int i=0;i<10;i++) {
+			(new TestDaoImpl()).saveWorkShop();
+		}
+		
 		System.out.println("TestDaoImpl Success");
 	}
 }

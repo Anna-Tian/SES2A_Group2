@@ -66,8 +66,16 @@ public class MyInformation extends HttpServlet {
 			studentProfile.setProfileId(student.getStudentProfile().getProfileId());
 			flag = studentProfileDao.saveStudentProfile(student, studentProfile);
 		}
+		StudentProfile studentProfileNew = student.getStudentProfile();
+		request.getSession().setAttribute("studentProfile", studentProfileNew);
+		if(studentProfileNew!=null) {
+			String[] eduBgNew = studentProfile.getEduBg().substring(1,studentProfile.getEduBg().length()-1).split(", ");
+			String[] eduBgMarkNew = studentProfile.getEduBgMark().substring(1,studentProfile.getEduBgMark().length()-1).split(", ");
+			request.getSession().setAttribute("eduBg", eduBgNew);
+			request.getSession().setAttribute("eduBgMark", eduBgMarkNew);
+		}
 		if(flag) {
-			response.sendRedirect("/SES2A/LoginServlet");
+			response.sendRedirect("myInformation.jsp");
 		}
 	}
 	
