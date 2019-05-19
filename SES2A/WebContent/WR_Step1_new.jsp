@@ -94,15 +94,11 @@
 				<p>&nbsp;</p>
 			</div>
 			<div>
-				<ul>
 					<c:forEach var="sessions2" items="${www }">
-						  	<ul>
+						  	<ul >
 							  	<li><a style="text-decoration:underline;" id="del_${sessions2 }">${sessions2 }</a></li>
-							  	
-						 	</ul>
-					
-					  </c:forEach>
-				</ul>
+							  	</ul>
+					</c:forEach>
 				
 			</div>
 

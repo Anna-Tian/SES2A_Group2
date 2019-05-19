@@ -28,6 +28,9 @@ $("[id^='del_']").click(function(){
 			    	  if(data){
 			    		  location.href="WR_Comfirmation_new.jsp"
 			    	  }
+			    	  else{
+			    		  alert("Booking failed")
+			    	  }
 			      }
 			     });
 		});
@@ -52,34 +55,42 @@ $("[id^='del_']").click(function(){
 
 
 
-			<h2>The topic</h2>
+			<h2>The Workshop details</h2>
 			<form method="post" class="workshop">
 				<input type="hidden" name="workshopID" value="10409">
 				
+				<br>
 					<div>
 						<strong>Title</strong>: ${workShop.name }
 					</div>
+					<br>
 					<div>
 						<strong>Room</strong>:	${room.roomLocation }
 						</div>
+						<br>
 						<div>
 							<strong>Date</strong>: ${workShop.startDate } - ${workShop.endDate }
 						</div>
+						<br>
 						<div>
 							<strong>Time</strong>: ${workShop.days }
 						</div>
+						<br>
 
 						<div>
 							<strong>Target Group</strong>: ${workShop.targetGroup }
 						</div>
+						<br>
 
 						<div>
 							<strong>What it covers</strong>: ${workShop.description }
 						</div>
+						<br>
 
 						<div>
 							<strong>Places available</strong>: ${workShop.placeAvailable }
 						</div>
+						<br>
 			</form>
 
 			<p></p>

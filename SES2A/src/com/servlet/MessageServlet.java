@@ -33,7 +33,7 @@ public class MessageServlet extends HttpServlet {
 		String message = request.getParameter("message");
 		String id = request.getParameter("index");
 		String type = request.getParameter("type");
-				
+
 		if(type.equals("save")){
 			try{
 				save(message, id, response);
@@ -44,7 +44,8 @@ public class MessageServlet extends HttpServlet {
 		}
 		else if(type.equals("publish")){
 			try{
-				publish(message, id, response);
+				publish(id, response);
+				
 			}
 			catch(IOException e){
 				System.out.println("IOException Occurred");
@@ -65,11 +66,9 @@ public class MessageServlet extends HttpServlet {
 	
 	private void save(String message, String id, HttpServletResponse response) throws IOException{
 		try{
-			System.out.println("SAVE MESSAGE CALLED: " + Integer.parseInt(id));
-			Message mess = MessageDatabase.getCurrentMessage(Integer.parseInt(id));
-			mess.setMessageTempDetailed(message);
-			MessageDatabase.updateMessage(mess);
-			System.out.println("SAVE MESSAGE FINISHED");
+			Message obj = MessageDatabase.getCurrentMessage(Integer.parseInt(id));
+			obj.setMessageTempDetailed(message);
+			MessageDatabase.updateMessage(obj);
 			response.sendRedirect("MessageEditTab.jsp");
 		}
 		catch(NullPointerException e){
@@ -78,13 +77,11 @@ public class MessageServlet extends HttpServlet {
 		
 	}
 	
-	private void publish(String message, String id, HttpServletResponse response) throws IOException{
+	private void publish(String id, HttpServletResponse response) throws IOException{
 		try{
-			System.out.println("PUBLISH MESSAGE CALLED: " + Integer.parseInt(id));
-			Message mess = MessageDatabase.getCurrentMessage(Integer.parseInt(id));
-			mess.setMessageDetailed(message);
-			MessageDatabase.updateMessage(mess);
-			System.out.println("PUBLISH MESSAGE FINISHED");
+			Message obj = MessageDatabase.getCurrentMessage(Integer.parseInt(id));
+			obj.setMessageDetailed(obj.getMessageTempDetailed());
+			MessageDatabase.updateMessage(obj);
 			response.sendRedirect("MessageEditTab.jsp");
 		}
 		catch(NullPointerException e){
