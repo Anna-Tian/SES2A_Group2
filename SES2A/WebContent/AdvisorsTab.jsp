@@ -69,7 +69,7 @@ th{
   String id = request.getParameter("id");
   String driver = "com.mysql.jdbc.Driver"; 
   String connectionURL = "jdbc:mysql://localhost:3306/"; 
-  String dtbName = "uts_help?useSSL=false"; 
+  String dtbName = "uts_help?createDatabaseIfNotExist=true&amp;allowPublicKeyRetrieval=true&amp;useSSL=false"; 
   String dtbId =  "root"; 
   String dtbPass = "rootroot";
   
@@ -92,7 +92,7 @@ th{
   	String  dtb = "SELECT * FROM advisor"; 
   	resultSet = statement.executeQuery(dtb); 
   while  (resultSet.next()) {
-	  if (resultSet.getString("isActive").equalsIgnoreCase("active")){
+// 	  if (resultSet.getString("isActive") == "Active"){
  %>
 	  <tr> 
 	  
@@ -103,8 +103,8 @@ th{
 	  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
 	  </tr> 
 <%
-	  }
- } 
+// 	  }
+  } 
   connection.close();
   }catch
   (Exception e) { e.printStackTrace(); }
