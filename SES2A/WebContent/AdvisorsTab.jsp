@@ -18,20 +18,15 @@ td {
     border: 1px solid black;  
     border-collapse: collapse; 
 }  
-
 td {
     padding: 10px; 
 }
-
 th{
 	text-align:left;
 }
-
-
 .header {
     background-color: #4db8ff;
 }
-
 .tab {
             max-width: 810px;
             width: 98%;
@@ -41,7 +36,6 @@ th{
 .buttonholder{
 	text-align:center;
 }
-
 </style>  
 </head>
  
@@ -92,19 +86,22 @@ th{
   	String  dtb = "SELECT * FROM advisor"; 
   	resultSet = statement.executeQuery(dtb); 
   while  (resultSet.next()) {
-// 	  if (resultSet.getString("isActive") == "Active"){
+	  if (resultSet.getString("isActive") != null){
  %>
-	  <tr> 
-	  
-	  <td><input type = "checkbox" name = "chk"/> <input type="hidden" name="adId" value = <%=resultSet.getString("advisorId")%>> 
-	  	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
-	  <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
-	  <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
-	  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
-	  </tr> 
+
+  <tr> 
+  
+  <td><input type = "checkbox" name = "chk" value = <%=resultSet.getString("advisorId")%> /> 
+  	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
+  <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
+  <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
+  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
+  </tr> 
+
+
 <%
-// 	  }
-  } 
+  	}
+} 
   connection.close();
   }catch
   (Exception e) { e.printStackTrace(); }

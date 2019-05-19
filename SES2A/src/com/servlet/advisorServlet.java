@@ -48,7 +48,7 @@ public class advisorServlet extends HttpServlet {
         	}
         }else if (action.equalsIgnoreCase("Update")) {
         	if(checkbx != null) {
-            	Integer advisorId = Integer.valueOf(request.getParameter("adId"));
+            	Integer advisorId = Integer.valueOf(request.getParameter("chk"));
                 try {
                     advisorDao AdvisorDAO = new advisorDao();
                     AdvisorDAO.update(advisorId,staffnumberupdate, firstnameupdate, lastnameupdate, emailupdate);
@@ -62,7 +62,7 @@ public class advisorServlet extends HttpServlet {
 
         }else if(action.equalsIgnoreCase("Delete")) {
         	if(checkbx != null) {
-            	Integer advisorId = Integer.valueOf(request.getParameter("adId"));
+            	Integer advisorId = Integer.valueOf(request.getParameter("chk"));
                 try {
                   advisorDao AdvisorDao = new advisorDao();
                   AdvisorDao.delete(advisorId);

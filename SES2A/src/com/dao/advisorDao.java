@@ -33,7 +33,7 @@ public class advisorDao {
             advisor.setFirstName(firstName);
             advisor.setLastName(lastName);
             advisor.setEmail(email);
-//            advisor.setIsActive("Active");
+            advisor.setIsActive("Active");
             session.save(advisor);
             transaction.commit();
             System.out.println("\n\n Details Added \n");
@@ -59,6 +59,7 @@ public class advisorDao {
             advisorupdate.setFirstName(firstNameupdate);
             advisorupdate.setLastName(lastNameupdate);
             advisorupdate.setEmail(emailupdate);
+            advisorupdate.setIsActive("Active");
             session.update(advisorupdate);
             transaction.commit();
             System.out.println("\n\n Details Updated \n");
