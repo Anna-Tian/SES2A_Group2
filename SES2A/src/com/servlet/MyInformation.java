@@ -17,13 +17,13 @@ import com.dao.impl.StudentProfileImpl;
  * Servlet implementation class MyInformationServlet
  */
 @WebServlet("/MyInformationServlet")
-public class MyInformationServlet extends HttpServlet {
+public class MyInformation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     StudentProfileDao studentProfileDao = new StudentProfileImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyInformationServlet() {
+    public MyInformation() {
         super();
         // TODO Auto-generated constructor stub
     }
