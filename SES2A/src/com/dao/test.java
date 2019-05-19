@@ -24,7 +24,7 @@ public class test {
 		Date beginTimeDate = sdf.parse( beginTimeString );
 		Date endTimeDate = sdf.parse( endTimeString );
 		
-		workshop.setName("workshop07");
+		workshop.setName("workshop010");
 		workshop.setStartDate(beginTimeDate);
 		workshop.setEndDate(endTimeDate);
 		workshop.setDays("Just");
@@ -35,7 +35,7 @@ public class test {
 		
 		Room room = new Room();
 		
-		room.setRoomLocation("004");
+		room.setRoomLocation("005");
 		
 		
 		workshop.setRoom(room);

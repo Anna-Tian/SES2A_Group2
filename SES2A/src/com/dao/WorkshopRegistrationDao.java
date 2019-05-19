@@ -14,8 +14,6 @@ import com.bean.Student;
 import com.bean.WorkShop;
 import com.util.HibernateUtil;
 
-import javafx.scene.control.Alert;
-
 public class WorkshopRegistrationDao {
 	public List<WorkShop> test1(String targetGroup) {
 	    Session session = null;

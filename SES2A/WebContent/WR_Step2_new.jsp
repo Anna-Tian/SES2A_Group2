@@ -70,8 +70,8 @@
 				<h3>Sessions</h3>
 				
 
-				<table class="collapsed" style="width: 1000px; height: 100px;">
-					<tbody>
+				<table class="collapsed" style="width: 1500px; height: 100px;">
+					<tbody align="left">
 						<tr>
 							<th>Topics</th>
 							<th>Start date</th>
@@ -86,7 +86,7 @@
 						</tr>
 						
 						<c:forEach var="sessions1" items="${qqq }">
-						  	<tr style="background: gray;">
+						  	<tr >
 							  	<td>${sessions1.name }</td>
 							  	<td>${sessions1.startDate }</td>
 							  	<td>${sessions1.endDate }</td>

@@ -12,7 +12,6 @@ import org.apache.catalina.User;
 import org.apache.catalina.UserDatabase;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import com.util.HibernateUtil;
 

@@ -3,15 +3,12 @@ package com.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.bean.Room;
 import com.bean.Student;
 import com.bean.WorkShop;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.util.HibernateUtil;
 
 /**
@@ -22,13 +19,13 @@ public class TestDaoImpl {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		Student student = new Student();
-		student.setStudentId(12990560);
-		student.setFirstName("Siqi");
+		student.setStudentId(12345);
+		student.setFirstName("JIachen");
 		student.setLastName("Liu");
-		student.setPassword("654321");
+		student.setPassword("123456");
 		student.setFaculty("Engineering and Information Technology");
 		student.setCourse("C09066");
-		student.setEmail("Siqi.Liu-3@student.uts.edu.au");
+		student.setEmail("Jiachen_Liu@student.uts.edu.au");
 		student.setPhone("N/A");
 		student.setMobile("+61451078677");
 		student.setDob("02/ 05/ 1996");
@@ -59,7 +56,7 @@ public class TestDaoImpl {
 		Transaction transaction = session.beginTransaction();
 		
 		WorkShop workShop = new WorkShop();
-		workShop.setName("workShop1");
+		workShop.setName("workShop2");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		workShop.setStartDate((simpleDateFormat.parse(simpleDateFormat.format(new Date()))));
 		workShop.setEndDate((simpleDateFormat.parse(simpleDateFormat.format(new Date().getTime()+1000*60*60*24*30))));
@@ -69,6 +66,12 @@ public class TestDaoImpl {
 		workShop.setNoOfSessions("6");
 		workShop.setTargetGroup("5");
 		workShop.setDescription("4");
+		
+		Room room = new Room();
+		room.setRoomLocation("testlocation");
+		
+		workShop.setRoom(room);
+		
 		session.save(workShop);
 		/*
 		 * HashSet<Student> students= new HashSet<Student>(); HashSet<WorkShop>
@@ -98,7 +101,7 @@ public class TestDaoImpl {
 		return workShop;
 	}
 	public static void main(String[] args) throws ParseException {
-		(new TestDaoImpl()).saveStudent();
+		(new TestDaoImpl()).saveWorkShop();
 		System.out.println("TestDaoImpl Success");
 	}
 }

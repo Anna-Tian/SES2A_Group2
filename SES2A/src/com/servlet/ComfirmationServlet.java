@@ -17,8 +17,6 @@ import com.dao.WorkshopRegistrationDao;
 import com.sun.net.httpserver.Authenticator.Success;
 import com.util.MailUtils;
 
-import javafx.scene.control.Alert;
-
 /**
  * Servlet implementation class ComfirmationServlet
  */
