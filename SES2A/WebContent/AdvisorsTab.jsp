@@ -28,7 +28,7 @@ th{
     background-color: #4db8ff;
 }
 .tab {
-            max-width: 810px;
+            max-width: 830px;
             width: 98%;
             margin: 0px auto;
             text-align: left;
