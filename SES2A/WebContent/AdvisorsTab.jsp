@@ -118,6 +118,8 @@ th{
 <li>If  you delete an advisor, all sessions run by that advisor will also be deleted.</li>
 <li>Inactive advisors will not be able to log in, and their names will be removed from the drop down list.</li>
 </ul>
+
+<!-- Buttons to interact with Available Advisors -->
 <div class= 'buttonholder'> 
 <input type = "submit" name = "action" value = "Delete"/> 
 <input type = "submit" name = "action" value = "Update"/> 
