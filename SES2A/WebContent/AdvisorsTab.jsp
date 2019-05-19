@@ -177,8 +177,7 @@ To enter more advisors, please enter their details below and click "Add". <br>
 <!----------------------------------------------------------------------------------- Line break for Inactive Advisors Section ----------------------------------------------------------------------------------->
 
 
-<!-- Inactive Advisor -->
-
+<!-- Inactive Advisor Table -->
 <div class = 'header'><b><font color = "white" size = "+2">Inactive advisors</font></b></div>
 <table id = "inactiveAD">
 <tr><th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th></tr>
