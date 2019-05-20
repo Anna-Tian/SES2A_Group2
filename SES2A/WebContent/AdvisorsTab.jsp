@@ -86,7 +86,7 @@ th{
   	String  dtb = "SELECT * FROM advisor"; 
   	resultSet = statement.executeQuery(dtb); 
   while  (resultSet.next()) {
-	  if (resultSet.getString("isActive") != null){
+// 	  if (resultSet.getString("isActive") != null){
  %>
 
   <tr> 
@@ -100,7 +100,7 @@ th{
 
 
 <%
-  	}
+//   	}
 } 
   connection.close();
   }catch

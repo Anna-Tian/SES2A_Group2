@@ -28,21 +28,29 @@ public class advisorDao {
  
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
-            Advisor advisor = new Advisor();
-            advisor.setStaffNumber(staffNumber);
-            advisor.setFirstName(firstName);
-            advisor.setLastName(lastName);
-            advisor.setEmail(email);
-            advisor.setIsActive("Active");
-            session.save(advisor);
-            transaction.commit();
-            System.out.println("\n\n Details Added \n");
- 
+            for (int i = 0; i < 3; i++) {
+                Advisor advisor = new Advisor();
+                advisor.setStaffNumber(staffNumber);
+                advisor.setFirstName(firstName);
+                advisor.setLastName(lastName);
+                advisor.setEmail(email);
+                advisor.setIsActive("Active");
+                session.save(advisor);
+                System.out.println("\n\n Details Added \n");
+                if ( i % 33 == 0 ) {
+                    session.flush();
+                    session.clear();
+                }
+            }
+            transaction.commit(); 
+            session.close();
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             System.out.println("error");
         }
 	}
+	
+	
 	public void update(int advisorId, String staffNumberupdate, String firstNameupdate, String lastNameupdate, String emailupdate) {
         try {
   		  Configuration cfg = new Configuration();
@@ -59,7 +67,6 @@ public class advisorDao {
             advisorupdate.setFirstName(firstNameupdate);
             advisorupdate.setLastName(lastNameupdate);
             advisorupdate.setEmail(emailupdate);
-            advisorupdate.setIsActive("Active");
             session.update(advisorupdate);
             transaction.commit();
             System.out.println("\n\n Details Updated \n");
@@ -69,6 +76,8 @@ public class advisorDao {
             System.out.println("error");
         }
    }
+	
+	
 	public void delete(int advisorId) {  
 		  Configuration cfg = new Configuration();
 		  cfg.configure("hibernate.cfg.xml");

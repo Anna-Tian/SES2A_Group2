@@ -28,52 +28,66 @@ public class advisorServlet extends HttpServlet {
     	
     	String action = request.getParameter("action");
     	String[] checkbx = request.getParameterValues("chk");
-        String staffnumber = request.getParameter("staffnumberadd");
-        String firstname = request.getParameter("firstnameadd");
-        String lastname = request.getParameter("lastnameadd");
-        String email = request.getParameter("emailadd");
-        
         String staffnumberupdate = request.getParameter("staffno");
         String firstnameupdate = request.getParameter("fname");
         String lastnameupdate = request.getParameter("lname");
         String emailupdate = request.getParameter("staffemail");
         if(action.equalsIgnoreCase("Add")) {
         try {
-            advisorDao AdvisorDAO = new advisorDao();
-            AdvisorDAO.add(staffnumber, firstname, lastname, email);
-  		  System.out.println("Object Added successfully.....!!");
-            response.sendRedirect("AdvisorsTab.jsp");
-        	} catch (Exception e) {
-        		e.printStackTrace(); 
-        	}
+//        	int i;
+//        	for(i = 0; i < 3; i++) {
+                String staffnumber = request.getParameter("staffnumberadd");
+                String firstname = request.getParameter("firstnameadd");
+                String lastname = request.getParameter("lastnameadd");
+                String email = request.getParameter("emailadd");
+//                if (!staffnumber.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !email.isEmpty() ) {
+                	advisorDao AdvisorDAO = new advisorDao();
+                	AdvisorDAO.add(staffnumber, firstname, lastname, email);
+      		  		System.out.println("Object Added successfully.....!!");
+      		  		response.sendRedirect("AdvisorsTab.jsp");
+//                	}
+//        		}
+        		}catch (Exception e) {
+            		e.printStackTrace(); 
+            	}
+        	
+
         }else if (action.equalsIgnoreCase("Update")) {
-        	if(checkbx != null) {
-            	Integer advisorId = Integer.valueOf(request.getParameter("chk"));
-                try {
-                    advisorDao AdvisorDAO = new advisorDao();
-                    AdvisorDAO.update(advisorId,staffnumberupdate, firstnameupdate, lastnameupdate, emailupdate);
-          		    System.out.println("Object Updated successfully.....!!");
-                    response.sendRedirect("AdvisorsTab.jsp");
-                } catch (Exception e) {
-         
-                    e.printStackTrace();
-                }
+        	for (int i=0; i < checkbx.length; i++) {
+            	if(checkbx != null) {
+                	Integer advisorId = Integer.valueOf(request.getParameter("chk"));
+                    try {
+                        advisorDao AdvisorDAO = new advisorDao();
+                        AdvisorDAO.update(Integer.valueOf(checkbx[i]),staffnumberupdate, firstnameupdate, lastnameupdate, emailupdate);
+              		    System.out.println("Object Updated successfully.....!!");
+                        response.sendRedirect("AdvisorsTab.jsp");
+                    } catch (Exception e) {
+             
+                        e.printStackTrace();
+                    }
+            	}
         	}
 
-        }else if(action.equalsIgnoreCase("Delete")) {
-        	if(checkbx != null) {
-            	Integer advisorId = Integer.valueOf(request.getParameter("chk"));
-                try {
-                  advisorDao AdvisorDao = new advisorDao();
-                  AdvisorDao.delete(advisorId);
-        		  System.out.println("Object Deleted successfully.....!!"); 
-                  response.sendRedirect("AdvisorsTab.jsp");
+        	
+        	
+
+        }else if(action.equalsIgnoreCase("Delete")) {        	
+        	Integer advisorId = Integer.valueOf(request.getParameter("chk"));
+        	for (int i=0; i < checkbx.length; i++) {
+               	if(checkbx != null) {
+                    try {
+                      advisorDao AdvisorDao = new advisorDao();
+                      AdvisorDao.delete(Integer.valueOf(checkbx[i]));
+            		  System.out.println("Object Deleted successfully.....!!"); 
+                      response.sendRedirect("AdvisorsTab.jsp");
 
 
-                }catch (Exception e) {
-                        	e.printStackTrace();
-                     	}
-                	}
+                    }catch (Exception e) {
+                            	e.printStackTrace();
+                         	}
+                    	}
+        	}
+ 
         	}
     	}
     
