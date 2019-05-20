@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>HELPS booking system</title>
 
-<link href="css/studentLogin.css" rel="stylesheet"
+<link href="css/adminLogin.css" rel="stylesheet"
 	type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
@@ -26,16 +26,18 @@
         </header>
         <!--Body-->
         <section>
+        	<h1 id="adm_text"> Administration Login </h1>
             <div id="container_demo">
                 <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                
                 <div id="wrapper">
                     <div id="login" class="animate form">
-                        <form action="StuLogin" method="post">
+                        <form action="AdminLogin" method="post">
                             <h1>Log in</h1>
                             <p>
-                                <label for="username" class="uname"> Your student number </label>
+                                <label for="username" class="uname"> Your username </label>
                                 <input id="username" name="username" required="required" type="text"
-                                    placeholder="Student Number" />
+                                    placeholder="Admin Username" />
                             </p>
                             <p>
                                 <label for="password" class="youpasswd"> Your password </label>
@@ -56,6 +58,7 @@
 
                 </div>
             </div>
+            
         </section>
     </div>
 
