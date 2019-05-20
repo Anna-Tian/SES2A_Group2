@@ -111,10 +111,10 @@
 			
 			else{
 			if(document.getElementById("bookedSession").checked){
-			
-			
 				sel = "bookedSession";
-				sql="select sessionId,date,startTime,endTime,type,rule from session where booked='2' between "+startDate+" and "+endDate;
+				sql="select sessionId,date,startTime,endTime,type,rule from session where booked='1' and (date >= '" + startDate + "' and date <= '" + endDate + "')";
+				alert("Success!");
+				
 			}
 			else if(document.getElementById("cancelledSession").checked){
 				
@@ -148,12 +148,9 @@
 			}
 			else if(document.getElementById("studentHistory").checked){
 				var id = document.getElementById("stuID").value;
-	            alert(id)
 				sel = "studentHistory";
-				
-			
-				sql="select studentId,sessionId from session where studentId="+id+ " between "+startDate+" and "+endDate;
-				//alert(sql)
+				sql="select studentId,sessionId from session where studentId="+id+ " and (date >= '" +startDate +"' and date <='" +endDate+ "')";
+				alert("Success!");
 			}
 			else if(document.getElementById("advisorComment").checked){
 				var id = document.getElementById("advisorID").value;
@@ -179,8 +176,10 @@
 				},
 				dataType:"text",
 				success:function(data){
-					alert(data);
-					
+					//alert(data);
+					alert("222");
+					alert("success!");
+					alert("111"); 
 				}
 			});
 			}

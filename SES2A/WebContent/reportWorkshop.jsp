@@ -157,8 +157,7 @@
 							//alert(val);
 							if ("Improve your writing" == val) {
 								sel = "Improve your writing";
-								sql = "select * from workshop where name='Improve your writing' between "
-										+ startDate + " and " + endDate;
+								sql = "select * from workshop where skillSetId=1 and (startDate >= '" + startDate + "' and endDate <= '" + endDate + "')";
 							} else if ("Improve your grammar" == val) {
 								sel = "Improve your grammar";
 								sql = "select * from workshop where name='Improve your grammar' between "

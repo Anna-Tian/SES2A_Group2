@@ -58,7 +58,7 @@ public class FromDbToExcel {
             }
            
                
-            book.write( new FileOutputStream("/Users/zhangyuying/Desktop/"+table+".xls"));//download path need to change
+            book.write( new FileOutputStream("/Users/anna/Desktop/"+table+".xls"));//download path need to change
     	}
     public  static Student getStudent(String id) {
     	Session session = HibernateUtil.getCurrentSession();

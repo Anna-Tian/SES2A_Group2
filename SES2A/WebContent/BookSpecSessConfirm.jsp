@@ -46,7 +46,7 @@ import="java.util.*"
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	if(a!=null && b!=null && c!=null){
 		Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-		String updateBookingDetails = "UPDATE session SET studentId='" + a + "', subjectName='" + b + "', assignType='" + c + "', isAssignment=" + assignmentBool + ", rule='" + helpType + "', isSendToStudent=" + sendToStudentBool + ", isSendToLecture=" + sendToLectureBool + ", booked=1 WHERE sessionId='" + sessionId + "'";
+		String updateBookingDetails = "UPDATE session SET studentId='" + a + "', subjectName='" + b + "', assignType='" + c + "', isAssignment=" + assignmentBool + ", rule='" + helpType + "', isSendToStudent=" + sendToStudentBool + ", isSendToLecture=" + sendToLectureBool + ", booked='1' WHERE sessionId='" + sessionId + "'";
 		out.println(updateBookingDetails);
 		Statement updateStm = conn.createStatement();
 		
