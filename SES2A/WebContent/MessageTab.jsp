@@ -16,24 +16,27 @@
 	
 	<body>
 		<div class="head"></div>
-		<p></p>
-		<select id="messageTabSelectList" onchange="onChangedSelectList()">
-			<option value="0"></option>
-			<option value="1">FAQ in student interface</option>
-			<option value="2">Instruction of file upload in student interface</option>
-			<option value="3">Instruction of nav in student interface</option>
-			<option value="4">Instruction of skill set in student interface</option>
-			<option value="5">Instruction of student Profile in student interface</option>
-			<option value="6">Instruction of student Profile in student interface - bottom</option>
-			<option value="7">Instruction of workshops in attendance interface</option>
-			<option value="8">Instruction of workshops in student interface</option>
-			<option value="9">Logon page announcement in attendance interface</option>
-			<option value="10">Logon page announcement in student interface</option>
-			<option value="11">Logon page box on the right in student interface</option>
-			<option value="12">Program in student interface</option>
-		</select>
+		<div style="padding-left:40px">
+			<h2>Edit Message:</h2>
+			<select id="messageTabSelectList" onchange="onChangedSelectList()">
+				<option value="0"></option>
+				<option value="1">FAQ in student interface</option>
+				<option value="2">Instruction of file upload in student interface</option>
+				<option value="3">Instruction of nav in student interface</option>
+				<option value="4">Instruction of skill set in student interface</option>
+				<option value="5">Instruction of student Profile in student interface</option>
+				<option value="6">Instruction of student Profile in student interface - bottom</option>
+				<option value="7">Instruction of workshops in attendance interface</option>
+				<option value="8">Instruction of workshops in student interface</option>
+				<option value="9">Logon page announcement in attendance interface</option>
+				<option value="10">Logon page announcement in student interface</option>
+				<option value="11">Logon page box on the right in student interface</option>
+				<option value="12">Program in student interface</option>
+			</select>
+			
+			<p></p>
+		</div>
 		
-		<p></p>
 		
 		<div class="footer"></div>
                 

@@ -13,7 +13,6 @@ body {
 	margin: 0 auto;
 	padding-left: 10px;
 	padding-right: 10px;
-	border: 2px #95e0fd solid;
 }
 
 
@@ -27,13 +26,12 @@ body {
 
 .wrapper p.header_name{
 	display: block;
-	margin-block-start: 5px;
-	margin-block-end: 5px;
-	padding: 7px 15px 5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	font-weight:bold;
 	font-size: 18pt;
 	line-height: 100%;
-	background-color:#33d6ff;
+	letter-spacing: 0.5px;
 }
 .wrapper input[type=submit]{
 	align-items: flex-start;
@@ -47,6 +45,11 @@ body {
 .wrapper input[type=submit]:hover{
 	background-color: #33adff;
 }
+.wrapper input[type=radio]:disabled{
+	background-color: #33adff;
+}
+
+
 .wrapper button {
 	align-items: flex-start;
     text-align: center;
@@ -60,10 +63,12 @@ body {
 	background-color: #33adff;
 }
 
-.wrapper.form_part1{
+.wrapper .form_part1{
+	width:35%;
 	float:left;
 }
-.wrapper.form_part2{
+.wrapper .form_part2{
+	width:65%;
 	float:right;
 }
 
@@ -73,13 +78,34 @@ body {
 	width:70%;
 }
 
-.wrapper table{
-	width:100%;
+
+.wrapper .table_session_available{
+	padding: 1px 12px;
+	border-collapse: collapse;
+	box-sizing: border-box;
+	width: 60%;
 }
 
-.wrapper table th{
-	padding-top: 5px;
-	padding-bottom: 5px;
+.wrapper .table_session_available tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+.wrapper .table_session_available tr:hover {
+	background-color: #ddd;
+}
+
+.wrapper .table_session_available th{
+	border: 1px solid #ddd;
+	padding: 8px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	text-align: left;
+	background-color: #929292;
 	font-weight: bold;
+	font-size: 10pt;
+}
+
+.wrapper .table_session_available td{
+	border: 1px solid #ddd;
+	padding: 8px;
 }

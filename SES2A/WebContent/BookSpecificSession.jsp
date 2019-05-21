@@ -88,11 +88,11 @@ request.setAttribute("adminId", adminId);
 		<form method="POST" action="BookSpecSessConfirm.jsp" id="specific_book_form">
 			<input type="hidden" name="get_sessionId" value = "${sessionId}">
 			<div>
-				<div class="form_part1" style="width:30%">
+				<div class="form_part1">
 					<p>Date: <strong><fmt:formatDate type="date" value="${date}" /></strong></p>
 					<p>Time: <strong><fmt:formatDate pattern="HH:mm" value="${startTime}"/> - <fmt:formatDate pattern="HH:mm" value="${endTime}"/></strong></p>
 				</div>
-				<div class="form_part2" style="width:70%">
+				<div class="form_part2">
 					<p>Advisor: <strong><c:out value="${advisorName}"/></strong></p>
 					<p>Campus: <strong><c:out value="${room}"/></strong></p>
 				</div>
@@ -147,6 +147,6 @@ request.setAttribute("adminId", adminId);
 			
 		</form>
 	</div>
-	<div class="footer"></div>
+	<div class="footer" style="margin-top:3em"></div>
 </body>
 </html>

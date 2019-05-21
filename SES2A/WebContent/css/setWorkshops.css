@@ -3,7 +3,7 @@ body {
 	font-size: 0.8em;
 }
 
-header nav {
+/* header nav {
 	text-align: center;
 	margin: 4px;
 }
@@ -25,14 +25,13 @@ header nav a:hover {
 	color: black;
 	text-decoration: none;
 	border: 1px #5ebef0 solid;
-}
+} */
 
 .wrapper {
-	width: 75%;
+	width: 90%;
 	margin: 0 auto;
 	padding-left: 10px;
 	padding-right: 10px;
-	border: 2px #95e0fd solid;
 }
 
 .wrapper nav {

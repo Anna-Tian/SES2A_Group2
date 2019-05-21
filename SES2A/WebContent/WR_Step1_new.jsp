@@ -35,7 +35,7 @@
 <body>
 
 	<div class="head"></div>
-	<div class="content">
+	<div class="content" style="padding-left:40px; padding-right:40px">
 		
 	<h2>HELPS workshop booking</h2>
 			<div id="student_workshop_skillset_instruction">

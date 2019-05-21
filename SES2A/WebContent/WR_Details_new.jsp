@@ -1,3 +1,4 @@
+<%@page import="com.util.MailUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,12 +25,24 @@ $("[id^='del_']").click(function(){
 			      data:"wid="+id,
 			      dataType:"text",
 			      success:function(data){
-			    	  alert(data);
-			    	  if(data){
-			    		  location.href="WR_Comfirmation_new.jsp"
+			    	  //var email = data.split("_")[0];
+			    	  //var emailString = data.split("_")[1];
+			    	  if(data=="false"){
+			    		  alert("Booking failed");
 			    	  }
 			    	  else{
-			    		  alert("Booking failed")
+			    		  location.href="WR_Comfirmation_new.jsp";
+
+			    		  <%
+			    		  String eC = (String)session.getAttribute("eC");
+			    		  if(eC != null&&eC.length()>0){
+			    			  String email = eC.split("_")[0];
+				    		  String emailContent = eC.split("_")[1];
+				    		  MailUtils.sendMail(email, emailContent);
+			    		  }%>
+			    		  
+			    		 // location.href="WR_Comfirmation_new.jsp";
+			    		  //MailUtils.sendMail(email, emailString);
 			    	  }
 			      }
 			     });
@@ -41,7 +54,7 @@ $("[id^='del_']").click(function(){
 <body>
 
 <div class="head"></div>
-	<div id="content">
+	<div id="content" style="padding-left:40px; padding-right:40px">
 
 			<noscript>
 				<p style="color: red;">Either your browser does not support

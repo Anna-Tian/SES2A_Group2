@@ -65,7 +65,6 @@
 </head>
 <body>
 	<div class="head"></div>
-	<a href="/SES2A/myInformation.jsp">Profile</a>
 	<!-- <div id="global-utility-bar">
 		UTS Logo
 		<div id="uts-logo">

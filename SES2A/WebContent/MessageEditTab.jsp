@@ -174,35 +174,39 @@
 	<body>
 	
 		<div class="head"></div>
-		
-		<p id="updateMessage">Updated the message</p>
-		
-		<div id="div1">
-			<select id="messageTabSelectList">
-				<option value="0"></option>
-				<option value="1">FAQ in student interface</option>
-				<option value="2">Instruction of file upload in student interface</option>
-				<option value="3">Instruction of nav in student interface</option>
-				<option value="4">Instruction of skill set in student interface</option>
-				<option value="5">Instruction of student Profile in student interface</option>
-				<option value="6">Instruction of student Profile in student interface - bottom</option>
-				<option value="7">Instruction of workshops in attendance interface</option>
-				<option value="8">Instruction of workshops in student interface</option>
-				<option value="9">Logon page announcement in attendance interface</option>
-				<option value="10">Logon page announcement in student interface</option>
-				<option value="11">Logon page box on the right in student interface</option>
-				<option value="12">Program in student interface</option>
-			</select>
-			<button id="previewButton" type="button">Preview</button>
-			<button id="publishButton" type="button">Publish</button>
+		<div style="padding-left:40px">
+			<h2>Edit Message</h2>
+			<p id="updateMessage">Updated the message</p>
+			
+			<div id="div1">
+				<select id="messageTabSelectList">
+					<option value="0"></option>
+					<option value="1">FAQ in student interface</option>
+					<option value="2">Instruction of file upload in student interface</option>
+					<option value="3">Instruction of nav in student interface</option>
+					<option value="4">Instruction of skill set in student interface</option>
+					<option value="5">Instruction of student Profile in student interface</option>
+					<option value="6">Instruction of student Profile in student interface - bottom</option>
+					<option value="7">Instruction of workshops in attendance interface</option>
+					<option value="8">Instruction of workshops in student interface</option>
+					<option value="9">Logon page announcement in attendance interface</option>
+					<option value="10">Logon page announcement in student interface</option>
+					<option value="11">Logon page box on the right in student interface</option>
+					<option value="12">Program in student interface</option>
+				</select>
+				<button id="previewButton" type="button">Preview</button>
+				<button id="publishButton" type="button">Publish</button>
+			</div>
+			
+			<textarea id="textEditor"></textarea>
+			
+			<div id="cancelSaveButton">
+				<button id="cancelButton" type="button">Cancel</button>
+				<button id="saveButton" type="button">Save</button>
+			</div>
 		</div>
 		
-		<textarea id="textEditor"></textarea>
 		
-		<div id="cancelSaveButton">
-			<button id="cancelButton" type="button">Cancel</button>
-			<button id="saveButton" type="button">Save</button>
-		</div>
 		
 		<div class="footer"></div>
               

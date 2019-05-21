@@ -51,17 +51,24 @@ public class ComfirmationServlet extends HttpServlet {
 		boolean flag = workshopRegistrationDao.bookingWorkshop(new Student(), workShop);
 		System.out.println(flag);
 		if(flag) {
-			try {
-				MailUtils.sendMail("liujiachen9702@gmail.com", mailString);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			out.print("true");
+			String email = "12990659"+"@student.uts.edu.au";
+			request.getSession().setAttribute("eC", email+"_"+mailString);
+			out.print(email+"_"+mailString);
 		}
 		else {
-			out.print("The time of this course conflicts with other selected courses.");
+			out.print("false");
 		}
+//		if(flag) {
+//			try {
+//				MailUtils.sendMail("liujiachen9702@gmail.com", mailString);
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		else {
+//			out.print("The time of this course conflicts with other selected courses.");
+//		}
 	}
 
 	/**

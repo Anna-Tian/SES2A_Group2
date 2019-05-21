@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
 <body>
 
 <div class="head"></div>
-	<div id="content">
+	<div id="content" style="padding-left:40px; padding-right:40px">
 
 
 			<h2>The skill-set title</h2>
@@ -70,7 +71,7 @@
 				<h3>Sessions</h3>
 				
 
-				<table class="collapsed" style="width: 1500px; height: 100px;">
+				<table class="collapsed" style="width: 100%; height: 100px;">
 					<tbody align="left">
 						<tr>
 							<th>Topics</th>
@@ -88,12 +89,12 @@
 						<c:forEach var="sessions1" items="${qqq }">
 						  	<tr >
 							  	<td>${sessions1.name }</td>
-							  	<td>${sessions1.startDate }</td>
-							  	<td>${sessions1.endDate }</td>
+							  	<td><fmt:formatDate type="date" value="${sessions1.startDate }" /></td>
+							  	<td><fmt:formatDate type="date" value="${sessions1.endDate }" /></td>
 							  	<td>${sessions1.days }</td>
-							  	<td>${sessions1.days }</td>
-							  	<td>${sessions1.name }</td>
-							  	<td>${sessions1.name }</td>
+							  	<td><fmt:formatDate pattern="HH:mm" value="${sessions1.startDate }"/> - <fmt:formatDate pattern="HH:mm" value="${sessions1.endDate }"/></td>
+							  	<td>${sessions1.noOfSessions }</td>
+							  	<td>${sessions1.placeAvailable }</td>
 							
 							  	<td><input value="Detail" type="button" id="del_${sessions1.workShopId }"></td>
 						 	</tr>
@@ -121,7 +122,7 @@
 		})
 	</script>
 
-<div class="foot"></div>
+<div class="foot" style="margin-top:3em"></div>
 
 </body>
 </html>

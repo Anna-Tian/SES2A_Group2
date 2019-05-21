@@ -87,7 +87,7 @@ div {
     z-index: 10;
 }
 #content {
-	width: 60%;
+	width: 100%;
     background: #fff;
     border: 0pt none;
     min-height: 350px;
@@ -115,17 +115,19 @@ body {
 }
 #content #profile, #content #session-detail {
     padding: 10px;
-    width: 820px;
+    width: 60%;
     background-color: #f4f4f4;
     line-height: 30px;
     border: 1px solid #CCCCCC;
     margin-top: 20px;
 }
 .profile-left {
+	width:50%;
     float: left;
     margin-bottom: 12px;
 }
 .profile-right {
+	width:30%;
     float: right;
     margin-bottom: 12px;
 }
@@ -152,7 +154,7 @@ body {
     line-height: 23px;
     margin-top: 20px;
     padding: 10px;
-    width: 820px;
+    width: 60%;
 }
 #footer-wrapper {
     clear: both;

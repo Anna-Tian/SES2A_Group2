@@ -6,10 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Set Workshops</title>
+<title>HELPS Booking System</title>
 <link rel="stylesheet" href="css/setWorkshops.css" />
-<link rel="stylesheet" href="css/emailTemplate.css" />
-<link rel="stylesheet" href="css/adminMenu.css">
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -18,15 +16,13 @@
 	});
 </script>
 </head>
+<div class="head"></div>
 <body>
-	<div class="head"></div>
+	
 
 	<div class="wrapper">
-		<nav>
-			<a id="Current" href="workshop?action=toSkillSet">Current</a> <a
-				href="//">Archived</a>
-		</nav>
-		<div></div>
+		
+		<div style="margin-top:2em"></div>
 		<form action="workshop" method="post">
 			<div class="title">Skill-set:&nbsp;</div>
 			<input type="hidden" name="action" value="insertSkillSet"

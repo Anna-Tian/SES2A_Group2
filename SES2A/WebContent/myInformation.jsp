@@ -1,6 +1,6 @@
 <%@page import="java.util.*"%>
 <%@page import="com.bean.StudentProfile"%>
-<%-- <%@page import="com.dao.MessageDatabase"%> --%>
+<%@page import="com.dao.MessageDatabase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -87,14 +87,14 @@
 		});
 	</script>
 	
-	<%-- <script>
+	<script>
 	$(function(){
 		var mess1 = "<%=MessageDatabase.getCurrentMessage(5).getMessageDetailed()%>";
 		$("#student_profile_instruction").html(mess1);
 		var mess2 = "<%=MessageDatabase.getCurrentMessage(6).getMessageDetailed()%>";
 		$(".notes-box").html(mess2);
 		});
-	</script> --%>
+	</script>
 </head>
 <body>
 	<div class="head"></div>

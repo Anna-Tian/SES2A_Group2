@@ -54,14 +54,14 @@
 				id="skills">
 				<option id="none" value=""></option>
 				<option value="">Improve your writing</option>
-				<option value="">Improve your grammar</option>
+				<!-- <option value="">Improve your grammar</option> -->
 				<option value="">Improve your speaking</option>
-				<option value="">Write now| Writing Support Sessions</option>
+				<!-- <option value="">Write now| Writing Support Sessions</option>
 				<option value="">U: PASS write</option>
 				<option value="">U:PASS</option>
 				<option value="">Conversations@UTS(register not required)</option>
 				<option value="">Academic Writing Boot Camp Feb 2019</option>
-				<option value="">Summer Special Workshops 2018-19</option>
+				<option value="">Summer Special Workshops 2018-19</option> -->
 
 			</select>
 		</p>

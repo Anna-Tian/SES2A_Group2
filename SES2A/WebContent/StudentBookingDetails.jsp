@@ -102,8 +102,8 @@ request.setAttribute("helpType", helpType);
 <body>
 	<div class="head"></div>
 	<div class="wrapper">
-	<p class="header_name" id="student_booking_header">Student booking</p>
-	<form method="post" id="book_details_form">
+		<p class="header_name" id="student_booking_header">Student booking Details</p>
+	
 		<div>
 			<div class="form_part1">
 				<p>Date: <strong><fmt:formatDate type="date" value="${date}" /></strong></p>
@@ -123,6 +123,7 @@ request.setAttribute("helpType", helpType);
 			</p>
 			<a href="StudentProfileDetails.jsp">View this student's profile</a><br>
 			<a href="StudentBookingHistory.jsp">View student's history</a><br>
+			
 			
 			<p>Subject Name* <input type="Text" value="${subjectName}" readonly/></p>
 			<p>Assignment Type* <input type="Text" value="${assignType}" readonly style="width: 40%"/></p>
@@ -163,25 +164,23 @@ request.setAttribute("helpType", helpType);
 			</div>
 		</div>
 		
-		
-	</form>
 	<form method="GET">
 		<div>
 			<p class="header_name" id="comment_header" style="margin-top:2em">Advisor's comment</p>
 			<p>Comment:</p>
 			<textarea rows="4" cols="50" id="commentRichText" style="width:70%"></textarea>
 			
-			<div >
+			<div>
 				<div class="form_part1">
 					<input type="checkbox" name="commentType" value="Requirement">Understanding assignment requirements<br>
 					<input type="checkbox" name="commentType" value="Purpose_focus_argument">Purpose / focus / argument<br>
 					<input type="checkbox" name="commentType" value="Genre_register">Genre / register<br>
 					<input type="checkbox" name="commentType" value="Cohesion">Cohesion<br>
 					<input type="checkbox" name="commentType" value="Paragraph_structure">Paragraph structure<br>
-					<input type="checkbox" name="commentType" value="Using_sources_approriately">Using sources approriately<br>
 					<input type="submit" name="btnSaveComment" value="Save" id="btnSaveComment" style="margin-top:1em"><br>
 				</div>
 				<div class="form_part2">
+					<input type="checkbox" name="commentType" value="Using_sources_approriately">Using sources approriately<br>
 					<input type="checkbox" name="commentType" value="Sentence_grammar">Sentence grammar<br>
 					<input type="checkbox" name="commentType" value="Speaking_presentation">Speaking presentation<br>
 					<input type="checkbox" name="commentType" value="Other">Other<br>
@@ -190,13 +189,13 @@ request.setAttribute("helpType", helpType);
 			
 		</div>
 	</form>
-	<div>
-		<p class="header_name" id="upload_header" style="margin-top:1em">Upload your documents</p>
+	<div style="width:100%; float:left; margin-bottom:3em">
+		<p class="header_name" id="upload_header" style="margin-top:1em; width:100%">Upload your documents</p>
 		<button onclick="chooseFile()" style="display:inline">Choose File</button>
 		<p style="display:inline">No file chosen</p><br>
 		<input type="submit" name="btnUpload" value="Upload" id="btnUpload">
 	</div>
 </div>
-<div class="footer"></div>
+<div class="footer" style="width:100%;float:left"></div>
 </body>
 </html>
