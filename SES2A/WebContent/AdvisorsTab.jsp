@@ -48,9 +48,10 @@ th{
 		$('.footer').load('admin_footer.html');
 	});
 </script> 
+<body class ="tab">
 <div class="head"></div>
 
-<body class ="tab">
+
 <!-- Create the table of Available Advisors -->
 <div class = 'header'><b><font color = "white" size = "+2">Advisors Available</font></b></div>
 <form action="advisorServlet" method="post">
@@ -86,21 +87,21 @@ th{
   	String  dtb = "SELECT * FROM advisor"; 
   	resultSet = statement.executeQuery(dtb); 
   while  (resultSet.next()) {
-// 	  if (resultSet.getString("isActive") != null){
+	  if (resultSet.getString("isActive").equalsIgnoreCase("Active")){
  %>
 
   <tr> 
   
   <td><input type = "checkbox" name = "chk" value = <%=resultSet.getString("advisorId")%> /> 
-  	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
-  <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
-  <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
-  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
+  	  <input contenteditable = "true" name = "staffno_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("staffNumber")%> /></td> 
+  <td><input contenteditable = "true" name = "fname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("firstName")%> /></td> 
+  <td><input contenteditable = "true" name = "lname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("lastName")%> /></td>
+  <td><input contenteditable = "true" name = "staffemail_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("email") %> /></td>
   </tr> 
 
 
 <%
-//   	}
+  	}
 } 
   connection.close();
   }catch
@@ -109,7 +110,6 @@ th{
 %>
 
 </table>
-
 
 
 <!-- Note displayed in Advisors Tab -->
@@ -143,24 +143,24 @@ To enter more advisors, please enter their details below and click "Add". <br>
 <table id = "addAD">  
 <tr><th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th></tr>
 <tr id = "add1">
-	<td> 1  <input type = "number" name = "staffnumberadd" id = "staffnumberadd1"></td> 
-	<td><input type = "text" name = "firstnameadd" id = "firstnameadd1"></td>
-	<td><input type = "text" name = "lastnameadd" id = "lastnameadd1"></td> 
-	<td><input type = "text" name = "emailadd" id = "emailadd1"></td> 
+	<td> 1  <input type = "number" name = "staffnumberadd1"></td> 
+	<td><input type = "text" name = "firstnameadd1"></td>
+	<td><input type = "text" name = "lastnameadd1"></td> 
+	<td><input type = "text" name = "emailadd1"></td> 
 </tr>
 
 <tr id = "add2">
-	<td> 2  <input type = "number" name = "staffnumberadd" id = "staffnumberadd2"></td> 
-	<td><input type = "text" name = "firstnameadd" id = "firstnameadd2"></td> 
-	<td><input type = "text" name = "lastnameadd" id = "lastnameadd2"></td> 
-	<td><input type = "text" name = "emailadd" id = "emailadd2"></td> 
+	<td> 2  <input type = "number" name = "staffnumberadd2"></td> 
+	<td><input type = "text" name = "firstnameadd2"></td> 
+	<td><input type = "text" name = "lastnameadd2"></td> 
+	<td><input type = "text" name = "emailadd2"></td> 
 </tr>
 
 <tr id = "add3">
-	<td> 3  <input type = "number" name = "staffnumberadd" id = "staffnumberadd3"></td> 
-	<td><input type = "text" name = "firstnameadd" id = "firstnameadd3"></td> 
-	<td><input type = "text" name = "lastnameadd" id = "lastnameadd3"></td> 
-	<td><input type = "text" name = "emailadd" id = "emailadd3"></td> 
+	<td> 3  <input type = "number" name = "staffnumberadd3"></td> 
+	<td><input type = "text" name = "firstnameadd3"></td> 
+	<td><input type = "text" name = "lastnameadd3"></td> 
+	<td><input type = "text" name = "emailadd3"></td> 
 
 </tr>
 </table>
@@ -179,21 +179,60 @@ To enter more advisors, please enter their details below and click "Add". <br>
 
 <!-- Inactive Advisor Table -->
 <div class = 'header'><b><font color = "white" size = "+2">Inactive advisors</font></b></div>
-<table id = "inactiveAD">
-<tr><th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th></tr>
-
-<tr>
-	<td><input type="checkbox" name = "chk"><input type = "number" name = "inactivestaffnumber"></td> 
-	<td><input type = "text" name = "inactivefirstname"></td> <td><input type = "text" name = "inactivelastname"></td> 
-	<td><input type = "text" name = "inactiveemail"></td> 
+<form action="advisorServlet" method="post">
+<table id = "inactiveAd" style="border-bottom: 1px solid black">
+<tr>  
+<th><input type = "checkbox" name ="chk"> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
 </tr>
-</table> 
 
-<div class= 'buttonholder'> <button onclick = "activate()">Active</button> </div>
+  <%
+  try{ 
+	  Class.forName(driver); 
+	}catch(ClassNotFoundException e) 
+  		{
+  			e.printStackTrace(); 
+ 		}
 
-<script>
-</script>
+  %> 
+  <tr> 
+  <% 
+  try{ 
+	connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
+  	statement = connection.createStatement(); 
+  	String  dtb = "SELECT * FROM advisor"; 
+  	resultSet = statement.executeQuery(dtb); 
+  while  (resultSet.next()) {
+	  if (resultSet.getString("isActive").equalsIgnoreCase("inactive")){
+ %>
 
-</body>
+  <tr> 
+  
+  <td><input type = "checkbox" name = "chk" value = <%=resultSet.getString("advisorId")%> /> 
+  	  <input contenteditable = "true" name = "staffno_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("staffNumber")%> /></td> 
+  <td><input contenteditable = "true" name = "fname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("firstName")%> /></td> 
+  <td><input contenteditable = "true" name = "lname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("lastName")%> /></td>
+  <td><input contenteditable = "true" name = "staffemail_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("email") %> /></td>
+  </tr> 
+
+
+<%
+  	}
+} 
+  connection.close();
+  }catch
+  (Exception e) { e.printStackTrace(); }
+  
+%>
+
+</table>
+
+
+<!-- Buttons to Activate Advisors -->
+<div class= 'buttonholder'> 
+<input type = "submit" name = "action" value = "Active"/> </div>
+</form>
+
 <div class="footer"></div>
+</body>
+
 </html>
