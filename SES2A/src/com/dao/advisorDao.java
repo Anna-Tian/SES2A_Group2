@@ -16,16 +16,16 @@ import com.bean.Advisor;
 public class advisorDao {
 	public void add(String staffNumber, String firstName, String lastName, String email) {
 		try {
-			// 1. configuring hibernate
+			// Configuring hibernate
 			Configuration configuration = new Configuration().configure();
 
-			// 2. create sessionfactory
+			// Create sessionfactory
 			SessionFactory sessionFactory = configuration.buildSessionFactory();
 
-			// 3. Get Session object
+			// Get Session object
 			Session session = sessionFactory.openSession();
 
-			// 4. Starting Transaction
+			// Starting Transaction
 			Transaction transaction = session.beginTransaction();
 			Advisor advisor = new Advisor();
 			advisor.setStaffNumber(staffNumber);
@@ -43,18 +43,21 @@ public class advisorDao {
 		}
 	}
 
-	public void update(int advisorId, String staffNumberupdate, String firstNameupdate, String lastNameupdate,
-			String emailupdate) {
+	public void update(int advisorId, String staffNumberupdate, String firstNameupdate, String lastNameupdate, String emailupdate) {
 		try {
+			// Configuring hibernate
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
-
+			
+			// Create sessionfactory 
 			SessionFactory factory = cfg.buildSessionFactory();
+			
+			// Get Session object
 			Session session = factory.openSession();
-
 			Object o = session.load(Advisor.class, advisorId);
 			Advisor advisorupdate = (Advisor) o;
-
+			
+			// Starting Transaction
 			Transaction transaction = session.beginTransaction();
 			advisorupdate.setStaffNumber(staffNumberupdate);
 			advisorupdate.setFirstName(firstNameupdate);
@@ -72,15 +75,19 @@ public class advisorDao {
 	}
 
 	public void delete(int advisorId) {
+		// Configuring hibernate
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate.cfg.xml");
-
+		
+		// Create sessionfactory 
 		SessionFactory factory = cfg.buildSessionFactory();
 		Session session = factory.openSession();
-
+		
+		// Get Session object
 		Object o = session.load(Advisor.class, advisorId);
 		Advisor a = (Advisor) o;
 
+		// Starting Transaction
 		Transaction transaction = session.beginTransaction();
 		session.delete(a);
 		System.out.println("Object Deleted successfully.....!!");
@@ -91,15 +98,19 @@ public class advisorDao {
 
 	public void inactive(int advisorId) {
 		try {
+			// Configuring hibernate
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
-
+			
+			// Create sessionfactory 
 			SessionFactory factory = cfg.buildSessionFactory();
 			Session session = factory.openSession();
-
+			
+			// Get Session object
 			Object o = session.load(Advisor.class, advisorId);
 			Advisor advisorinactivate = (Advisor) o;
 
+			// Starting Transaction
 			Transaction transaction = session.beginTransaction();
 			advisorinactivate.setIsActive("InActive");
 			session.update(advisorinactivate);
@@ -114,15 +125,19 @@ public class advisorDao {
 
 	public void active(int advisorId) {
 		try {
+			// Configuring hibernate
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
-
+			
+			// Create sessionfactory 
 			SessionFactory factory = cfg.buildSessionFactory();
 			Session session = factory.openSession();
-
+			
+			// Get Session object
 			Object o = session.load(Advisor.class, advisorId);
 			Advisor advisoractivate = (Advisor) o;
 
+			// Starting Transaction
 			Transaction transaction = session.beginTransaction();
 			advisoractivate.setIsActive("Active");
 			session.update(advisoractivate);
