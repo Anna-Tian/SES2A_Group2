@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ROOM TAB</title>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <style>
 table, th, td{
 	border: 0px solid black;
@@ -29,7 +30,6 @@ table tr:nth-child(even) {
 table tr:nth-child(odd) {
  background: #fff;
 }
-/* p{background-color:#4DB8FF; font-size:25px; margin: 0px;} */
 </style> 
 
 <script type="text/javascript">
@@ -40,46 +40,13 @@ table tr:nth-child(odd) {
 </script>
 </head>
 
-<script>
-/* function uRoom()
-{
-	$.ajax ({
-		
-		url:"roomServlet",
-		type:"post",
-		data: {value: document.getElementById("roomNumber").value},
-		dataType: "text",
-		success: function(data){
-			System.out.println("Success");
-		}	
-	});
-} */
-
- $(document).ready(function(){
-	$("updateRoomButton").click(function(){
-		$.ajax ({
-			
-			url:"roomServlet",
-			type:"POST",
-			data: {value: document.getElementById("roomNumber").value},
-			dataType: "text",
-			success: function(data){
-				System.out.println("Success");
-			}	
-		});
-	});
-}); 
-
-
-</script>
-
 <body>
 <div class = "head"></div>
 
 <b>List campus</b>
 
 
-<form action = "roomDelete.jsp" method = "post">
+<form action = "roomServlet" method = "post">
 <table id = "RoomTable" style="width:50%">
 
 <%
@@ -103,7 +70,7 @@ ResultSet rSet = null;
 
 %>
 	<tr>
-		<th><input type="checkbox" ></th>
+		<th><input type=  "checkbox" ></th>
 		<th>Room</th>
 	</tr>
 	
@@ -117,10 +84,8 @@ ResultSet rSet = null;
 		{
 	%>
 	<tr>
-	<td><input type = "checkbox" name = "roomId" value = "<%=rSet.getString("roomId")%>"></td> 
-	<%-- <td><input type = "checkbox" name = "roomId"/> <input type="hidden" name="id" value = <%=rSet.getString("roomId")%>> --%>
-	
-	<td><input contenteditable="true" name = "roomNumber" value = <%=rSet.getString("roomLocation") %>></td>
+	<td><input type = "checkbox" name = "roomId" value = "<%=rSet.getString("roomId")%>"></td> 	
+	<td><input contenteditable="true" name = "roomNumber_<%=rSet.getString("roomId")%>" value = <%=rSet.getString("roomLocation") %>></td>
 	</tr>
 	<%
 		}
@@ -133,20 +98,16 @@ ResultSet rSet = null;
 	
 </table>
 
-<center><input type="submit" value="Delete"> </form><input type = "button" id = "updateRoomButton" value = "Update"> </center>
-<!--  <button type = "button" onclick = "uRoom(); return false;">Update</button>  -->
+<center><input type="submit" name = "action" value="Delete"> <input type = "submit" name = "action" value = "Update"></form> </center>
 
 
-
-<form action = "roomAdding.jsp">
+<form action = "roomServlet" method = "post">
 <b>Add campus</b>
-</br>Campus: <input type="text" name="roomLocation" id = "fInput"></br>
-<input type="submit" id = "fRoom" value="Add" > 
+</br>Campus: <input type="text" name="roomLocation"></br>
+<input type="submit" name = "action" value="Add" > 
 </form>
 
 <div class = "footer"></div>
-
-
 
 </body>
 </html>
