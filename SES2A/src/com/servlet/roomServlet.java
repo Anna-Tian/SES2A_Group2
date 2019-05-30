@@ -2,6 +2,10 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -98,15 +102,18 @@ public class roomServlet extends HttpServlet {
 				}
 				else
 				{
-					PrintWriter out = response.getWriter();  
-					response.setContentType("text/html");  
-					out.println("<script type=\"text/javascript\">");  
-					out.println("alert('Please enter room number');");  
-					out.println("</script>");
+					List list = new LinkedList();
 					
-					if(response.isCommitted())
+					if(added.length() == 0)
 					{
-					response.sendRedirect("roomIndex.jsp");
+						list.add("Please enter room number");
+					}
+					
+					if(!list.isEmpty())
+					{
+						request.setAttribute("ErrorList", list);
+						RequestDispatcher rd = request.getRequestDispatcher("roomIndex.jsp");
+						rd.forward(request, response);
 					}
 					
 				}
