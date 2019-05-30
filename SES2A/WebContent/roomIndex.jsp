@@ -5,6 +5,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Iterator" %>
 
 
 <!DOCTYPE html>
@@ -106,6 +108,30 @@ ResultSet rSet = null;
 </br>Campus: <input type="text" name="roomLocation"></br>
 <input type="submit" name = "action" value="Add" > 
 </form>
+
+<%
+	List list = (List) request.getAttribute("ErrorList");
+	
+	if(list != null)
+	{
+		for(Iterator iterator = list.iterator(); iterator.hasNext();)
+		{
+			String error = (String) iterator.next();
+	%>
+	
+	<font color = "blue">
+	
+	<li>
+	<%=error %>
+	</li>
+	
+	</font>
+	
+	<%
+		}
+	}
+
+	%>
 
 <div class = "footer"></div>
 
