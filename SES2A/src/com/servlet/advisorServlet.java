@@ -2,11 +2,15 @@ package com.servlet;
 
 import java.io.IOException;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 
 import com.dao.advisorDao;
 
@@ -16,10 +20,12 @@ public class advisorServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		String action = request.getParameter("action");
 		String[] checkbx = request.getParameterValues("chk");
-
+// Servlet action to get unique advisorId with the corresponding data to Update when action with value "Add" is called
+		
+		// Loop through add text boxes
 		if (action.equalsIgnoreCase("Add")) {
 			try {
 				for (int i = 1; i < 4; i++) {
@@ -27,11 +33,27 @@ public class advisorServlet extends HttpServlet {
 					String firstname = request.getParameter("firstnameadd" + i);
 					String lastname = request.getParameter("lastnameadd" + i);
 					String email = request.getParameter("emailadd" + i);
+					// Condition if all boxes are not filled then the advisors will not be added
 	                if (!staffnumber.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !email.isEmpty() ) {
 						advisorDao AdvisorDAO = new advisorDao();
 						AdvisorDAO.add(staffnumber, firstname, lastname, email);
 						System.out.println("Advisors Added successfully.....!!");
 						response.sendRedirect("AdvisorsTab.jsp");
+					}
+	                // Display error message
+	                else {
+						List list = new LinkedList();
+						
+
+						list.add("Please fill in all required fields.");
+						
+						if(!list.isEmpty())
+						{
+							request.setAttribute("ErrorList", list);
+							RequestDispatcher rd = request.getRequestDispatcher("AdvisorsTab.jsp");
+							rd.forward(request, response);
+						}
+						
 					}
 				}
 			} catch (Exception e) {
