@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page import = "com.bean.Advisor" %>
 <%@ page import = "java.sql.*"%>
+<%@ page import = "java.util.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -68,7 +69,7 @@
 		<form action="advisorServlet" method="post">
 			<table class="table_session_available" id = "availableAD" style="border-bottom: 1px solid black">
 			<tr>  
-			<th><input type = "checkbox" name ="chk"> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
+			<th> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
 			</tr>
 			
 			  <%
@@ -126,7 +127,7 @@
 			<!-- Note displayed in Advisors Tab -->
 			<b>Please note:</b>
 			<ul>
-			<li>If  you delete an advisor, all sessions run by that advisor will also be deleted.</li>
+			<li>If you delete an advisor, all sessions run by that advisor will also be deleted.</li>
 			<li>Inactive advisors will not be able to log in, and their names will be removed from the drop down list.</li>
 			</ul>
 			<div class= 'buttonholder'> 
@@ -144,8 +145,29 @@
 		<!-- Note  -->
 		
 		To enter more advisors, please enter their details below and click "Add". <br>
-		<b>Please note:</b>all the fields are compulsory, otherwise that advisors will not be added.<br>
-		
+		<b>Please note:</b> all the fields are compulsory, otherwise that advisors will not be added.<br>
+		<%
+			List list = (List) request.getAttribute("ErrorList");
+			
+			if(list != null)
+			{
+				for(Iterator iterator = list.iterator(); iterator.hasNext();)
+				{
+					String error = (String) iterator.next();
+			%>
+			
+			<font color = "red">
+			
+			<li>
+			<%=error %>
+			</li>
+			
+			</font>
+			
+		<%
+				}
+			}
+		%>
 		
 		<!-- Add Advisors Table -->
 		<h2>Add Advisors</h2>
