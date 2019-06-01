@@ -25,9 +25,9 @@
 		<div style="margin-top:2em"></div>
 		<form action="workshop" method="post">
 			<div class="title">Skill-set:&nbsp;</div>
-			<input type="hidden" name="action" value="insertSkillSet"
-				required="required"> <input id="skillsInput" name="name"
-				type="text"> <input type="submit" value="Add">
+			<input type="hidden" name="action" value="insertSkillSet" required="required"/> 
+			<input id="skillsInput" name="name" type="text"> 
+			<input type="submit" value="Add"/>
 		</form>
 		<table rules="rows">
 			<tbody>
@@ -56,9 +56,7 @@
 							value="${item.name}"></th>
 						<th style="width: 30%;"><input name="shortName"
 							value="${item.shortName}"></th>
-						<th><a
-							href="workshop?action=showWorkShop&skillSetId=${item.skillSetId}">SetWorkshops</a>
-						</th>
+						<th><a href="/SES2A/Work2?showWorkShop&skillSetId=${item.skillSetId}">SetWorkshops</a></th><!-- workshop?action=showWorkShop&skillSetId=${item.skillSetId} -->
 					</tr>
 				</c:forEach>
 

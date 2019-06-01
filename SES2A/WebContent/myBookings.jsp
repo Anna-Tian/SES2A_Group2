@@ -150,6 +150,7 @@
 				</div>
 				
 				<div id="session5" style="display: none">
+					<h4>Past</h4>
 					<p>There are no workshop sessions to display.</p>
 				</div>
 				<div id="session6">

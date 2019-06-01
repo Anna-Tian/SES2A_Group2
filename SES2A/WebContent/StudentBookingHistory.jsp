@@ -121,13 +121,13 @@ request.setAttribute("studentEmail", studentEmail);
 				<h4>Upcoming</h4>
 				<table class="table_session_available">
 					<tr align="left">
-						<th>Topic</th>
-						<th>Start date</th>
-						<th>End date</th>
-						<th>Days</th>
-						<th>Time</th>
-						<th>Room</th>
-						<th>No. Of Session</th>
+						<th style="width:30%;">Topic</th>
+						<th style="width:15%;">Start date</th>
+						<th style="width:15%;">End date</th>
+						<th style="width:5%;">Days</th>
+						<th style="width:5%;">Time</th>
+						<th style="width:15%;">Room</th>
+						<th style="width:5%;">No. Of Session</th>
 					</tr>
 					<c:forEach var="workShop" items="${upcoming }">
 					  	<tr align="left">
@@ -151,13 +151,13 @@ request.setAttribute("studentEmail", studentEmail);
 				<h4>Past</h4>
 				<table class="table_session_available">
 					<tr align="left">
-						<th>Topic</th>
-						<th>Start date</th>
-						<th>End date</th>
-						<th>Days</th>
-						<th>Time</th>
-						<th>Room</th>
-						<th>No. Of Session</th>
+						<th style="width:30%;">Topic</th>
+						<th style="width:15%;">Start date</th>
+						<th style="width:15%;">End date</th>
+						<th style="width:5%;">Days</th>
+						<th style="width:5%;">Time</th>
+						<th style="width:15%;">Room</th>
+						<th style="width:5%;">No. Of Session</th>
 					</tr>
 					<c:forEach var="workShop" items="${past }">
 					  	<tr align="left">

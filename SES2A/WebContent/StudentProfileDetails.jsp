@@ -34,9 +34,9 @@
 			
 			<p>DOB: ${sessionScope.student.dob}</p>
 			<p>Gender:&nbsp;
-			    &nbsp;<input type="Radio" name="rdoGender" value="M" <c:if test="${sessionScope.studentProfile.gender=='M'}">checked</c:if> disabled>M (male)
-			    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="F" <c:if test="${sessionScope.studentProfile.gender=='F'}">checked</c:if> disabled>F (female)
-			    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="X" <c:if test="${sessionScope.studentProfile.gender=='X'}">checked</c:if> disabled>X (indeterminate/unspecified/intersex)
+			    &nbsp;<input type="Radio" name="rdoGender" value="M" <c:if test="${sessionScope.studentProfile.gender eq 'M'}">checked</c:if> disabled>M (male)
+			    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="F" <c:if test="${sessionScope.studentProfile.gender eq 'F'}">checked</c:if> disabled>F (female)
+			    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="X" <c:if test="${sessionScope.studentProfile.gender eq 'X'}">checked</c:if> disabled>X (indeterminate/unspecified/intersex)
 			</p>
 			<p>Degree*: 
 				<input type="Radio" name="rdoDegree" value="UG" id="rdoDegree_UGdetails" <c:if test="${sessionScope.studentProfile.degree=='UG'}">checked</c:if> disabled>Undergraduate

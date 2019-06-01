@@ -89,6 +89,33 @@ request.setAttribute("helpType", helpType);
 					document.getElementById('checkRuleDetails').style.display = "none";
 				}
 			});
+	  		
+	  		$("#OneToOneProfile").click(function(){
+	  			var student_id = ${requestScope.studentId};
+	  			$.ajax({
+					url:"OneToOneProfileServlet",
+					type:"post",
+					data:"student_id="+student_id,
+					dataType:"text",
+					success:function(data){
+						window.location.href="StudentProfileDetails.jsp";
+					}
+				});
+	  		});
+	  		
+	  		$("#StudentBookingHistory").click(function(){
+	  			var student_id = ${requestScope.studentId};
+	  			$.ajax({
+					url:"StudentBookingHistoryS",
+					type:"post",
+					data:"student_id="+student_id,
+					dataType:"text",
+					success:function(data){
+						window.location.href="StudentBookingHistory.jsp";
+					}
+				});
+	  		});
+	  		
 		});
 	</script>
 	
@@ -121,8 +148,9 @@ request.setAttribute("helpType", helpType);
 				<strong><c:out value="${studentFirstName} ${studentLastName}"/></strong>
 				 (Email: <c:out value="${studentEmail}"/>)
 			</p>
-			<a href="StudentProfileDetails.jsp">View this student's profile</a><br>
-			<a href="StudentBookingHistory.jsp">View student's history</a><br>
+			<!-- <a id="OneToOneProfile" >View this student's profile</a><br> --><!-- href="/SES2A/OneToOneProfileServlet" -->
+			<input id="OneToOneProfile" type="button" value="View this student's profile"><br>
+			<input id="StudentBookingHistory" type="button" value="View student's history"><br>
 			
 			
 			<p>Subject Name* <input type="Text" value="${subjectName}" readonly/></p>

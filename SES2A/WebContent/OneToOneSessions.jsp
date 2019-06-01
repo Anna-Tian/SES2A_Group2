@@ -130,7 +130,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 											<input type="hidden" name="get_helpType" value = "${item.rule}">
 											<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
 											<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
-											<input type="submit" value="${item.studentId}" id="bookedName"/>
+											<input type="submit" value="Booked" id="bookedName"/>
 											</form></td>
 									</c:when>
 									<c:otherwise>
@@ -181,7 +181,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 											<input type="hidden" name="get_helpType" value = "${item.rule}">
 											<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
 											<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
-											<input type="submit" value="${item.studentId}" id="bookedName"/>
+											<input type="submit" value="Booked" id="bookedName"/>
 											</form></td>
 									</c:when>
 									<c:otherwise>

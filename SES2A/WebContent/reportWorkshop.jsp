@@ -164,8 +164,7 @@
 										+ startDate + " and " + endDate;
 							} else if ("Improve your speaking" == val) {
 								sel = "Improve your speaking";
-								sql = "select * from workshop where name='Improve your speaking' between "
-										+ startDate + " and " + endDate;
+								sql = "select * from workshop where skillSetId=2 and (startDate >= '" + startDate + "' and endDate <= '" + endDate + "')";
 							} else if ("Write now| Writing Support Sessions" == val) {
 								sel = "Write now| Writing Support Sessions";
 								sql = "select * from workshop where name='Write now| Writing Support Sessions' between "
