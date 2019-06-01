@@ -120,7 +120,8 @@ public class WorkshopRegistrationDao {
 		try {
 			session = HibernateUtil.getCurrentSession();
 			transaction = session.beginTransaction();
-			student = session.get(Student.class, 12879678);
+			//student = session.get(Student.class, student.getStudentId());
+			System.out.println("111111111111111111111: "+student.getStudentId());
 			Set<WorkShop> workShops = student.getWorkShops();
 			for(WorkShop ws:workShops) {
 				list.add(ws);
@@ -128,8 +129,8 @@ public class WorkshopRegistrationDao {
 			
 			for(WorkShop wShop : list) {
 				System.out.println(wShop.getWorkShopId());
-				if (ifConflict(workShop, wShop) || workShop.getWorkShopId() == wShop.getWorkShopId()) {
-					System.out.println("111111111111111111111");
+				if (workShop.getWorkShopId() == wShop.getWorkShopId()) {//ifConflict(workShop, wShop) || 
+					System.out.println("111111111111111111111: false!");
 					//student.getWorkShops().add(workShop);
 					flag = false;
 				}
@@ -140,7 +141,7 @@ public class WorkshopRegistrationDao {
 				workShop.getStudents().add(student);
 				int placeAvailable = Integer.parseInt(workShop.getMaximumPlace())- workShop.getStudents().size();
 				workShop.setPlaceAvailable(String.valueOf(placeAvailable));
-				session.saveOrUpdate(student);
+				//session.saveOrUpdate(student);
 				session.saveOrUpdate(workShop);
 			}
 			transaction.commit();

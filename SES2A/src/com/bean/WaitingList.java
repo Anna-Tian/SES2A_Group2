@@ -11,6 +11,7 @@ public class WaitingList {
 	private String waitingStatus;
 	private String firstName;
 	private String lastName;
+	private String workShopId;
 
 	private Session session;//n:1
 	private Set<Admin> admins = new HashSet<Admin>();//n:n
@@ -86,6 +87,12 @@ public class WaitingList {
 	}
 	public void setStudents(Set<Student> students) {
 		this.students = students;
+	}
+	public String getWorkShopId() {
+		return workShopId;
+	}
+	public void setWorkShopId(String workShopId) {
+		this.workShopId = workShopId;
 	}
 	
 	

@@ -19,7 +19,7 @@ import com.dao.impl.StudentProfileImpl;
  */
 @WebServlet(urlPatterns= {"/MyInformationServlet","/OneToOneProfileServlet"})
 public class MyInformation extends HttpServlet {
-	private static final long serialVersionUID = 1L; 
+	private static final long serialVersionUID = 1L;
     StudentProfileDao studentProfileDao = new StudentProfileImpl();
     /**
      * @see HttpServlet#HttpServlet()

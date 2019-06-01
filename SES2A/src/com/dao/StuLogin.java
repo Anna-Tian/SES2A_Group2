@@ -32,6 +32,26 @@ public class StuLogin {
 		
 		return student;
 	}
+	public Student findStudentById(Integer id) {
+		Session session = null;
+		Transaction transaction = null;
+		Student student = null;
+		try {
+			session = HibernateUtil.getCurrentSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from Student s where s.studentId = ?");
+			query.setParameter(0, id);
+			List<Student> list = query.list();
+			if(list!=null&&list.size()>0) {
+				student = list.get(0);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		transaction.commit();
+		
+		return student;
+	}
 	public Admin findAdminByIP(Integer id, String password) {
 		  Session session = null;
 		  Transaction transaction = null;

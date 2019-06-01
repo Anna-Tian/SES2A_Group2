@@ -11,6 +11,8 @@
 		<property name="waitingStatus"></property>
 		<property name="firstName"></property>
 		<property name="lastName"></property>
+		<property name="workShopId"></property>
+		
 		<many-to-one name="session" column="sessionId" class="com.bean.Session" not-null="false"></many-to-one>
 		<set name="admins" table="t_admin_waitingList">
 			<key column="waitingListId"></key>

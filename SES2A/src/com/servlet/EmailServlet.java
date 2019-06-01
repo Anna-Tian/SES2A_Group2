@@ -53,10 +53,20 @@ public class EmailServlet extends HttpServlet {
 	private void emailSend(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter writer = response.getWriter();
 		try {
-			String toEmail = "annatian1997@gmail.com"; //"12879678"+"@student.uts.edu.au"
+			String toEmail = "12879678@student.uts.edu.au"; //"12879678"+"@student.uts.edu.au"
+			
 			String emailTemplate = request.getParameter("emailTemplate");
-			MailUtils.sendMail(toEmail, emailTemplate);
+			   
+			   String sendTime = "";
+			   Date date = new Date();
+			   SimpleDateFormat u = new SimpleDateFormat("HH:mm aa dd-MM-yyyy ");
+			   sendTime = u.format(date);
+			   
+			   emailTemplate = emailTemplate.replace("[% datetime %]", sendTime);
+			   
+			   MailUtils.sendMail(toEmail, emailTemplate);
 			writer.print("true");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			writer.print("false");

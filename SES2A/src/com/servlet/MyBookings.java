@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Session;
 import com.bean.Student;
+import com.bean.StudentProfile;
 import com.bean.WorkShop;
 import com.dao.StudentBookings;
 import com.dao.StudentProfileDao;
@@ -26,7 +27,7 @@ import com.util.MailUtils;
 /**
  * Servlet implementation class MyBookingsServlet
  */
-@WebServlet(urlPatterns= {"/MyBookingsServlet","/MyBookingsServlet_delete"})
+@WebServlet(urlPatterns= {"/MyBookingsServlet","/MyBookingsServlet_delete","/StudentBookingHistoryS"})
 
 public class MyBookings extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -52,9 +53,45 @@ public class MyBookings extends HttpServlet {
 			MyBookings(request, response);
 		}else if("/MyBookingsServlet_delete".equals(servletPath)){
 			deleteBookings(request,response);
+		}else if("/StudentBookingHistoryS".equals(servletPath)){
+			StudentBookingHistory(request,response);
 		}else {
 			throw new RuntimeException("404,Error Path......");
 		}
+	}
+
+	private void StudentBookingHistory(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter writer = response.getWriter();
+		
+		//int studentId = Integer.parseInt((String) request.getAttribute("student_id"));
+		int studentId = 12879678;
+		Student currentStudent = (new com.dao.StuLogin()).findStudentById(studentId);
+		request.getSession().setAttribute("student", currentStudent);
+		
+		Set<WorkShop> workShops = currentStudent.getWorkShops();
+		Set<Session> sessions = currentStudent.getSessions();
+
+		request.getSession().setAttribute("workShops",null);
+		request.getSession().setAttribute("sessions",null);
+		if(workShops!=null&&workShops.size()>0) {
+			upcomingPast(workShops);
+			if (past!=null&&past.size()>0) {
+				request.getSession().setAttribute("past",past);
+			}else if (past.size()==0) {
+				request.getSession().setAttribute("past",null);
+			}
+			if (upcoming!=null&&upcoming.size()>0) {
+				request.getSession().setAttribute("upcoming",upcoming);
+			}else if (upcoming.size()==0) {
+				request.getSession().setAttribute("upcoming",null);
+			}
+		}
+		if(sessions!=null&&sessions.size()>0) {
+			request.getSession().setAttribute("sessions",sessions);
+		}
+		
+		writer.print("true");
+		
 	}
 
 	private void deleteBookings(HttpServletRequest request, HttpServletResponse response) throws IOException {

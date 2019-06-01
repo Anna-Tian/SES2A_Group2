@@ -48,10 +48,11 @@ public class ComfirmationServlet extends HttpServlet {
 		request.getSession().setAttribute("room",room);
 		String startTime = sdf.format(workShop.getStartDate());
 		String mailString = workshopRegistrationDao.stringBuffer(workShop.getName(), workShop.getDays(), startTime, workShop.getRoom().getRoomLocation());
-		boolean flag = workshopRegistrationDao.bookingWorkshop(new Student(), workShop);
+		Student student = (Student) request.getSession().getAttribute("student");
+		boolean flag = workshopRegistrationDao.bookingWorkshop(student, workShop);
 		System.out.println(flag);
 		if(flag) {
-			String email = "12990659"+"@student.uts.edu.au";
+			String email = student.getStudentId()+"@student.uts.edu.au";
 			request.getSession().setAttribute("eC", email+"_"+mailString);
 			out.print(email+"_"+mailString);
 		}
