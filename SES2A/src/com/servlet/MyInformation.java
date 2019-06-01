@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,9 +17,9 @@ import com.dao.impl.StudentProfileImpl;
 /**
  * Servlet implementation class MyInformationServlet
  */
-@WebServlet("/MyInformationServlet")
+@WebServlet(urlPatterns= {"/MyInformationServlet","/OneToOneProfileServlet"})
 public class MyInformation extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
     StudentProfileDao studentProfileDao = new StudentProfileImpl();
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,9 +37,33 @@ public class MyInformation extends HttpServlet {
 		String servletPath = request.getServletPath();
 		if("/MyInformationServlet".equals(servletPath)) {
 			StudentProfile(request, response);
+		}else if("/OneToOneProfileServlet".equals(servletPath)){
+			OneToOneProfile(request,response);
 		}else {
 			throw new RuntimeException("404,Error Path......");
 		}
+	}
+
+	private void OneToOneProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		PrintWriter writer = response.getWriter();
+		
+		//int studentId = Integer.parseInt((String) request.getAttribute("student_id"));
+		int studentId = 12879678;
+		Student student = (new com.dao.StuLogin()).findStudentById(studentId);
+		request.getSession().setAttribute("student", student);
+		
+		StudentProfile studentProfile = student.getStudentProfile();
+		request.getSession().setAttribute("studentProfile", studentProfile);
+		if(studentProfile!=null) {
+			String[] eduBgNew = studentProfile.getEduBg().substring(1,studentProfile.getEduBg().length()-1).split(", ");
+			String[] eduBgMarkNew = studentProfile.getEduBgMark().substring(1,studentProfile.getEduBgMark().length()-1).split(", ");
+			request.getSession().setAttribute("eduBg", eduBgNew);
+			request.getSession().setAttribute("eduBgMark", eduBgMarkNew);
+		}
+		writer.print("true");
+		//response.sendRedirect("StudentProfileDetails.jsp");
+		
 	}
 
 	private void StudentProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
