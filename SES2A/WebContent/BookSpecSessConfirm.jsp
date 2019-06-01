@@ -20,7 +20,7 @@ import="java.util.*"
 </head>
 <body>
 	<div class="head"></div>
-	<h1>Booked One To One Session!</h1>
+	<h1 style="text-align: center;">Booked One To One Session!</h1>
 	<%
 	String host = "jdbc:mysql://localhost:3306/uts_help";
 	PreparedStatement stat = null;
@@ -38,7 +38,7 @@ import="java.util.*"
 	int assignment = (assignmentBool)? 1:0; //no need, write this code is because no value shows in terminal by using boolean, but it actually already saved the data
 	int sendToStudent = (sendToStudentBool)? 1:0;
 	int sendToLecture = (sendToLectureBool)? 1:0;
-	out.println("sendToStudentStr?" + sendToStudentStr);
+	//out.println("sendToStudentStr?" + sendToStudentStr);
 	String helpType = "";
 	for(int i=0; i<checkValues.length; i++){
 		helpType+=checkValues[i] + "; ";
@@ -47,12 +47,12 @@ import="java.util.*"
 	if(a!=null && b!=null && c!=null){
 		Connection conn=DriverManager.getConnection(host, "root", "rootroot");
 		String updateBookingDetails = "UPDATE session SET studentId='" + a + "', subjectName='" + b + "', assignType='" + c + "', isAssignment=" + assignmentBool + ", rule='" + helpType + "', isSendToStudent=" + sendToStudentBool + ", isSendToLecture=" + sendToLectureBool + ", booked='1' WHERE sessionId='" + sessionId + "'";
-		out.println(updateBookingDetails);
+		//out.println(updateBookingDetails);
 		Statement updateStm = conn.createStatement();
 		
 		int updateRs = updateStm.executeUpdate(updateBookingDetails);
 		if(updateRs>0){
-			out.println("data stored!" );  
+			//out.println("data stored!" );  
 			
 		}else{
 			out.println(updateBookingDetails);

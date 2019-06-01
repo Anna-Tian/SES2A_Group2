@@ -132,10 +132,10 @@
 <body>
 	<div class="head"></div>
 	<div class="wrapper">
-			<nav>
+			<!-- <nav>
 				<a href="/list/">List</a> |
 				<a href="/send email/">Send Email</a> 
-			</nav>
+			</nav> -->
 		<h2>Change Email Template</h2>
 		<div class="selectArea">
 			<div class="emailType">Select an email:&nbsp;</div>

@@ -2,9 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page import = "com.bean.Advisor" %>
-<%@ page import = "java.sql.*"%>
-<%@ page import = "java.util.*"%>
-
+<%@ page import = "java.sql.Connection"%>
+<%@ page import = "java.sql.DriverManager"%>
+<%@ page import = "java.sql.SQLException"%>
+<%@ page import = "java.sql.Statement"%>  
+<%@ page import = "java.sql.ResultSet"%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,31 +48,27 @@
 	
 	</style>  
 </head>
-
+ 
+<!----------------------------------------------------------------------------------- Line break for Avaialable Advisors Section ----------------------------------------------------------------------------------->
+																											<hr>
+<!----------------------------------------------------------------------------------- Line break for Avaialable Advisors Section ----------------------------------------------------------------------------------->
 <script type="text/javascript">
 	$(function(){
 		$('.head').load('admin_head.html');
 		$('.footer').load('admin_footer.html');
 	});
 </script> 
-<!----------------------------------------------------------------------------------- START OF BODY ----------------------------------------------------------------------------------->
-																						   <hr>
-<!----------------------------------------------------------------------------------- START OF BODY ----------------------------------------------------------------------------------->
+
 
 <body>
 	<div class="head"></div>
 	<!-- Create the table of Available Advisors -->
 	<div class="wrapper" style="padding-left:40px; padding-right:40px">
-	
-		<!----------------------------------------------------------------- Delete, Update, Inactive Advisors Sections ----------------------------------------------------------------->
-																		 						<hr>
-		<!----------------------------------------------------------------- Delete, Update, Inactive Advisors Sections ----------------------------------------------------------------->		
-			
 		<h2>Advisors Available</h2>
 		<form action="advisorServlet" method="post">
 			<table class="table_session_available" id = "availableAD" style="border-bottom: 1px solid black">
 			<tr>  
-			<th> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
+			<th><input type = "checkbox" name ="chk1"> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
 			</tr>
 			
 			  <%
@@ -99,20 +98,20 @@
 			  	String  dtb = "SELECT * FROM advisor"; 
 			  	resultSet = statement.executeQuery(dtb); 
 			  while  (resultSet.next()) {
-				  if (resultSet.getString("isActive").equalsIgnoreCase("Active")){
 			 %>
 			
-					  <tr> 
-					  <td><input type = "checkbox" name = "chk" value = <%=resultSet.getString("advisorId")%> /> 
-					  	  <input contenteditable = "true" name = "staffno_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("staffNumber")%> /></td> 
-					  <td><input contenteditable = "true" name = "fname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("firstName")%> /></td> 
-					  <td><input contenteditable = "true" name = "lname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("lastName")%> /></td>
-					  <td><input contenteditable = "true" name = "staffemail_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("email") %> /></td>
-					  </tr> 
+			  <tr> 
+			  
+			  <td><input type = "checkbox" name = "chk" value="<%=resultSet.getString("advisorId")%>"/> 
+			  		<input type="hidden" name="adId" value = <%=resultSet.getString("advisorId")%>> 
+			  	  <input contenteditable = "true" name = "staffno" value = <%=resultSet.getString("staffNumber")%> /></td> 
+			  <td><input contenteditable = "true" name = "fname" value = <%=resultSet.getString("firstName")%> /></td> 
+			  <td><input contenteditable = "true" name = "lname" value = <%=resultSet.getString("lastName")%> /></td>
+			  <td><input contenteditable = "true" name = "staffemail" value = <%=resultSet.getString("email") %> /></td>
+			  </tr> 
 			
 			
 			<%
-				  }
 			} 
 			  connection.close();
 			  }catch
@@ -127,47 +126,26 @@
 			<!-- Note displayed in Advisors Tab -->
 			<b>Please note:</b>
 			<ul>
-			<li>If you delete an advisor, all sessions run by that advisor will also be deleted.</li>
+			<li>If  you delete an advisor, all sessions run by that advisor will also be deleted.</li>
 			<li>Inactive advisors will not be able to log in, and their names will be removed from the drop down list.</li>
 			</ul>
 			<div class= 'buttonholder'> 
 			<input type = "submit" name = "action" value = "Delete"/> 
 			<input type = "submit" name = "action" value = "Update"/> 
-			<input type = "submit" name = "action" value = "Inactive"/>
-			</div>
+			<input type = "submit" name = "action" value = "inActive"/> </div>
 		</form>
 		
 		
-		<!-------------------------------------------------------------------------- Add Advisors Sections -------------------------------------------------------------------------->
-																		 				<hr>
-		<!-------------------------------------------------------------------------- Add Advisors Sections -------------------------------------------------------------------------->		
+		<!----------------------------------------------------------------------------------- Line break for Add Advisors Sections ----------------------------------------------------------------------------------->
+																		 										<hr>
+		<!----------------------------------------------------------------------------------- Line break for Add Advisors Sections ----------------------------------------------------------------------------------->
+		
 		
 		<!-- Note  -->
 		
 		To enter more advisors, please enter their details below and click "Add". <br>
-		<b>Please note:</b> all the fields are compulsory, otherwise that advisors will not be added.<br>
-		<%
-			List list = (List) request.getAttribute("ErrorList");
-			
-			if(list != null)
-			{
-				for(Iterator iterator = list.iterator(); iterator.hasNext();)
-				{
-					String error = (String) iterator.next();
-			%>
-			
-			<font color = "red">
-			
-			<li>
-			<%=error %>
-			</li>
-			
-			</font>
-			
-		<%
-				}
-			}
-		%>
+		<b>Please note:</b>all the fields are compulsory, otherwise that advisors will not be added.<br>
+		
 		
 		<!-- Add Advisors Table -->
 		<h2>Add Advisors</h2>
@@ -175,24 +153,24 @@
 		<table class="table_session_available" id = "addAD">  
 		<tr><th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th></tr>
 		<tr id = "add1">
-			<td> 1  <input type = "number" name = "staffnumberadd1"></td> 
-			<td><input type = "text" name = "firstnameadd1"></td>
-			<td><input type = "text" name = "lastnameadd1"></td> 
-			<td><input type = "text" name = "emailadd1"></td> 
+			<td> 1  <input type = "number" name = "staffnumberadd" id = "staffnumberadd1"></td> 
+			<td><input type = "text" name = "firstnameadd" id = "firstnameadd1"></td>
+			<td><input type = "text" name = "lastnameadd" id = "lastnameadd1"></td> 
+			<td><input type = "text" name = "emailadd" id = "emailadd1"></td> 
 		</tr>
-
+		
 		<tr id = "add2">
-			<td> 2  <input type = "number" name = "staffnumberadd2"></td> 
-			<td><input type = "text" name = "firstnameadd2"></td> 
-			<td><input type = "text" name = "lastnameadd2"></td> 
-			<td><input type = "text" name = "emailadd2"></td> 
+			<td> 2  <input type = "number" name = "staffnumberadd" id = "staffnumberadd2"></td> 
+			<td><input type = "text" name = "firstnameadd" id = "firstnameadd2"></td> 
+			<td><input type = "text" name = "lastnameadd" id = "lastnameadd2"></td> 
+			<td><input type = "text" name = "emailadd" id = "emailadd2"></td> 
 		</tr>
 		
 		<tr id = "add3">
-			<td> 3  <input type = "number" name = "staffnumberadd3"></td> 
-			<td><input type = "text" name = "firstnameadd3"></td> 
-			<td><input type = "text" name = "lastnameadd3"></td> 
-			<td><input type = "text" name = "emailadd3"></td> 
+			<td> 3  <input type = "number" name = "staffnumberadd" id = "staffnumberadd3"></td> 
+			<td><input type = "text" name = "firstnameadd" id = "firstnameadd3"></td> 
+			<td><input type = "text" name = "lastnameadd" id = "lastnameadd3"></td> 
+			<td><input type = "text" name = "emailadd" id = "emailadd3"></td> 
 		
 		</tr>
 		</table>
@@ -204,80 +182,32 @@
 		</form>
 		
 		
-		<!----------------------------------------------------------------------- Inactive Advisors Sections ----------------------------------------------------------------------->
-																		 				  <hr>
-		<!----------------------------------------------------------------------- Inactive Advisors Sections ----------------------------------------------------------------------->		
+		<!----------------------------------------------------------------------------------- Line break for Inactive Advisors Section ----------------------------------------------------------------------------------->
+																												<hr>
+		<!----------------------------------------------------------------------------------- Line break for Inactive Advisors Section ----------------------------------------------------------------------------------->
 		
 		
 		<!-- Inactive Advisor -->
 		<h2>Inactive advisors</h2>
-		<form action="advisorServlet" method="post">
+		
 		<table class="table_session_available" id = "inactiveAD">
 		<tr><th><b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th></tr>
 		
-			  <%
-			  try{ 
-				  Class.forName(driver); 
-				}catch(ClassNotFoundException e) 
-			  		{
-			  			e.printStackTrace(); 
-			 		}
-
-		%> 
-		<tr> 
-		<% 
-		try{ 
-			  Class.forName(driver); 
-			}catch(ClassNotFoundException e) 
-		  		{
-		  			e.printStackTrace(); 
-		 		}
-		  %> 
-		  <tr> 
-		  <% 
-		  try{ 
-			connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
-		  	statement = connection.createStatement(); 
-		  	String  dtb = "SELECT * FROM advisor"; 
-		  	resultSet = statement.executeQuery(dtb); 
-		  while  (resultSet.next()) {
-			  if (resultSet.getString("isActive").equalsIgnoreCase("inactive")){
-		 %>
+		<tr>
+			<td><input type="checkbox" name = "chk"><input type = "number" name = "inactivestaffnumber"></td> 
+			<td><input type = "text" name = "inactivefirstname"></td> <td><input type = "text" name = "inactivelastname"></td> 
+			<td><input type = "text" name = "inactiveemail"></td> 
+		</tr>
+		</table> 
 		
-				  <tr> 
-				  <td><input type = "checkbox" name = "chk" value = <%=resultSet.getString("advisorId")%> /> 
-				  	  <input contenteditable = "true" name = "staffno_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("staffNumber")%> /></td> 
-				  <td><input contenteditable = "true" name = "fname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("firstName")%> /></td> 
-				  <td><input contenteditable = "true" name = "lname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("lastName")%> /></td>
-				  <td><input contenteditable = "true" name = "staffemail_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("email") %> /></td>
-				  </tr> 
+		<div class= 'buttonholder'> <button onclick = "activate()">Active</button> </div>
 		
-		
-		<%
-			  }
-		} 
-		  connection.close();
-		  }catch
-		  (Exception e) { e.printStackTrace(); }
-		  
-		%>
-		
-		</table>
-
-		
-		
-		<!-- Buttons to Activate Advisors -->
-			<div class= 'buttonholder'> 
-			<input type = "submit" name = "action" value = "Active"/> 
-			</div>
-		</form>
-		
+		<script>
+		</script>
 	</div>
 	
 	<div class="footer" style="margin-top:3em"></div>
 </body>
-<!----------------------------------------------------------------------------------- END OF BODY ----------------------------------------------------------------------------------->
-																						 <hr>
-<!----------------------------------------------------------------------------------- END OF BODY ----------------------------------------------------------------------------------->
+
 </html>
 

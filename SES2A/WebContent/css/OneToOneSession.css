@@ -81,6 +81,15 @@ select:focus {
 	cursor:pointer;
 	
 }
+#OneToOneProfile, #StudentBookingHistory{
+	background:none!important;
+	border:none; 
+	padding:0!important;
+	font-size: 13pt;
+	color:#069;
+	text-decoration:underline;
+	cursor:pointer;
+}
 
 .wrapper input[type=submit]{
     text-align: center;

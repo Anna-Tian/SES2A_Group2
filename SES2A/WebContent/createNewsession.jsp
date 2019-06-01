@@ -17,6 +17,7 @@
 		$(function(){
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
+			alert(id);
 		});
 		
 	</script>

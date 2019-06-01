@@ -20,7 +20,7 @@ import="java.util.*"
 </head>
 <body>
 	<div class="head"></div>
-	<h1>Added One To One Session!</h1>
+	<h1 style="text-align: center;">Added One To One Session!</h1>
 	<%
 	String host = "jdbc:mysql://localhost:3306/uts_help";
 	PreparedStatement stat = null;
@@ -57,7 +57,6 @@ import="java.util.*"
 		stat.setString(6,f);
 		int i = stat.executeUpdate();
 		if(i>0){
-			out.println("data stored!" );  
 		}else{
 			out.println("please fill all the fields!");
 		}
@@ -68,7 +67,6 @@ import="java.util.*"
 		ResultSet rs = stm.executeQuery(view);
 		while(rs.next()){
 			String get_sessionId = rs.getString("sessionId").toString();
-			out.println("get_sessionID: " +get_sessionId);
 			String get_adminId = rs.getString("adminId").toString();
 			String get_adminFirstName = rs.getString("firstName").toString();
 			String get_adminLastName = rs.getString("lastName").toString();

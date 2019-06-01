@@ -83,7 +83,7 @@ body {
 	padding: 1px 12px;
 	border-collapse: collapse;
 	box-sizing: border-box;
-	width: 60%;
+	width: 80%;
 }
 
 .wrapper .table_session_available tr:nth-child(even){
