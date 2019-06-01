@@ -125,7 +125,7 @@ $("[id^='del_']").click(function(){
 		})
 	</script>
 
-<div class="foot"></div>
+<div class="foot" style="margin-top:3em"></div>
 
 </body>
 </html>
